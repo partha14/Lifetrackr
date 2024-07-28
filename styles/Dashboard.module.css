@@ -1,0 +1,710 @@
+.root {
+  --overlay-background: rgba(0, 0, 0, 0.5);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay-background);
+  z-index: 999;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.sidebar {
+  width: 250px;
+  background-color: var(--sidebar-background);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: background-color var(--transition-speed);
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.appName {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 1rem;
+  transition: color var(--transition-speed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebarAppName {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+
+.beta {
+  font-size: 0.8rem;
+  background-color: var(--secondary-color);
+  color: var(--button-text-color);
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 5px;
+  vertical-align: super;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.appNameMain {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.pageContent {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--background-light);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--card-background);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  transition: color var(--transition-speed);
+}
+
+.beta {
+  font-size: 0.8rem;
+  background-color: var(--secondary-color);
+  color: var(--button-text-color);
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 5px;
+  vertical-align: super;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  background-color: var(--card-background);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s, transform 0.1s, color 0.3s;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.addButton {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.addButton:hover {
+  background-color: #45a049;
+}
+
+.refreshButton {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.refreshButton:hover {
+  background-color: #3a7bc8;
+}
+
+.feedbackButton {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.feedbackButton:hover {
+  background-color: #2980b9;
+}
+
+.sidebar a, .logoutButton {
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: var(--sidebar-text-light);
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.sidebar a:hover, .logoutButton:hover {
+  background-color: var(--sidebar-hover-light);
+  color: var(--primary-color);
+}
+
+.active {
+  background-color: var(--primary-color);
+  color: var(--text-dark) !important;
+  font-weight: bold;
+}
+
+.logoutButton {
+  margin-top: auto;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.main {
+  flex: 1;
+  padding: 0;
+  background-color: var(--background-light);
+  color: var(--text-light);
+}
+
+.section {
+  margin-bottom: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.listItem:last-child {
+  border-bottom: none;
+}
+
+.purchaseName {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 0.5rem;
+}
+
+.purchasePrice {
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
+.tableContainer {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f0f0f0;
+}
+
+.debug {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+
+.debug h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+}
+
+.debug pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.noChores {
+  text-align: center;
+  padding: 3rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin-top: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.noChores p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.noChores p:first-child {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+}
+
+.noChoresIcon, .noPurchasesIcon {
+  font-size: 4rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .headerContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .buttonGroup {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.noPurchases {
+  text-align: center;
+  padding: 3rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin-top: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.noPurchases p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.noPurchases p:first-child {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: var(--primary-color);
+}
+
+.purchaseTitle {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 0.5rem;
+}
+
+.purchasePrice, .purchaseDate, .purchaseNotes {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.editButton, .deleteButton {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.editButton {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.editButton:hover {
+  background-color: #45a049;
+}
+
+.deleteButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.deleteButton:hover {
+  background-color: #d32f2f;
+}
+
+.cancelButton {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.cancelButton:hover {
+  background-color: #e0e0e0;
+}
+
+.totalSpending {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.totalSpending h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.card {
+  background-color: var(--card-background);
+  color: var(--text-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.choreTitle {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 0.5rem;
+}
+
+.choreDate, .choreRecurring, .chorePeriod, .choreNotes {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+}
+
+.choreRecurring {
+  color: var(--text-color-secondary);
+}
+
+.icon {
+  color: var(--primary-color);
+}
+
+.iconGreen {
+  color: var(--success-color);
+}
+
+.iconRed {
+  color: var(--error-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+  }
+
+  .sidebar {
+    background-color: var(--sidebar-dark);
+  }
+
+  .sidebar a, .logoutButton {
+    color: var(--sidebar-text-dark);
+  }
+
+  .sidebar a:hover, .logoutButton:hover {
+    background-color: var(--sidebar-hover-dark);
+    color: var(--secondary-color);
+  }
+
+  .active {
+    background-color: var(--secondary-color);
+    color: var(--text-dark) !important;
+  }
+
+  .main {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+  }
+
+  .card, .headerContainer, .header, .section {
+    background-color: var(--sidebar-dark);
+    border: 1px solid #4a5568;
+  }
+
+  .choreTitle, .purchaseTitle {
+    border-bottom-color: var(--secondary-color);
+    color: var(--text-dark);
+  }
+
+  .choreDate, .choreRecurring, .chorePeriod, .choreNotes,
+  .purchasePrice, .purchaseDate, .purchaseNotes {
+    color: var(--text-dark);
+  }
+
+  .table th {
+    background-color: var(--sidebar-dark);
+    color: var(--text-dark);
+  }
+
+  .table td {
+    color: var(--text-dark);
+  }
+
+  .table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .button {
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+  }
+
+  .button:hover {
+    background-color: var(--secondary-color);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: var(--sidebar-light);
+    transition: left 0.3s ease-in-out;
+  }
+
+  .mobileMenuOpen {
+    left: 0;
+  }
+
+  .main {
+    margin-top: 60px;
+    padding: 1rem;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: 0.5rem 1rem;
+  }
+
+  .mobileMenuButton {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+
+  .appNameMain {
+    font-size: 1.2rem;
+  }
+
+  .cardGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .headerContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .buttonGroup {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .form {
+    padding: 0.5rem;
+  }
+
+  .input, .textarea {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .purchaseTitle, .choreTitle {
+    font-size: 1.1rem;
+  }
+
+  .purchasePrice, .purchaseDate, .purchaseNotes,
+  .choreDate, .choreRecurring, .chorePeriod, .choreNotes {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .appNameMain {
+    font-size: 1rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .button {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .cardGrid {
+    gap: 0.75rem;
+  }
+
+  .card {
+    padding: 0.75rem;
+  }
+
+  .purchaseTitle, .choreTitle {
+    font-size: 1rem;
+  }
+
+  .purchasePrice, .purchaseDate, .purchaseNotes,
+  .choreDate, .choreRecurring, .chorePeriod, .choreNotes {
+    font-size: 0.8rem;
+  }
+}
