@@ -8,7 +8,6 @@ import { handleError } from '../utils/errorHandler'
 import DarkModeToggle from './DarkModeToggle'
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn'
 import { useTheme } from 'next-themes'
-import { Analytics } from "@vercel/analytics/react"
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -91,7 +90,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </main>
       {isMobileMenuOpen && <div className={styles.overlay} onClick={() => setIsMobileMenuOpen(false)}></div>}
-      <Analytics />
     </div>
   )
 }
