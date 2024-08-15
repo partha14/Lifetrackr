@@ -106,7 +106,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </Link>
             <DarkModeToggle />
           </header>
-          {children}
+          <div className={styles.content}>
+            {children}
+          </div>
         </main>
         <footer className={styles.footer}>
           <p>&copy; 2023 LifeTrackr. All rights reserved.</p>

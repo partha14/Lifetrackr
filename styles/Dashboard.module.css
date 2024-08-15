@@ -21,6 +21,23 @@
   transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+}
+
 .sidebar {
   width: 250px;
   background-color: var(--sidebar-background);
@@ -707,4 +724,11 @@
   .choreDate, .choreRecurring, .chorePeriod, .choreNotes {
     font-size: 0.8rem;
   }
+}
+.footer {
+  background-color: var(--sidebar-background);
+  color: var(--text-color);
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
 }
