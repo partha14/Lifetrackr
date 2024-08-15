@@ -167,12 +167,12 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button variant="outline" className="w-full justify-start">
-                        {formData.name || "Select a chore template"}
+                        {formData.name || `Select a ${category.name} chore template`}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-[300px] p-0">
                       <Command>
-                        <CommandInput placeholder="Search chore templates..." />
+                        <CommandInput placeholder={`Search ${category.name} chore templates...`} />
                         <CommandEmpty>No chore template found.</CommandEmpty>
                         <CommandGroup>
                           <ScrollArea className="h-72">
