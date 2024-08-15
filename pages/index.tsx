@@ -93,6 +93,33 @@ export default function Home() {
           </div>
         </section>
 
+        <motion.section 
+          className={styles.aiShowcase}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+        >
+          <h2>Experience the Power of AI</h2>
+          <p>Ask LifeTrackr anything about your home, car, or personal tasks:</p>
+          <div className={styles.aiExamples}>
+            <div className={styles.aiExample}>
+              <FaRobot className={styles.aiIcon} />
+              <TypingEffect
+                texts={[
+                  "When do I need to replace the air filter in my refrigerator?",
+                  "What's the recommended oil type for my next car oil change?",
+                  "When was the last time I scheduled pest control for my home?"
+                ]}
+                typingSpeed={50}
+                eraseSpeed={30}
+                eraseDelay={3000}
+                typeDelay={1000}
+              />
+            </div>
+          </div>
+          <p>LifeTrackr's AI assistant helps you stay on top of your tasks and maintenance schedules effortlessly.</p>
+        </motion.section>
+
         <section className={styles.benefits}>
           <h2>How LifeTrackr Saves You Time and Effort</h2>
           <ul>
