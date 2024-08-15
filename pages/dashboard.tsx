@@ -30,10 +30,12 @@ export default function Dashboard() {
   const [purchases, setPurchases] = useState<Purchase[]>([])
   const [chores, setChores] = useState<Chore[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [isNameLoading, setIsNameLoading] = useState(true)
   const [user_id, setUserId] = useState<string | null>(null)
 
   const fetchData = useCallback(async () => {
     setIsLoading(true)
+    setIsNameLoading(true)
     try {
       const { data: { user } } = await supabase.auth.getUser()
       if (user) {
@@ -52,6 +54,7 @@ export default function Dashboard() {
       toast.error('Failed to load dashboard data. Please try again.')
     } finally {
       setIsLoading(false)
+      setIsNameLoading(false)
     }
   }, [router])
 
@@ -63,7 +66,9 @@ export default function Dashboard() {
     <Layout>
       <div className={styles.pageContent}>
         <div className={styles.headerContainer}>
-          <h1 className={styles.title}><FaTachometerAlt /> Welcome, {userName}!</h1>
+          <h1 className={styles.title}>
+            <FaTachometerAlt /> Welcome, {isNameLoading ? <LoadingSpinner size="small" /> : userName}!
+          </h1>
           <div className={styles.buttonGroup}>
             <button onClick={fetchData} className={`${styles.button} ${styles.refreshButton}`}>
               <FaSync /> Refresh
