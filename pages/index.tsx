@@ -164,20 +164,20 @@ export default function Home() {
                 <div className={styles.staticTextBox}>
                   <TypingEffect
                     texts={[
-                      "What's my home maintenance schedule for this month?",
-                      "When did I last replace the air filters?",
-                      "How much have I spent on car repairs this year?",
-                      "What's the warranty status of my kitchen appliances?",
-                      "When is my next scheduled pest control service?",
-                      "How long until I need to repaint the living room?",
-                      "What's the maintenance history of my HVAC system?",
-                      "When should I schedule my next roof inspection?",
-                      "How often should I service my lawn mower?"
+                      "When is my next car service appointment?",
+                      "What's the expiration date of my home insurance policy?",
+                      "How many days until my next dentist check-up?",
+                      "When should I replace the batteries in my smoke detectors?",
+                      "What's the remaining warranty period on my laptop?",
+                      "When is the next scheduled termite inspection?",
+                      "How long has it been since I last serviced my boiler?",
+                      "When do I need to renew my driver's license?",
+                      "What's the due date for my next credit card payment?"
                     ]}
-                    typingSpeed={60}
-                    eraseSpeed={30}
-                    eraseDelay={2500}
-                    typeDelay={600}
+                    typingSpeed={65}
+                    eraseSpeed={35}
+                    eraseDelay={2700}
+                    typeDelay={650}
                   />
                 </div>
               </div>
