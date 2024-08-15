@@ -52,10 +52,10 @@ export default function Home() {
         <meta property="og:url" content="https://lifetrackr.com" />
         <meta property="og:image" content="https://lifetrackr.com/og-image.jpg" />
         <link rel="canonical" href="https://lifetrackr.com" />
-        <link rel="icon" href="/public/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
@@ -78,8 +78,8 @@ export default function Home() {
           animate="animate"
           variants={staggerChildren}
         >
-          <motion.h1 variants={fadeInUp}>Tired of juggling life's endless tasks?</motion.h1>
-          <motion.h1 variants={fadeInUp}>Meet LifeTrackr: Your Personal Life Assistant</motion.h1>
+          <motion.h1 key="title1" variants={fadeInUp}>Tired of juggling life's endless tasks?</motion.h1>
+          <motion.h1 key="title2" variants={fadeInUp}>Meet LifeTrackr: Your Personal Life Assistant</motion.h1>
           <motion.p variants={fadeInUp}>
             Effortlessly organize your life, from chores to purchases. LifeTrackr remembers so you don't have to. Experience the freedom of a well-managed life with our innovative app, now in beta!
           </motion.p>
