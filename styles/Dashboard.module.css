@@ -728,7 +728,43 @@
 .footer {
   background-color: var(--sidebar-background);
   color: var(--text-color);
-  padding: 1rem;
+  padding: 0.5rem;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+@media (min-height: 768px) {
+  .footer {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-height: 1024px) {
+  .footer {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
