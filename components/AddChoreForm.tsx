@@ -184,6 +184,8 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                   placeholder="Or enter custom chore name"
                   required
                   className="w-full p-2 border rounded"
+                  aria-label="Enter custom chore name"
+                  aria-required="true"
                 />
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
                   <TypingEffect
