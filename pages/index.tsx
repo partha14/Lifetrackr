@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
-import { FaShoppingCart, FaClipboardList, FaBrain, FaCalendarAlt, FaDollarSign, FaReceipt, FaEnvelope, FaFileAlt, FaRobot } from 'react-icons/fa';
-import React from 'react';
-import { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform, animate, stagger } from 'framer-motion';
+import { FaShoppingCart, FaClipboardList, FaBrain, FaReceipt, FaFileAlt, FaRobot } from 'react-icons/fa';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, animate, stagger } from 'framer-motion';
 import TypingEffect from '../components/TypingEffect';
 
 export default function Home() {
@@ -16,28 +15,11 @@ export default function Home() {
     // Add any initialization code here
   }, []);
 
-  const handleError = (error: Error) => {
-    console.error('An error occurred:', error);
-    // You can add more error handling logic here
-  };
 
   if (!isClient) {
     return null; // or a loading indicator
   }
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  };
-
-  const staggerChildren = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
 
   const heroRef = useRef(null);
 
@@ -293,3 +275,4 @@ export default function Home() {
     </>
   );
 }
+</>;
