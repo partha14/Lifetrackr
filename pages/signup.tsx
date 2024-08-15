@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { supabase } from '../utils/supabaseClient'
+import { supabase, emailConfirmationEnabled } from '../utils/supabaseClient'
 import styles from '../styles/Auth.module.css'
 import { handleError } from '../utils/errorHandler'
 import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa'
@@ -45,7 +45,11 @@ export default function SignUp() {
       })
       if (error) throw error
       if (data) {
-        alert('Check your email for the confirmation link!')
+        if (emailConfirmationEnabled) {
+          alert('Check your email for the confirmation link!')
+        } else {
+          alert('Sign up successful! You can now log in.')
+        }
         router.push('/login')
       }
     } catch (error) {
