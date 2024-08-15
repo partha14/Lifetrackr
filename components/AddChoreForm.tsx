@@ -176,7 +176,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                 id="name"
                 value={formData.name}
                 onChange={(e) => handleChange('name', e.target.value)}
-                placeholder="Or enter custom chore name"
+                placeholder="Or enter custom chore name (e.g., 'Clean gutters')"
                 required
                 className="w-full p-2 border rounded"
               />
