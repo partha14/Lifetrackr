@@ -2,8 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import { FaShoppingCart, FaClipboardList, FaBrain, FaCalendarAlt, FaDollarSign, FaReceipt, FaEnvelope, FaFileAlt, FaRobot } from 'react-icons/fa';
-import { DocumentTextIcon } from '@heroicons/react/24/outline';
 import React from 'react';
+import { FaFileAlt } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TypingEffect from '../components/TypingEffect';
@@ -163,7 +163,7 @@ export default function Home() {
               <FaRobot className={styles.aiIcon} />
               <div className={styles.aiChatbox}>
                 <div className={styles.documentContainer}>
-                  <DocumentTextIcon className={styles.documentIcon} />
+                  <FaFileAlt className={styles.documentIcon} />
                   <div className={styles.staticTextBox}>
                     <TypingEffect
                       texts={[
