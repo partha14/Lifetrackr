@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../components/Layout'
 import styles from '../styles/StaticPages.module.css'
-import { FaShoppingCart, FaClipboardList, FaBrain, FaChartLine } from 'react-icons/fa'
+import { FaShoppingCart, FaClipboardList, FaBrain, FaChartLine, FaSearch, FaRobot, FaComments } from 'react-icons/fa'
 
 export default function Features() {
   return (
@@ -36,6 +36,31 @@ export default function Features() {
             </div>
             <h2>Insights and Analytics</h2>
             <p>Gain valuable insights into your spending habits and task completion patterns with our intuitive analytics dashboard.</p>
+          </div>
+        </div>
+        
+        <h2 className={styles.upcomingTitle}>Coming Soon</h2>
+        <div className={styles.featuresGrid}>
+          <div className={styles.feature}>
+            <div className={styles.featureIcon}>
+              <FaSearch />
+            </div>
+            <h2>Advanced Search</h2>
+            <p>Powerful search functionality to quickly find any purchase or chore in your records.</p>
+          </div>
+          <div className={styles.feature}>
+            <div className={styles.featureIcon}>
+              <FaComments />
+            </div>
+            <h2>Natural Language Search</h2>
+            <p>Search for purchases like appliances or automobiles using natural language queries.</p>
+          </div>
+          <div className={styles.feature}>
+            <div className={styles.featureIcon}>
+              <FaRobot />
+            </div>
+            <h2>AI-Powered Chore Assistance</h2>
+            <p>Utilize AI agents to help perform and manage some of your chores automatically.</p>
           </div>
         </div>
       </div>
