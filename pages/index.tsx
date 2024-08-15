@@ -87,7 +87,7 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <p>© 2023 LifeTrackr. All rights reserved. | We will never sell your data.</p>
-        <p className={styles.madeBy}>Made with ❤️ by PSK</p>
+        <p className={styles.madeBy}>Made with ❤️ by SKP</p>
       </footer>
     </div>
   );
