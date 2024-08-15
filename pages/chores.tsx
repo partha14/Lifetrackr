@@ -133,11 +133,14 @@ export default function Chores() {
         
         if (error) throw error
         
-        fetchChores()
+        await fetchChores()
         resetForm()
       } catch (error) {
-        handleError(error, 'Failed to add chore')
+        console.error('Failed to add chore:', error)
+        alert('Failed to add chore. Please try again.')
       }
+    } else {
+      alert('Please fill in all required fields.')
     }
   }
 
