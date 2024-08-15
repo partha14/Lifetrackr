@@ -8,24 +8,32 @@ export default function Features() {
     <Layout>
       <div className={styles.container}>
         <h1 className={styles.title}>LifeTrackr Features</h1>
-        <div className={styles.content}>
+        <div className={styles.featuresGrid}>
           <div className={styles.feature}>
-            <FaShoppingCart className={styles.icon} />
+            <div className={styles.featureIcon}>
+              <FaShoppingCart />
+            </div>
             <h2>Purchase Tracking</h2>
             <p>Easily log and categorize your purchases. Keep track of warranty periods and never miss a return deadline.</p>
           </div>
           <div className={styles.feature}>
-            <FaClipboardList className={styles.icon} />
+            <div className={styles.featureIcon}>
+              <FaClipboardList />
+            </div>
             <h2>Chore Management</h2>
             <p>Create, schedule, and manage your household tasks and maintenance chores. Set up recurring tasks and get reminders.</p>
           </div>
           <div className={styles.feature}>
-            <FaBrain className={styles.icon} />
+            <div className={styles.featureIcon}>
+              <FaBrain />
+            </div>
             <h2>Smart Reminders</h2>
             <p>Receive intelligent reminders for upcoming tasks, expiring warranties, and important dates related to your purchases and chores.</p>
           </div>
           <div className={styles.feature}>
-            <FaChartLine className={styles.icon} />
+            <div className={styles.featureIcon}>
+              <FaChartLine />
+            </div>
             <h2>Insights and Analytics</h2>
             <p>Gain valuable insights into your spending habits and task completion patterns with our intuitive analytics dashboard.</p>
           </div>
