@@ -4,6 +4,8 @@ import styles from '../styles/Home.module.css';
 import { FaShoppingCart, FaClipboardList, FaBrain, FaCalendarAlt, FaDollarSign, FaReceipt, FaEnvelope, FaFileAlt, FaRobot } from 'react-icons/fa';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import TypingEffect from '../components/TypingEffect';
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
