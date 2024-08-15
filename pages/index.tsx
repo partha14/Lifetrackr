@@ -32,10 +32,9 @@ export default function Home() {
         <section className={styles.hero}>
           <h1>Tired of juggling life's endless tasks?</h1>
           <h2>Meet LifeTrackr: Your Personal Life Assistant</h2>
-          <p>
-            Effortlessly organize your life, from chores to purchases. LifeTrackr remembers so you don't have to. 
-            Experience the freedom of a well-managed life with our innovative app, now in beta!
-          </p>
+          <p>Effortlessly organize your life, from chores to purchases.</p>
+          <p>LifeTrackr remembers so you don't have to.</p>
+          <p>Experience the freedom of a well-managed life with our innovative beta app!</p>
           <Link href="/signup" className={styles.ctaButton}>Join the Beta</Link>
         </section>
 
