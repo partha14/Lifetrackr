@@ -48,6 +48,28 @@
   transition: background-color var(--transition-speed), left 0.3s ease-in-out;
 }
 
+.sidebarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.closeMobileMenu {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .closeMobileMenu {
+    display: block;
+  }
+}
+
 @media (max-width: 768px) {
   .sidebar.mobileMenuOpen {
     background-color: var(--sidebar-background);

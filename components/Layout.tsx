@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from '../styles/Dashboard.module.css'
-import { FaTachometerAlt, FaClipboardList, FaShoppingCart, FaSignOutAlt, FaBars } from 'react-icons/fa'
+import { FaTachometerAlt, FaClipboardList, FaShoppingCart, FaSignOutAlt, FaBars, FaTimes } from 'react-icons/fa'
 import { supabase } from '../utils/supabaseClient'
 import { handleError } from '../utils/errorHandler'
 import DarkModeToggle from './DarkModeToggle'
@@ -104,9 +104,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
       </Head>
       <aside className={`${styles.sidebar} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
-        <Link href={isLoggedIn ? "/dashboard" : "/"} className={styles.logo}>
-          LifeTrackr <span className={styles.beta}>BETA</span>
-        </Link>
+        <div className={styles.sidebarHeader}>
+          <Link href={isLoggedIn ? "/dashboard" : "/"} className={styles.logo}>
+            LifeTrackr <span className={styles.beta}>BETA</span>
+          </Link>
+          <button className={styles.closeMobileMenu} onClick={() => setIsMobileMenuOpen(false)}>
+            <FaTimes />
+          </button>
+        </div>
         <nav>
           {renderNavLinks()}
         </nav>
