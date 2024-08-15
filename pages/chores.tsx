@@ -1,16 +1,32 @@
 import React, { useState, useEffect, useCallback, ErrorInfo } from 'react'
 import { supabase } from '../utils/supabaseClient'
-import AddChoreForm from '../components/AddChoreForm'
 import LoadingSpinner from '../components/LoadingSpinner'
 import Layout from '../components/Layout'
 import styles from '../styles/Dashboard.module.css'
 import { useRouter } from 'next/router'
-import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash } from 'react-icons/fa'
+import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch } from 'react-icons/fa'
 import { handleError } from '../utils/errorHandler'
+
+const choreCategories = [
+  { name: 'Home', color: 'home', icon: '🏠', templates: ['Replace air filters', 'Clean gutters', 'Check smoke detectors', 'Seal windows', 'Service HVAC'] },
+  { name: 'Clean', color: 'clean', icon: '🧹', templates: ['Vacuum living room', 'Mop kitchen floor', 'Clean bathroom', 'Dust furniture', 'Wash windows'] },
+  { name: 'Car', color: 'car', icon: '🚗', templates: ['Rotate tires', 'Schedule oil change', 'Check tire pressure', 'Wash car', 'Replace wipers'] },
+  { name: 'Garden', color: 'garden', icon: '🌻', templates: ['Mow lawn', 'Prune roses', 'Water plants', 'Fertilize garden', 'Plant flowers'] },
+  { name: 'Appts', color: 'appts', icon: '📅', templates: ['Dentist appointment', 'Annual check-up', 'Call pest control', 'Car inspection', 'Home maintenance'] },
+];
+
+const recurrenceOptions = [
+  { value: 'none', label: 'No recurrence' },
+  { value: 'daily', label: 'Daily' },
+  { value: 'weekly', label: 'Weekly' },
+  { value: 'monthly', label: 'Monthly' },
+  { value: 'annually', label: 'Annually' },
+];
 
 interface Chore {
   id: number;
   name: string;
+  category: string;
   dueDate: string;
   isRecurring: boolean;
   recurringPeriod?: string;
