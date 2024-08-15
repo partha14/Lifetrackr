@@ -28,8 +28,12 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
         timeout = setTimeout(typeText, typingSpeed);
       } else {
         setIsTyping(false);
-        timeout = setTimeout(eraseText, eraseDelay);
+        timeout = setTimeout(pauseBeforeErase, eraseDelay);
       }
+    };
+
+    const pauseBeforeErase = () => {
+      timeout = setTimeout(eraseText, 2000); // 2-second pause before erasing
     };
 
     const eraseText = () => {
@@ -45,6 +49,8 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
 
     if (isTyping) {
       typeText();
+    } else if (currentText.length === 0) {
+      timeout = setTimeout(typeText, typeDelay);
     } else {
       eraseText();
     }

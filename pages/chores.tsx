@@ -264,10 +264,10 @@ export default function Chores() {
                               ? choreCategories.find(c => c.name === selectedCategory)?.templates || []
                               : ['Enter chore name', 'What needs to be done?', 'Add a new task']
                           }
-                          typingSpeed={150}
-                          eraseSpeed={100}
-                          eraseDelay={5000}
-                          typeDelay={3000}
+                          typingSpeed={200}
+                          eraseSpeed={150}
+                          eraseDelay={8000}
+                          typeDelay={5000}
                         />
                       </div>
                     )}
