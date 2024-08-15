@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
-import { FaShoppingCart, FaClipboardList, FaBrain } from 'react-icons/fa';
+import { FaShoppingCart, FaClipboardList, FaBrain, FaRobot } from 'react-icons/fa';
+import TypingEffect from '../components/TypingEffect';
 
 export default function Home() {
   return (
@@ -59,6 +60,25 @@ export default function Home() {
           <h2>Never Forget Another Important Task</h2>
           <p>Join LifeTrackr Beta today and experience the peace of mind that comes with perfect organization!</p>
           <Link href="/signup" className={styles.ctaButton}>Join the Beta for Free</Link>
+        </section>
+
+        <section className={styles.aiShowcase}>
+          <h2>Coming Soon: AI-Powered Assistance</h2>
+          <p>Ask our AI anything about your chores and purchases!</p>
+          <div className={styles.aiChatbox}>
+            <FaRobot className={styles.aiIcon} />
+            <div className={styles.staticTextBox}>
+              <TypingEffect
+                texts={[
+                  "When did I last change my car's oil?",
+                  "What's the warranty status of my laptop?",
+                  "When is my next house cleaning due?",
+                  "How much did I spend on groceries last month?",
+                ]}
+              />
+            </div>
+          </div>
+          <p className={styles.aiDisclaimer}>AI feature is under development and will be available soon.</p>
         </section>
       </main>
 
