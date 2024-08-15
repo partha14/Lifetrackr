@@ -255,22 +255,21 @@ export default function Chores() {
                       value={choreName}
                       onChange={(e) => setChoreName(e.target.value)}
                       className={styles.input}
+                      placeholder=" "
                     />
-                    {!choreName && (
-                      <div className={styles.placeholderText}>
-                        <TypingEffect
-                          texts={
-                            selectedCategory === 'Home'
-                              ? choreCategories.find(c => c.name === 'Home')?.templates.slice(0, 2) || []
-                              : ['Enter chore name', 'What needs to be done?']
-                          }
-                          typingSpeed={150}
-                          eraseSpeed={75}
-                          eraseDelay={4000}
-                          typeDelay={2000}
-                        />
-                      </div>
-                    )}
+                    <div className={styles.placeholderText}>
+                      <TypingEffect
+                        texts={
+                          selectedCategory === 'Home'
+                            ? choreCategories.find(c => c.name === 'Home')?.templates.slice(0, 2) || []
+                            : ['Enter chore name', 'What needs to be done?']
+                        }
+                        typingSpeed={150}
+                        eraseSpeed={75}
+                        eraseDelay={4000}
+                        typeDelay={2000}
+                      />
+                    </div>
                   </div>
                 </div>
 

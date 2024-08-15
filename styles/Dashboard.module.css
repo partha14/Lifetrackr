@@ -971,25 +971,31 @@
   transform: translateY(-50%);
   color: var(--text-color-secondary);
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
   background-color: transparent;
 }
 
-.searchInput {
+.input {
   width: 100%;
   padding: 0.75rem;
   border: 2px solid var(--border-color);
   border-radius: 8px;
   font-size: 1rem;
-  background-color: var(--input-background);
+  background-color: transparent;
   color: var(--text-color);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
-.searchInput:focus {
+.input:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.input:not(:placeholder-shown) + .placeholderText {
+  display: none;
 }
 
 .dropdownItem {
