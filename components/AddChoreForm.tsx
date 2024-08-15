@@ -4,7 +4,6 @@ import { handleError } from '../utils/errorHandler'
 import { FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools, FaCalendarAlt, FaPlus } from 'react-icons/fa'
 import { ErrorMessage } from './ErrorMessage'
 import { FormErrorMessage } from './FormErrorMessage'
-import TypingEffect from './TypingEffect' // Import the TypingEffect component
 
 interface ChoreFormData {
   name: string;
@@ -172,10 +171,11 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                     </option>
                   ))}
               </select>
-              <TypingEffect // Use TypingEffect instead of input
+              <input
+                type="text"
                 id="name"
                 value={formData.name}
-                onChange={(value) => handleChange('name', value)} // Adjust the onChange to match TypingEffect's prop
+                onChange={(e) => handleChange('name', e.target.value)}
                 placeholder="Or enter custom chore name"
                 required
                 className="w-full p-2 border rounded"
