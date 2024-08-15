@@ -85,7 +85,7 @@ export default function Home() {
           <motion.h1 key="title1" variants={fadeInUp}>Tired of juggling life's endless tasks?</motion.h1>
           <motion.h1 key="title2" variants={fadeInUp}>Meet LifeTrackr: Your Personal Life Assistant</motion.h1>
           <motion.div className={styles.heroText} variants={fadeInUp}>
-            {["Effortlessly", "organize", "your", "life,", "from", "chores", "to", "purchases.", "LifeTrackr", "remembers", "so", "you", "don't", "have", "to.", "Experience", "the", "freedom", "of", "a", "well-managed", "life", "with", "our", "innovative", "app,", "now", "in", "beta!"].map((word, i) => (
+            {`Effortlessly organize your life, from chores to purchases. LifeTrackr remembers so you don't have to. Experience the freedom of a well-managed life with our innovative app, now in beta!`.split(' ').map((word, i) => (
               <motion.span
                 key={i}
                 initial={{ opacity: 0 }}
@@ -114,7 +114,7 @@ export default function Home() {
               title: "Track Purchases",
               description: "Never forget warranty periods or when you bought something.",
               example: "Example: MacBook Pro - 1 year warranty (expires in 8 months)",
-              icon: "🛍️"
+              emoji: "🛍️"
             },
             {
               icon: <FaClipboardList className={styles.featureIcon} />,
