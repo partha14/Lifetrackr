@@ -173,19 +173,22 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                     </option>
                   ))}
               </select>
-              <TypingEffect
-                texts={[
-                  "Clean gutters",
-                  "Mow the lawn",
-                  "Wash the car",
-                  "Vacuum the living room",
-                  "Do the laundry"
-                ]}
-                onTextChange={(text) => handleChange('name', text)}
-                placeholder="Or enter custom chore name"
-                required
-                className="w-full p-2 border rounded"
-              />
+              <div className="relative">
+                <TypingEffect
+                  texts={[
+                    "Clean gutters",
+                    "Mow the lawn",
+                    "Wash the car",
+                    "Vacuum the living room",
+                    "Do the laundry"
+                  ]}
+                  onTextChange={(text) => handleChange('name', text)}
+                  placeholder="Or enter custom chore name"
+                  required
+                  className="w-full p-2 bg-transparent"
+                />
+                <div className="absolute inset-0 pointer-events-none border rounded"></div>
+              </div>
             </div>
           </div>
 

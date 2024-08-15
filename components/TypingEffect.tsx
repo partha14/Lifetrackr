@@ -20,7 +20,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ texts, onTextChange, placeh
   useEffect(() => {
     const controls = animate(count, 60, {
       type: "tween",
-      duration: 3,
+      duration: 6, // Increased duration for slower typing
       ease: "easeInOut",
       repeat: Infinity,
       repeatType: "reverse",
@@ -61,7 +61,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ texts, onTextChange, placeh
       }}
       placeholder={placeholder}
       required={required}
-      className={className}
+      className={`${className} bg-transparent border-none outline-none`}
     />
   );
 };
