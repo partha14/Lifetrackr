@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import styles from '../styles/Dashboard.module.css'
 import { handleError } from '../utils/errorHandler'
-import { FaPlus, FaCalendarAlt, FaRecycle, FaStickyNote } from 'react-icons/fa'
+import { FaPlus, FaCalendarAlt, FaRecycle, FaStickyNote, FaClock } from 'react-icons/fa'
 
 interface ChoreFormData {
   name: string;
@@ -81,6 +81,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
 
   return (
     <form onSubmit={handleSubmit} className={styles.addChoreForm}>
+      <h2 className={styles.formTitle}>Add New Chore</h2>
       <div className={styles.formGroup}>
         <label htmlFor="name" className={styles.label}>
           <FaPlus className={styles.icon} /> Chore Name
@@ -128,7 +129,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
       {formData.isRecurring && (
         <div className={styles.formGroup}>
           <label htmlFor="recurringPeriod" className={styles.label}>
-            Recurring Period
+            <FaClock className={styles.icon} /> Recurring Period
           </label>
           <select
             id="recurringPeriod"
