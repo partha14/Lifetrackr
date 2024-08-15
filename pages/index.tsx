@@ -57,11 +57,15 @@ export default function Home() {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#4a90e2" />
       </Head>
 
       <main className={styles.main}>
         <nav className={styles.nav}>
-          <Link href="/" className={styles.logo}>LifeTrackr <span className={styles.beta}>BETA</span></Link>
+          <Link href="/" className={styles.logo}>
+            LifeTrackr <span className={styles.beta}>BETA</span>
+            <span className={styles.srOnly}>Home</span>
+          </Link>
           <div className={styles.navLinks}>
             <Link href="/how-it-works">How It Works</Link>
             <Link href="/features">Features</Link>
@@ -107,9 +111,10 @@ export default function Home() {
           {[
             {
               icon: <FaShoppingCart className={styles.featureIcon} />,
-              title: "🛍️ Track Purchases",
+              title: "Track Purchases",
               description: "Never forget warranty periods or when you bought something.",
-              example: "Example: MacBook Pro - 1 year warranty (expires in 8 months)"
+              example: "Example: MacBook Pro - 1 year warranty (expires in 8 months)",
+              icon: "🛍️"
             },
             {
               icon: <FaClipboardList className={styles.featureIcon} />,
@@ -213,6 +218,7 @@ export default function Home() {
                     eraseSpeed={35}
                     eraseDelay={2700}
                     typeDelay={650}
+                    aria-label="AI assistant example questions"
                   />
                 </div>
               </div>
