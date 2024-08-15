@@ -263,7 +263,7 @@ export default function Chores() {
                     type="date"
                     value={dueDate.toISOString().split('T')[0]}
                     onChange={(e) => setDueDate(new Date(e.target.value))}
-                    className={styles.dateInput}
+                    className={styles.input}
                   />
                 </div>
                 
@@ -285,7 +285,7 @@ export default function Chores() {
                     <select
                       value={recurrence}
                       onChange={(e) => setRecurrence(e.target.value)}
-                      className={styles.selectInput}
+                      className={styles.input}
                     >
                       {recurrenceOptions.filter(option => option.value !== 'none').map((option) => (
                         <option key={option.value} value={option.value}>{option.label}</option>
@@ -299,8 +299,9 @@ export default function Chores() {
                   <textarea
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
-                    className={styles.textArea}
+                    className={styles.input}
                     placeholder="Add any additional details"
+                    rows={4}
                   />
                 </div>
               </div>
