@@ -64,7 +64,9 @@ export default function Home() {
             <div className={styles.step}>
               <h3>1. Add Your Chores</h3>
               <p>Choose from predefined categories or create custom chores.</p>
-              <img src="/UI-screenshot.png" alt="Add Chore Interface" className={styles.stepImage} />
+              <div className={styles.screenshotContainer}>
+                <img src="/UI-screenshot.png" alt="Add Chore Interface" className={styles.stepImage} />
+              </div>
             </div>
             <div className={styles.step}>
               <h3>2. Set Due Dates</h3>
