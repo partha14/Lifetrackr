@@ -214,7 +214,7 @@ export default function Chores() {
                 
                 <div className={styles.dropdownContainer}>
                   <div className={styles.dropdownHeader}>
-                    <span>{choreName || "Select a template or type custom"}</span>
+                    <span>Select a template or type custom</span>
                     <FaChevronDown className={styles.dropdownIcon} />
                   </div>
                   <div className={styles.dropdownList}>
@@ -222,12 +222,9 @@ export default function Chores() {
                       <FaSearch className={styles.searchIcon} />
                       <input
                         type="text"
-                        placeholder="Search templates or type custom"
+                        placeholder="Search templates"
                         value={searchTerm}
-                        onChange={(e) => {
-                          setSearchTerm(e.target.value);
-                          setChoreName(e.target.value);
-                        }}
+                        onChange={(e) => setSearchTerm(e.target.value)}
                         className={styles.searchInput}
                       />
                     </div>
@@ -235,19 +232,26 @@ export default function Chores() {
                       filteredTemplates.map((template, index) => (
                         <div
                           key={index}
-                          onClick={() => {
-                            setChoreName(template);
-                            setSearchTerm(template);
-                          }}
+                          onClick={() => setChoreName(template)}
                           className={styles.dropdownItem}
                         >
                           {template}
                         </div>
                       ))
                     ) : (
-                      <p className={styles.noTemplates}>No matches. Type to create custom.</p>
+                      <p className={styles.noTemplates}>No matches found.</p>
                     )}
                   </div>
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Chore Name</label>
+                  <input
+                    type="text"
+                    value={choreName}
+                    onChange={(e) => setChoreName(e.target.value)}
+                    placeholder="Enter chore name"
+                    className={styles.input}
+                  />
                 </div>
               </div>
               
