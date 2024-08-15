@@ -6,7 +6,7 @@ import { DocumentTextIcon } from 'lucide-react';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import AnimText from '../components/AnimText';
+import TypingEffect from '../components/TypingEffect';
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
@@ -165,7 +165,7 @@ export default function Home() {
                 <div className={styles.documentContainer}>
                   <DocumentTextIcon className={styles.documentIcon} />
                   <div className={styles.staticTextBox}>
-                    <AnimText
+                    <TypingEffect
                       texts={[
                         "What's the best way to organize my weekly chores?",
                         "How can I create a balanced home maintenance schedule?",
