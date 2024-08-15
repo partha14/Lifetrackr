@@ -58,6 +58,9 @@ export default function HowItWorks() {
           </div>
         </div>
       </div>
+      <footer className={styles.footer}>
+        <p>© 2023 LifeTrackr. All rights reserved. | We will never sell your data.</p>
+      </footer>
     </Layout>
   )
 }
