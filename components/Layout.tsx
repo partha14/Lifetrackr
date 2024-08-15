@@ -61,22 +61,42 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Link href={isLoggedIn ? "/dashboard" : "/"} className={styles.logo}>
           LifeTrackr <span className={styles.beta}>BETA</span>
         </Link>
-        {isLoggedIn && (
-          <nav>
-            <Link href="/dashboard" className={`${styles.navLink} ${router.pathname === '/dashboard' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
-              <FaTachometerAlt className={styles.icon} /> <span>Dashboard</span>
-            </Link>
-            <Link href="/chores" className={`${styles.navLink} ${router.pathname === '/chores' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
-              <FaClipboardList className={styles.icon} /> <span>Chores</span>
-            </Link>
-            <Link href="/purchases" className={`${styles.navLink} ${router.pathname === '/purchases' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
-              <FaShoppingCart className={styles.icon} /> <span>Purchases</span>
-            </Link>
-            <button onClick={handleLogout} className={`${styles.navLink} ${styles.logoutButton}`}>
-              <FaSignOutAlt className={styles.icon} /> Logout
-            </button>
-          </nav>
-        )}
+        <nav>
+          {isLoggedIn ? (
+            <>
+              <Link href="/dashboard" className={`${styles.navLink} ${router.pathname === '/dashboard' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
+                <FaTachometerAlt className={styles.icon} /> <span>Dashboard</span>
+              </Link>
+              <Link href="/chores" className={`${styles.navLink} ${router.pathname === '/chores' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
+                <FaClipboardList className={styles.icon} /> <span>Chores</span>
+              </Link>
+              <Link href="/purchases" className={`${styles.navLink} ${router.pathname === '/purchases' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
+                <FaShoppingCart className={styles.icon} /> <span>Purchases</span>
+              </Link>
+              <button onClick={handleLogout} className={`${styles.navLink} ${styles.logoutButton}`}>
+                <FaSignOutAlt className={styles.icon} /> Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link href="/how-it-works" className={`${styles.navLink} ${router.pathname === '/how-it-works' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
+                How It Works
+              </Link>
+              <Link href="/pricing" className={`${styles.navLink} ${router.pathname === '/pricing' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
+                Pricing
+              </Link>
+              <Link href="/contact" className={`${styles.navLink} ${router.pathname === '/contact' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
+                Contact
+              </Link>
+              <Link href="/login" className={`${styles.navLink} ${router.pathname === '/login' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
+                Login
+              </Link>
+              <Link href="/signup" className={`${styles.navLink} ${router.pathname === '/signup' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
+                Sign Up
+              </Link>
+            </>
+          )}
+        </nav>
       </aside>
       <main className={styles.main}>
         <header className={styles.header}>
