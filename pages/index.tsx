@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css';
 import { FaShoppingCart, FaClipboardList, FaBrain, FaCalendarAlt, FaDollarSign, FaReceipt, FaEnvelope, FaFileAlt, FaRobot } from 'react-icons/fa';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import TypingEffect from '../components/TypingEffect';
 
 export default function Home() {
@@ -24,6 +24,20 @@ export default function Home() {
   if (!isClient) {
     return null; // or a loading indicator
   }
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const staggerChildren = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -58,11 +72,21 @@ export default function Home() {
           </div>
         </nav>
 
-        <section className={styles.hero}>
-          <h1>LifeTrackr: Your Smart Companion for Life Management</h1>
-          <p>Track chores, manage purchases, and never miss a reminder. Simplify your life with our innovative management app, now in beta!</p>
-          <Link href="/signup" className={styles.ctaButton}>Join the Beta</Link>
-        </section>
+        <motion.section 
+          className={styles.hero}
+          initial="initial"
+          animate="animate"
+          variants={staggerChildren}
+        >
+          <motion.h1 variants={fadeInUp}>Love managing your life...?</motion.h1>
+          <motion.h1 variants={fadeInUp}>You don't have to.</motion.h1>
+          <motion.p variants={fadeInUp}>
+            Sit back, relax and let LifeTrackr handle the details. Simplify your life with our innovative management app, now in beta!
+          </motion.p>
+          <motion.div variants={fadeInUp}>
+            <Link href="/signup" className={styles.ctaButton}>Join the Beta</Link>
+          </motion.div>
+        </motion.section>
 
         <section className={styles.features}>
           <div className={styles.feature}>
