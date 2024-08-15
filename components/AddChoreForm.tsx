@@ -53,6 +53,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
   })
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [activeTab, setActiveTab] = useState("Home")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
@@ -70,6 +71,14 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
       category: template.category,
     }))
   }
+
+  const choreCategories = [
+    { name: "Home", icon: <FaHome className="mr-2" /> },
+    { name: "Car", icon: <FaCar className="mr-2" /> },
+    { name: "Food", icon: <FaUtensils className="mr-2" /> },
+    { name: "Clothing", icon: <FaTshirt className="mr-2" /> },
+    { name: "Maintenance", icon: <FaTools className="mr-2" /> },
+  ]
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
