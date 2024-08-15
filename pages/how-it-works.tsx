@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../components/Layout'
-import styles from '@/styles/StaticPages.module.css'
+import styles from '../styles/StaticPages.module.css'
 
 export default function HowItWorks() {
   return (
