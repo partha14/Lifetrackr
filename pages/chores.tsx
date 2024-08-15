@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 import styles from '../styles/Dashboard.module.css'
 import { useRouter } from 'next/router'
 import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown } from 'react-icons/fa'
+import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
 import TypingEffect from '../components/TypingEffect'
 
@@ -264,10 +265,10 @@ export default function Chores() {
                               ? choreCategories.find(c => c.name === selectedCategory)?.templates || []
                               : ['Enter chore name', 'What needs to be done?', 'Add a new task']
                           }
-                          typingSpeed={200}
-                          eraseSpeed={150}
-                          eraseDelay={8000}
-                          typeDelay={5000}
+                          typingSpeed={100}
+                          eraseSpeed={50}
+                          eraseDelay={3000}
+                          typeDelay={1500}
                         />
                       </div>
                     )}
