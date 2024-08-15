@@ -35,10 +35,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>LifeTrackr Beta - Organize Your Work and Life | Life Management App</title>
-        <meta name="description" content="LifeTrackr Beta: The innovative life management app to simplify and organize your work and personal life. Track purchases, manage chores, and more. Join the beta now!" />
+    <>
+      <div className={styles.container}>
+        <Head>
+          <title>LifeTrackr Beta - Organize Your Work and Life | Life Management App</title>
+          <meta name="description" content="LifeTrackr Beta: The innovative life management app to simplify and organize your work and personal life. Track purchases, manage chores, and more. Join the beta now!" />
         <meta name="keywords" content="life management, organization, productivity, chores, purchases, beta app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content="LifeTrackr Beta - Organize Your Work and Life" />
@@ -272,5 +273,6 @@ export default function Home() {
           <p>© 2023 LifeTrackr. All rights reserved. | We will never sell your data.</p>
         </footer>
       </div>
+    </>
   );
 }
