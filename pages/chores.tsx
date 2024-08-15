@@ -182,7 +182,7 @@ export default function Chores() {
     ?.templates.filter(t => t.toLowerCase().includes(searchTerm.toLowerCase())) || []
 
   if (!user_id) {
-    return <LoadingSpinner>Loading user data...</LoadingSpinner>
+    return <LoadingSpinner text="Loading user data..." />
   }
 
   return (
@@ -334,7 +334,7 @@ export default function Chores() {
           </div>
           
           {isLoading ? (
-            <LoadingSpinner>Loading chores...</LoadingSpinner>
+            <LoadingSpinner text="Loading chores..." />
           ) : (
             <>
               {chores.length > 0 ? (
