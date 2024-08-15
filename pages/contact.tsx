@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import styles from '../styles/StaticPages.module.css'
+import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 
 export default function Contact() {
   const [name, setName] = useState('')
@@ -21,6 +22,20 @@ export default function Contact() {
     <Layout>
       <div className={styles.container}>
         <h1 className={styles.title}>Contact Us</h1>
+        <div className={styles.contactInfo}>
+          <div className={styles.infoItem}>
+            <FaEnvelope className={styles.icon} />
+            <p>support@lifetrackr.com</p>
+          </div>
+          <div className={styles.infoItem}>
+            <FaPhone className={styles.icon} />
+            <p>+1 (555) 123-4567</p>
+          </div>
+          <div className={styles.infoItem}>
+            <FaMapMarkerAlt className={styles.icon} />
+            <p>123 LifeTrackr St, San Francisco, CA 94105</p>
+          </div>
+        </div>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
             <label htmlFor="name">Name:</label>
@@ -30,6 +45,7 @@ export default function Contact() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              placeholder="Your Name"
             />
           </div>
           <div className={styles.formGroup}>
@@ -40,6 +56,7 @@ export default function Contact() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              placeholder="your.email@example.com"
             />
           </div>
           <div className={styles.formGroup}>
@@ -49,6 +66,7 @@ export default function Contact() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
+              placeholder="How can we help you?"
             ></textarea>
           </div>
           <button type="submit" className={styles.submitButton}>Send Message</button>
