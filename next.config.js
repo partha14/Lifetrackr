@@ -15,6 +15,10 @@ const nextConfig = {
     }
     return config;
   },
+  // Add this line to generate the BUILD_ID file
+  generateBuildId: async () => {
+    return 'my-build-id'
+  },
 }
 
 module.exports = nextConfig
