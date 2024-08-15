@@ -2,10 +2,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import { FaShoppingCart, FaClipboardList, FaBrain, FaCalendarAlt, FaDollarSign, FaReceipt, FaEnvelope, FaFileAlt, FaRobot } from 'react-icons/fa';
+import { DocumentTextIcon } from 'lucide-react';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import TypingEffect from '../components/TypingEffect';
+import AnimText from '../components/AnimText';
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
@@ -123,35 +124,76 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.7 }}
         >
-          <h2>Experience the Power of AI (Coming Soon!)</h2>
-          <p>Soon, you'll be able to ask LifeTrackr anything about your home, car, or personal tasks:</p>
-          <div className={styles.aiExamples}>
-            <div className={styles.aiExample}>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+          >
+            Experience the Power of AI (Coming Soon!)
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.9 }}
+          >
+            Soon, you'll be able to ask LifeTrackr anything about your home, car, or personal tasks:
+          </motion.p>
+          <motion.div 
+            className={styles.aiExamples}
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  delayChildren: 1,
+                  staggerChildren: 0.2
+                }
+              }
+            }}
+            initial="hidden"
+            animate="show"
+          >
+            <motion.div 
+              className={styles.aiExample}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: { opacity: 1, y: 0 }
+              }}
+            >
               <FaRobot className={styles.aiIcon} />
               <div className={styles.aiChatbox}>
-                <div className={styles.staticTextBox} style={{ height: '100px', overflow: 'hidden' }}>
-                  <TypingEffect
-                    texts={[
-                      "What's the best way to organize my weekly chores?",
-                      "How can I create a balanced home maintenance schedule?",
-                      "What are some tips for keeping track of my car's maintenance history?",
-                      "How can I prioritize my tasks more effectively?",
-                      "What's a good system for tracking household inventory?",
-                      "How can I set up reminders for important recurring tasks?",
-                      "What are some strategies for managing long-term home improvement projects?",
-                      "How can I create a budget for annual home maintenance?",
-                      "What's the most efficient way to plan my weekly grocery shopping?"
-                    ]}
-                    typingSpeed={50}
-                    eraseSpeed={40}
-                    eraseDelay={2000}
-                    typeDelay={500}
-                  />
+                <div className={styles.documentContainer}>
+                  <DocumentTextIcon className={styles.documentIcon} />
+                  <div className={styles.staticTextBox}>
+                    <AnimText
+                      texts={[
+                        "What's the best way to organize my weekly chores?",
+                        "How can I create a balanced home maintenance schedule?",
+                        "What are some tips for keeping track of my car's maintenance history?",
+                        "How can I prioritize my tasks more effectively?",
+                        "What's a good system for tracking household inventory?",
+                        "How can I set up reminders for important recurring tasks?",
+                        "What are some strategies for managing long-term home improvement projects?",
+                        "How can I create a budget for annual home maintenance?",
+                        "What's the most efficient way to plan my weekly grocery shopping?"
+                      ]}
+                      typingSpeed={50}
+                      eraseSpeed={40}
+                      eraseDelay={2000}
+                      typeDelay={500}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <p>LifeTrackr's upcoming AI assistant will help you stay on top of your tasks and maintenance schedules effortlessly.</p>
+            </motion.div>
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.5 }}
+          >
+            LifeTrackr's upcoming AI assistant will help you stay on top of your tasks and maintenance schedules effortlessly.
+          </motion.p>
         </motion.section>
 
         <section className={styles.benefits}>
