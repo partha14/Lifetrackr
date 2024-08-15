@@ -3,9 +3,8 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import { FaShoppingCart, FaClipboardList, FaBrain, FaCalendarAlt, FaDollarSign, FaReceipt, FaEnvelope, FaFileAlt, FaRobot } from 'react-icons/fa';
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform, animate, stagger } from 'framer-motion';
-import { useEffect, useRef } from 'react';
 import TypingEffect from '../components/TypingEffect';
 
 export default function Home() {
