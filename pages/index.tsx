@@ -128,17 +128,25 @@ export default function Home() {
           <div className={styles.aiExamples}>
             <div className={styles.aiExample}>
               <FaRobot className={styles.aiIcon} />
-              <TypingEffect
-                texts={[
-                  "When do I need to replace the air filter in my refrigerator?",
-                  "What's the recommended oil type for my next car oil change?",
-                  "When was the last time I scheduled pest control for my home?"
-                ]}
-                typingSpeed={50}
-                eraseSpeed={30}
-                eraseDelay={3000}
-                typeDelay={1000}
-              />
+              <div className={styles.aiChatbox}>
+                <TypingEffect
+                  texts={[
+                    "When do I need to replace the air filter in my refrigerator?",
+                    "What's the recommended oil type for my next car oil change?",
+                    "When was the last time I scheduled pest control for my home?",
+                    "How often should I clean my gutters?",
+                    "What's the warranty status on my washing machine?",
+                    "When is my next car maintenance due?",
+                    "How long ago did I buy my laptop?",
+                    "What's the recommended maintenance schedule for my HVAC system?",
+                    "When should I replace the batteries in my smoke detectors?"
+                  ]}
+                  typingSpeed={80}
+                  eraseSpeed={40}
+                  eraseDelay={2000}
+                  typeDelay={500}
+                />
+              </div>
             </div>
           </div>
           <p>LifeTrackr's AI assistant helps you stay on top of your tasks and maintenance schedules effortlessly.</p>
