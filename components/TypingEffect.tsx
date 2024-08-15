@@ -10,8 +10,8 @@ interface TypingEffectProps {
 
 const TypingEffect: React.FC<TypingEffectProps> = ({
   texts,
-  typingSpeed = 50, // Increased typing speed
-  eraseSpeed = 30, // Increased erasing speed
+  typingSpeed = 50,
+  eraseSpeed = 30,
   eraseDelay = 1500,
   typeDelay = 500,
 }) => {
@@ -22,23 +22,29 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   useEffect(() => {
     let timeout: NodeJS.Timeout;
 
-    if (isTyping) {
+    const typeText = () => {
       if (currentText.length < texts[currentIndex].length) {
-        timeout = setTimeout(() => {
-          setCurrentText(texts[currentIndex].slice(0, currentText.length + 1));
-        }, typingSpeed);
+        setCurrentText(texts[currentIndex].slice(0, currentText.length + 1));
+        timeout = setTimeout(typeText, typingSpeed);
       } else {
-        timeout = setTimeout(() => setIsTyping(false), eraseDelay);
+        timeout = setTimeout(eraseText, eraseDelay);
       }
-    } else {
+    };
+
+    const eraseText = () => {
       if (currentText.length > 0) {
-        timeout = setTimeout(() => {
-          setCurrentText(currentText.slice(0, -1));
-        }, eraseSpeed);
+        setCurrentText(currentText.slice(0, -1));
+        timeout = setTimeout(eraseText, eraseSpeed);
       } else {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
-        timeout = setTimeout(() => setIsTyping(true), typeDelay);
+        timeout = setTimeout(typeText, typeDelay);
       }
+    };
+
+    if (isTyping) {
+      typeText();
+    } else {
+      eraseText();
     }
 
     return () => clearTimeout(timeout);
