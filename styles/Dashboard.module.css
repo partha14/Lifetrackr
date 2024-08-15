@@ -144,7 +144,7 @@
 
 .title {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: var(--primary-color);
   display: flex;
   align-items: center;
@@ -776,6 +776,7 @@
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: var(--primary-color);
+  font-size: 1.1rem;
 }
 
 .icon {
@@ -789,7 +790,7 @@
   padding: 0.75rem;
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   background-color: var(--input-background);
   color: var(--text-color);
   transition: border-color 0.3s ease;
@@ -828,7 +829,7 @@
   border: none;
   border-radius: 4px;
   padding: 0.75rem 1.5rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
