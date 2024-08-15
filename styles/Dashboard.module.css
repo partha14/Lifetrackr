@@ -967,6 +967,8 @@
   transform: translateY(-50%);
   color: var(--text-color-secondary);
   pointer-events: none;
+  z-index: 1;
+  background-color: transparent;
 }
 
 .searchInput {
