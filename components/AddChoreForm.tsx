@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
-import styles from '../styles/Form.module.css'
+import styles from '../styles/Dashboard.module.css'
 import { handleError } from '../utils/errorHandler'
+import { FaPlus, FaCalendarAlt, FaRecycle, FaStickyNote } from 'react-icons/fa'
 
 interface ChoreFormData {
   name: string;
@@ -45,11 +46,9 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
       const { name, dueDate, isRecurring, recurringPeriod, notes, user_id } = formData
       const choreData = { name, dueDate, isRecurring, recurringPeriod, notes, user_id }
       console.log('Attempting to add chore:', choreData)
-      // Verify that user_id is present and not undefined
       if (!user_id) {
         throw new Error('user_id is missing')
       }
-      // Add additional check to ensure user_id matches the authenticated user
       const { data: { user } } = await supabase.auth.getUser()
       if (user?.id !== user_id) {
         throw new Error('Unauthorized: user_id does not match authenticated user')
@@ -81,56 +80,87 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
   }
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <input
-        type="text"
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        placeholder="Chore Name"
-        required
-        className={styles.input}
-      />
-      <input
-        type="date"
-        name="dueDate"
-        value={formData.dueDate}
-        onChange={handleChange}
-        required
-        className={styles.input}
-      />
-      <div className={styles.checkboxGroup}>
+    <form onSubmit={handleSubmit} className={styles.addChoreForm}>
+      <div className={styles.formGroup}>
+        <label htmlFor="name" className={styles.label}>
+          <FaPlus className={styles.icon} /> Chore Name
+        </label>
         <input
-          type="checkbox"
-          name="isRecurring"
-          checked={formData.isRecurring}
+          id="name"
+          type="text"
+          name="name"
+          value={formData.name}
           onChange={handleChange}
-          id="isRecurring"
+          placeholder="Enter chore name"
+          required
+          className={styles.input}
         />
-        <label htmlFor="isRecurring">Recurring Chore</label>
+      </div>
+      <div className={styles.formGroup}>
+        <label htmlFor="dueDate" className={styles.label}>
+          <FaCalendarAlt className={styles.icon} /> Due Date
+        </label>
+        <input
+          id="dueDate"
+          type="date"
+          name="dueDate"
+          value={formData.dueDate}
+          onChange={handleChange}
+          required
+          className={styles.input}
+        />
+      </div>
+      <div className={styles.formGroup}>
+        <div className={styles.checkboxGroup}>
+          <input
+            type="checkbox"
+            name="isRecurring"
+            checked={formData.isRecurring}
+            onChange={handleChange}
+            id="isRecurring"
+            className={styles.checkbox}
+          />
+          <label htmlFor="isRecurring" className={styles.checkboxLabel}>
+            <FaRecycle className={styles.icon} /> Recurring Chore
+          </label>
+        </div>
       </div>
       {formData.isRecurring && (
-        <select
-          name="recurringPeriod"
-          value={formData.recurringPeriod}
-          onChange={handleChange}
-          className={styles.input}
-        >
-          <option value="">Select Recurring Period</option>
-          <option value="daily">Daily</option>
-          <option value="weekly">Weekly</option>
-          <option value="monthly">Monthly</option>
-          <option value="yearly">Yearly</option>
-        </select>
+        <div className={styles.formGroup}>
+          <label htmlFor="recurringPeriod" className={styles.label}>
+            Recurring Period
+          </label>
+          <select
+            id="recurringPeriod"
+            name="recurringPeriod"
+            value={formData.recurringPeriod}
+            onChange={handleChange}
+            className={styles.select}
+          >
+            <option value="">Select Recurring Period</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+          </select>
+        </div>
       )}
-      <textarea
-        name="notes"
-        value={formData.notes}
-        onChange={handleChange}
-        placeholder="Notes"
-        className={styles.textarea}
-      />
-      <button type="submit" className={styles.button}>Add Chore</button>
+      <div className={styles.formGroup}>
+        <label htmlFor="notes" className={styles.label}>
+          <FaStickyNote className={styles.icon} /> Notes
+        </label>
+        <textarea
+          id="notes"
+          name="notes"
+          value={formData.notes}
+          onChange={handleChange}
+          placeholder="Add any additional notes"
+          className={styles.textarea}
+        />
+      </div>
+      <button type="submit" className={styles.submitButton}>
+        <FaPlus className={styles.buttonIcon} /> Add Chore
+      </button>
     </form>
   )
 }
