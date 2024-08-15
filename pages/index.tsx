@@ -133,7 +133,7 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        <p>© 2023 LifeTrackr. All rights reserved. | <Link href="/privacy">Privacy Policy</Link> | <Link href="/terms">Terms of Service</Link></p>
+        <p>© 2023 LifeTrackr. All rights reserved. | Beta Version: Your data may be deleted at any time.</p>
       </footer>
     </div>
   );
