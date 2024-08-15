@@ -3,6 +3,7 @@ import { supabase } from '../utils/supabaseClient'
 import { handleError } from '../utils/errorHandler'
 import { FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools, FaCalendarAlt, FaPlus } from 'react-icons/fa'
 import { ErrorMessage } from './ErrorMessage'
+import { FormErrorMessage } from './FormErrorMessage'
 
 interface ChoreFormData {
   name: string;
@@ -44,10 +45,12 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
   })
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({})
 
   const handleChange = (name: string, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [name]: value }))
     setError(null)
+    setErrors(prev => ({ ...prev, [name]: '' }))
   }
 
   const handleTemplateSelect = (template: string) => {
@@ -74,8 +77,13 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
     setError(null)
     setIsSubmitting(true)
 
-    if (!formData.name || !formData.dueDate) {
-      setError('Please fill in all required fields')
+    const newErrors: Record<string, string> = {}
+    if (!formData.name) newErrors.name = 'Chore name is required'
+    if (!formData.dueDate) newErrors.dueDate = 'Due date is required'
+    if (!formData.category) newErrors.category = 'Category is required'
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
       setIsSubmitting(false)
       return
     }
@@ -128,6 +136,8 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           {error && <ErrorMessage message={error} />}
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <FormErrorMessage name="category" errors={errors} />
+            <FormErrorMessage name="name" errors={errors} />
             <div className="space-y-2">
               <label htmlFor="category" className="text-lg font-semibold">Category</label>
               <select 
