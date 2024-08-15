@@ -69,7 +69,6 @@ export default function Chores() {
   const [recurrence, setRecurrence] = useState('none')
   const [notes, setNotes] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const getUserId = useCallback(async () => {
     try {
@@ -214,51 +213,42 @@ export default function Chores() {
                 </div>
                 
                 <div className={styles.dropdownContainer}>
-                  <div className={styles.dropdownHeader} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                  <div className={styles.dropdownHeader}>
                     <span>{choreName || "Select a template or type custom"}</span>
                     <FaChevronDown className={styles.dropdownIcon} />
                   </div>
-                  {isDropdownOpen && (
-                    <div className={styles.dropdownList}>
-                      <div className={styles.searchContainer}>
-                        <FaSearch className={styles.searchIcon} />
-                        <input
-                          type="text"
-                          placeholder="Search templates"
-                          value={searchTerm}
-                          onChange={(e) => setSearchTerm(e.target.value)}
-                          className={styles.searchInput}
-                        />
-                      </div>
-                      {filteredTemplates.length > 0 ? (
-                        filteredTemplates.map((template, index) => (
-                          <div
-                            key={index}
-                            onClick={() => {
-                              setChoreName(template);
-                              setIsDropdownOpen(false);
-                            }}
-                            className={styles.dropdownItem}
-                          >
-                            {template}
-                          </div>
-                        ))
-                      ) : (
-                        <p className={styles.noTemplates}>No matches. Type to create custom.</p>
-                      )}
+                  <div className={styles.dropdownList}>
+                    <div className={styles.searchContainer}>
+                      <FaSearch className={styles.searchIcon} />
+                      <input
+                        type="text"
+                        placeholder="Search templates or type custom"
+                        value={searchTerm}
+                        onChange={(e) => {
+                          setSearchTerm(e.target.value);
+                          setChoreName(e.target.value);
+                        }}
+                        className={styles.searchInput}
+                      />
                     </div>
-                  )}
+                    {filteredTemplates.length > 0 ? (
+                      filteredTemplates.map((template, index) => (
+                        <div
+                          key={index}
+                          onClick={() => {
+                            setChoreName(template);
+                            setSearchTerm(template);
+                          }}
+                          className={styles.dropdownItem}
+                        >
+                          {template}
+                        </div>
+                      ))
+                    ) : (
+                      <p className={styles.noTemplates}>No matches. Type to create custom.</p>
+                    )}
+                  </div>
                 </div>
-                
-                {!isDropdownOpen && (
-                  <input
-                    type="text"
-                    value={choreName}
-                    onChange={(e) => setChoreName(e.target.value)}
-                    placeholder="Enter chore name"
-                    className={styles.choreNameInput}
-                  />
-                )}
               </div>
               
               <div className={styles.formColumn}>
