@@ -723,6 +723,13 @@
   flex-shrink: 0;
 }
 
+.madeBy {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.2rem;
+  color: #ff6b6b;
+  margin-top: 0.5rem;
+}
+
 .categoryTabs {
   display: flex;
   justify-content: space-around;
