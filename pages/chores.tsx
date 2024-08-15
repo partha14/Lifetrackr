@@ -6,6 +6,7 @@ import styles from '../styles/Dashboard.module.css'
 import { useRouter } from 'next/router'
 import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown } from 'react-icons/fa'
 import { handleError } from '../utils/errorHandler'
+import TypingEffect from '../components/TypingEffect'
 
 const choreCategories = [
   { name: 'Home', color: 'home', icon: '🏠', templates: ['Replace air filters', 'Clean gutters', 'Check smoke detectors', 'Seal windows', 'Service HVAC'] },
@@ -248,13 +249,25 @@ export default function Chores() {
               <div className={styles.formColumn}>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Chore Name</label>
-                  <input
-                    type="text"
-                    value={choreName}
-                    onChange={(e) => setChoreName(e.target.value)}
-                    placeholder="Enter chore name"
-                    className={styles.input}
-                  />
+                  <div className={styles.inputWrapper}>
+                    <input
+                      type="text"
+                      value={choreName}
+                      onChange={(e) => setChoreName(e.target.value)}
+                      className={styles.input}
+                    />
+                    {!choreName && (
+                      <div className={styles.placeholderText}>
+                        <TypingEffect
+                          texts={
+                            selectedCategory
+                              ? choreCategories.find(c => c.name === selectedCategory)?.templates || []
+                              : ['Enter chore name', 'What needs to be done?', 'Add a new task']
+                          }
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 <div className={styles.formGroup}>
