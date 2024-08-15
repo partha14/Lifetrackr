@@ -3,6 +3,8 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import { FaShoppingCart, FaClipboardList, FaBrain, FaRobot } from 'react-icons/fa';
 import TypingEffect from '../components/TypingEffect';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function Home() {
   return (
@@ -39,21 +41,21 @@ export default function Home() {
         </section>
 
         <section className={styles.features}>
-          <div className={styles.feature}>
-            <FaShoppingCart className={styles.featureIcon} />
-            <h3>Track Purchases</h3>
-            <p>Never forget warranty periods or when you bought something.</p>
-          </div>
-          <div className={styles.feature}>
-            <FaClipboardList className={styles.featureIcon} />
-            <h3>Manage Chores</h3>
-            <p>Keep track of important home and vehicle maintenance tasks.</p>
-          </div>
-          <div className={styles.feature}>
-            <FaBrain className={styles.featureIcon} />
-            <h3>Peace of Mind</h3>
-            <p>Free up mental space and never worry about forgetting important tasks.</p>
-          </div>
+          <FeatureCard
+            icon={<FaShoppingCart className={styles.featureIcon} />}
+            title="Track Purchases"
+            description="Never forget warranty periods or when you bought something."
+          />
+          <FeatureCard
+            icon={<FaClipboardList className={styles.featureIcon} />}
+            title="Manage Chores"
+            description="Keep track of important home and vehicle maintenance tasks."
+          />
+          <FeatureCard
+            icon={<FaBrain className={styles.featureIcon} />}
+            title="Peace of Mind"
+            description="Free up mental space and never worry about forgetting important tasks."
+          />
         </section>
 
         <section className={styles.cta}>
@@ -89,5 +91,30 @@ export default function Home() {
         <p className={styles.madeBy}>Made with ❤️ by SKP</p>
       </footer>
     </div>
+  );
+}
+
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+function FeatureCard({ icon, title, description }: FeatureCardProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  return (
+    <motion.div
+      ref={ref}
+      className={styles.feature}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+    >
+      {icon}
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </motion.div>
   );
 }
