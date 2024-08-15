@@ -27,14 +27,6 @@ export default function Contact() {
             <FaEnvelope className={styles.icon} />
             <p>support@lifetrackr.com</p>
           </div>
-          <div className={styles.infoItem}>
-            <FaPhone className={styles.icon} />
-            <p>+1 (555) 123-4567</p>
-          </div>
-          <div className={styles.infoItem}>
-            <FaMapMarkerAlt className={styles.icon} />
-            <p>123 LifeTrackr St, San Francisco, CA 94105</p>
-          </div>
         </div>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
