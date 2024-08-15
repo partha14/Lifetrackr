@@ -245,17 +245,31 @@ export default function Chores() {
             </div>
             
             <div className={styles.formGroup}>
-              <label className={styles.label}>Recurrence</label>
-              <select
-                value={recurrence}
-                onChange={(e) => setRecurrence(e.target.value)}
-                className={styles.selectInput}
-              >
-                {recurrenceOptions.map((option) => (
-                  <option key={option.value} value={option.value}>{option.label}</option>
-                ))}
-              </select>
+              <label className={styles.label}>
+                <input
+                  type="checkbox"
+                  checked={recurrence !== 'none'}
+                  onChange={(e) => setRecurrence(e.target.checked ? 'weekly' : 'none')}
+                  className={styles.checkbox}
+                />
+                Recurring
+              </label>
             </div>
+            
+            {recurrence !== 'none' && (
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Recurrence Period</label>
+                <select
+                  value={recurrence}
+                  onChange={(e) => setRecurrence(e.target.value)}
+                  className={styles.selectInput}
+                >
+                  {recurrenceOptions.filter(option => option.value !== 'none').map((option) => (
+                    <option key={option.value} value={option.value}>{option.label}</option>
+                  ))}
+                </select>
+              </div>
+            )}
             
             <div className={styles.formGroup}>
               <label className={styles.label}>Notes (optional)</label>
