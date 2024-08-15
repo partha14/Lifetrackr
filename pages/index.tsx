@@ -4,7 +4,8 @@ import styles from '../styles/Home.module.css';
 import { FaShoppingCart, FaClipboardList, FaBrain, FaCalendarAlt, FaDollarSign, FaReceipt, FaEnvelope, FaFileAlt, FaRobot } from 'react-icons/fa';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform, animate, stagger } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 import TypingEffect from '../components/TypingEffect';
 
 export default function Home() {
@@ -38,6 +39,19 @@ export default function Home() {
       }
     }
   };
+
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    if (heroRef.current) {
+      const heroElements = heroRef.current.querySelectorAll('h1, p, a');
+      animate(
+        heroElements,
+        { opacity: [0, 1], y: [20, 0] },
+        { duration: 0.8, delay: stagger(0.2) }
+      );
+    }
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -78,13 +92,11 @@ export default function Home() {
 
         <motion.section 
           className={styles.hero}
-          initial="initial"
-          animate="animate"
-          variants={staggerChildren}
+          ref={heroRef}
         >
-          <motion.h1 key="title1" variants={fadeInUp}>Tired of juggling life's endless tasks?</motion.h1>
-          <motion.h1 key="title2" variants={fadeInUp}>Meet LifeTrackr: Your Personal Life Assistant</motion.h1>
-          <motion.div className={styles.heroText} variants={fadeInUp}>
+          <h1>Tired of juggling life's endless tasks?</h1>
+          <h1>Meet LifeTrackr: Your Personal Life Assistant</h1>
+          <div className={styles.heroText}>
             {`Effortlessly organize your life, from chores to purchases. LifeTrackr remembers so you don't have to. Experience the freedom of a well-managed life with our innovative app, now in beta!`.split(' ').map((word, i) => (
               <motion.span
                 key={`word-${i}`}
@@ -100,10 +112,11 @@ export default function Home() {
               </motion.span>
             ))}
           </motion.div>
-          <motion.div variants={fadeInUp}>
-            <motion.div whileTap={{ scale: 0.95 }}>
-              <Link href="/signup" className={styles.ctaButton}>Join the Beta</Link>
-            </motion.div>
+          <motion.div 
+            whileHover={{ scale: 1.05 }} 
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link href="/signup" className={styles.ctaButton}>Join the Beta</Link>
           </motion.div>
         </motion.section>
 
