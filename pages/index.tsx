@@ -75,6 +75,7 @@ export default function Home() {
                   "When is my next house cleaning due?",
                   "How much did I spend on groceries last month?",
                 ]}
+                typingSpeed={100}
               />
             </div>
           </div>
