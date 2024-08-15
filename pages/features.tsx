@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import styles from '../styles/StaticPages.module.css'
 import { FaShoppingCart, FaClipboardList, FaBrain, FaChartLine, FaSearch, FaRobot, FaComments } from 'react-icons/fa'
+import Image from 'next/image'
 
 export default function Features() {
   return (
@@ -63,6 +64,16 @@ export default function Features() {
             <p>Utilize AI agents to help perform and manage some of your chores automatically.</p>
           </div>
         </div>
+      </div>
+      <div className={styles.screenshotContainer}>
+        <h2>User Interface Preview</h2>
+        <Image
+          src="/UI-screenshot.png"
+          alt="LifeTrackr User Interface"
+          width={600}
+          height={400}
+          layout="responsive"
+        />
       </div>
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
