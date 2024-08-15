@@ -136,3 +136,20 @@
     grid-template-columns: 1fr;
   }
 }
+.footer {
+  width: 100%;
+  border-top: 1px solid var(--border-color);
+  padding: 1rem 0;
+  background-color: var(--bg-secondary);
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.footer p {
+  color: var(--text-secondary);
+}

@@ -65,7 +65,9 @@ export default function Features() {
         </div>
       </div>
       <footer className={styles.footer}>
-        <p>© 2023 LifeTrackr. All rights reserved. | We will never sell your data.</p>
+        <div className={styles.footerContent}>
+          <p>© 2023 LifeTrackr. All rights reserved. | We will never sell your data.</p>
+        </div>
       </footer>
     </Layout>
   )
