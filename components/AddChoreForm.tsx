@@ -225,28 +225,29 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           )}
         </div>
       </div>
-      <div className={formStyles.formGroup}>
-        <label htmlFor="notes" className={formStyles.label}>
-          <FaStickyNote className={formStyles.icon} /> Notes
-        </label>
-        <textarea
-          id="notes"
-          name="notes"
-          value={formData.notes}
-          onChange={handleChange}
-          placeholder="Add any additional notes"
-          className={formStyles.textarea}
-        />
-      </div>
-      <button type="submit" className={formStyles.submitButton} disabled={isSubmitting}>
-        {isSubmitting ? 'Adding...' : (
-          <>
-            <FaPlus className={formStyles.buttonIcon} /> Add Chore
-          </>
-        )}
-      </button>
-    </form>
-  )
-}
+            <div>
+              <Label htmlFor="notes" className="text-sm">Notes (optional)</Label>
+              <Textarea
+                id="notes"
+                name="notes"
+                value={formData.notes}
+                onChange={handleChange}
+                placeholder="Add any additional notes"
+                className="mt-1"
+              />
+            </div>
+          </div>
+          <Button type="submit" className="w-full mt-4" disabled={isSubmitting}>
+            {isSubmitting ? 'Adding...' : (
+              <>
+                <Plus className="mr-2 h-4 w-4" /> Add Chore
+              </>
+            )}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+};
 
-export default AddChoreForm
+export default AddChoreForm;
