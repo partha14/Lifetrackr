@@ -87,12 +87,12 @@ export default function Home() {
           <motion.div className={styles.heroText} variants={fadeInUp}>
             {`Effortlessly organize your life, from chores to purchases. LifeTrackr remembers so you don't have to. Experience the freedom of a well-managed life with our innovative app, now in beta!`.split(' ').map((word, i) => (
               <motion.span
-                key={i}
+                key={`word-${i}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{
                   duration: 0.25,
-                  delay: i / 10
+                  delay: i * 0.1
                 }}
                 style={{ display: 'inline-block', marginRight: '4px' }}
               >
