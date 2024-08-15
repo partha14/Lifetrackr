@@ -226,7 +226,7 @@ export default function Chores() {
                         placeholder="Search templates"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className={styles.searchInput}
+                        className={`${styles.searchInput} w-full p-2 border rounded`}
                       />
                     </div>
                     {filteredTemplates.length > 0 ? (
