@@ -53,7 +53,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div className={styles.container}>
       <Head>
         <title>LifeTrackr Beta - Organize Your Work and Life | Life Management App</title>
         <meta name="description" content="LifeTrackr Beta: The innovative life management app to simplify and organize your work and personal life. Track purchases, manage chores, and more. Join the beta now!" />
@@ -73,8 +73,7 @@ export default function Home() {
         <meta name="theme-color" content="#4a90e2" />
       </Head>
 
-      <div className={styles.container}>
-        <main className={styles.main}>
+      <main className={styles.main}>
         <nav className={styles.nav}>
           <Link href="/" className={styles.logo}>
             LifeTrackr <span className={styles.beta}>BETA</span>
