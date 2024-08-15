@@ -120,7 +120,7 @@ const Purchases: React.FC = () => {
   }
 
   if (!user_id) {
-    return <LoadingSpinner>Loading user data...</LoadingSpinner>
+    return <LoadingSpinner size="medium" text="Loading user data..." />
   }
 
   return (
@@ -150,7 +150,7 @@ const Purchases: React.FC = () => {
           />
         )}
         {isLoading ? (
-          <LoadingSpinner />
+          <LoadingSpinner size="medium" text="Loading purchases..." />
         ) : purchases.length > 0 ? (
           <div className={styles.cardGrid}>
             {purchases.map((purchase) => (
