@@ -243,6 +243,9 @@ export default function Chores() {
                     )}
                   </div>
                 </div>
+              </div>
+              
+              <div className={styles.formColumn}>
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Chore Name</label>
                   <input
@@ -253,9 +256,7 @@ export default function Chores() {
                     className={styles.input}
                   />
                 </div>
-              </div>
-              
-              <div className={styles.formColumn}>
+
                 <div className={styles.formGroup}>
                   <label className={styles.label}>Due Date</label>
                   <input
@@ -305,9 +306,11 @@ export default function Chores() {
               </div>
             </div>
             
-            <button onClick={addChore} className={`${styles.button} ${styles.addButton}`}>
-              <FaPlus /> Add Chore
-            </button>
+            <div className={styles.formGroup}>
+              <button onClick={addChore} className={`${styles.button} ${styles.addButton}`}>
+                <FaPlus /> Add Chore
+              </button>
+            </div>
           </div>
           
           {isLoading ? (
