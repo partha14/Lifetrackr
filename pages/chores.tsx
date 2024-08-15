@@ -117,27 +117,36 @@ export default function Chores() {
   const addChore = async () => {
     if (choreName && selectedCategory && user_id) {
       try {
+        const newChore = {
+          name: choreName,
+          category: selectedCategory,
+          dueDate: dueDate.toISOString(),
+          isRecurring: recurrence !== 'none',
+          recurringPeriod: recurrence !== 'none' ? recurrence : null,
+          notes,
+          user_id
+        }
+        console.log('Attempting to add chore:', newChore)
+
         const { data, error } = await supabase
           .from('chores')
-          .insert([
-            {
-              name: choreName,
-              category: selectedCategory,
-              dueDate: dueDate.toISOString(),
-              isRecurring: recurrence !== 'none',
-              recurringPeriod: recurrence !== 'none' ? recurrence : null,
-              notes,
-              user_id
-            }
-          ])
+          .insert([newChore])
         
-        if (error) throw error
+        if (error) {
+          console.error('Supabase error:', error)
+          throw error
+        }
         
+        console.log('Chore added successfully:', data)
         await fetchChores()
         resetForm()
       } catch (error) {
         console.error('Failed to add chore:', error)
-        alert('Failed to add chore. Please try again.')
+        if (error instanceof Error) {
+          alert(`Failed to add chore: ${error.message}`)
+        } else {
+          alert('Failed to add chore. Please try again.')
+        }
       }
     } else {
       alert('Please fill in all required fields.')
