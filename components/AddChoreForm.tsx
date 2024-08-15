@@ -180,10 +180,10 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="dueDate" className="text-lg font-semibold">Due Date</Label>
+            <label htmlFor="dueDate" className="text-lg font-semibold">Due Date</label>
             <div className="relative">
               <FaCalendarAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              <Input
+              <input
                 id="dueDate"
                 type="date"
                 value={formData.dueDate}
@@ -206,28 +206,26 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
 
           {formData.isRecurring && (
             <div className="space-y-2 bg-blue-50 p-4 rounded-md">
-              <Label htmlFor="recurringPeriod" className="text-lg font-semibold">Recurring Period</Label>
-              <Select
+              <label htmlFor="recurringPeriod" className="text-lg font-semibold">Recurring Period</label>
+              <select
+                id="recurringPeriod"
                 value={formData.recurringPeriod}
-                onValueChange={(value) => handleChange('recurringPeriod', value)}
+                onChange={(e) => handleChange('recurringPeriod', e.target.value)}
+                className="w-full p-2 border rounded"
               >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Recurring Period" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="daily">Daily</SelectItem>
-                  <SelectItem value="weekly">Weekly</SelectItem>
-                  <SelectItem value="monthly">Monthly</SelectItem>
-                  <SelectItem value="quarterly">Quarterly</SelectItem>
-                  <SelectItem value="yearly">Yearly</SelectItem>
-                </SelectContent>
-              </Select>
+                <option value="">Select Recurring Period</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="yearly">Yearly</option>
+              </select>
             </div>
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="notes" className="text-lg font-semibold">Notes (optional)</Label>
-            <Textarea
+            <label htmlFor="notes" className="text-lg font-semibold">Notes (optional)</label>
+            <textarea
               id="notes"
               value={formData.notes}
               onChange={(e) => handleChange('notes', e.target.value)}
