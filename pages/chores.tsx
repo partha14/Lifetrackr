@@ -187,99 +187,105 @@ export default function Chores() {
           
           <div className={`${styles.addChoreSection} ${styles.card}`}>
             <h2 className={styles.sectionTitle}>Add New Chore</h2>
-            <div className={styles.categoryTabs}>
-              {choreCategories.map((category) => (
-                <button
-                  key={category.name}
-                  onClick={() => setSelectedCategory(category.name)}
-                  className={`${styles.categoryTab} ${selectedCategory === category.name ? styles.activeTab : ''}`}
-                >
-                  <span className={styles.categoryIcon}>{category.icon}</span>
-                  <span className={styles.categoryName}>{category.name}</span>
-                </button>
-              ))}
-            </div>
-            
-            <div className={styles.searchContainer}>
-              <FaSearch className={styles.searchIcon} />
-              <input
-                type="text"
-                placeholder="Search or type custom"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className={styles.searchInput}
-              />
-            </div>
-            
-            <div className={styles.templateList}>
-              {filteredTemplates.length > 0 ? (
-                filteredTemplates.map((template, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setChoreName(template)}
-                    className={styles.templateButton}
-                  >
-                    {template}
-                  </button>
-                ))
-              ) : (
-                <p className={styles.noTemplates}>No matches. Type to create custom.</p>
-              )}
-            </div>
-            
-            <input
-              type="text"
-              value={choreName}
-              onChange={(e) => setChoreName(e.target.value)}
-              placeholder="Enter chore name"
-              className={styles.choreNameInput}
-            />
-            
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Due Date</label>
-              <input
-                type="date"
-                value={dueDate.toISOString().split('T')[0]}
-                onChange={(e) => setDueDate(new Date(e.target.value))}
-                className={styles.dateInput}
-              />
-            </div>
-            
-            <div className={styles.formGroup}>
-              <label className={styles.label}>
-                <input
-                  type="checkbox"
-                  checked={recurrence !== 'none'}
-                  onChange={(e) => setRecurrence(e.target.checked ? 'weekly' : 'none')}
-                  className={styles.checkbox}
-                />
-                Recurring
-              </label>
-            </div>
-            
-            {recurrence !== 'none' && (
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Recurrence Period</label>
-                <select
-                  value={recurrence}
-                  onChange={(e) => setRecurrence(e.target.value)}
-                  className={styles.selectInput}
-                >
-                  {recurrenceOptions.filter(option => option.value !== 'none').map((option) => (
-                    <option key={option.value} value={option.value}>{option.label}</option>
+            <div className={styles.formGrid}>
+              <div className={styles.formColumn}>
+                <div className={styles.categoryTabs}>
+                  {choreCategories.map((category) => (
+                    <button
+                      key={category.name}
+                      onClick={() => setSelectedCategory(category.name)}
+                      className={`${styles.categoryTab} ${selectedCategory === category.name ? styles.activeTab : ''}`}
+                    >
+                      <span className={styles.categoryIcon}>{category.icon}</span>
+                      <span className={styles.categoryName}>{category.name}</span>
+                    </button>
                   ))}
-                </select>
+                </div>
+                
+                <div className={styles.searchContainer}>
+                  <FaSearch className={styles.searchIcon} />
+                  <input
+                    type="text"
+                    placeholder="Search or type custom"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className={styles.searchInput}
+                  />
+                </div>
+                
+                <div className={styles.templateList}>
+                  {filteredTemplates.length > 0 ? (
+                    filteredTemplates.map((template, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setChoreName(template)}
+                        className={styles.templateButton}
+                      >
+                        {template}
+                      </button>
+                    ))
+                  ) : (
+                    <p className={styles.noTemplates}>No matches. Type to create custom.</p>
+                  )}
+                </div>
+                
+                <input
+                  type="text"
+                  value={choreName}
+                  onChange={(e) => setChoreName(e.target.value)}
+                  placeholder="Enter chore name"
+                  className={styles.choreNameInput}
+                />
               </div>
-            )}
-            
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Notes (optional)</label>
-              <textarea
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                className={styles.textArea}
-                placeholder="Add any additional details"
-              />
+              
+              <div className={styles.formColumn}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Due Date</label>
+                  <input
+                    type="date"
+                    value={dueDate.toISOString().split('T')[0]}
+                    onChange={(e) => setDueDate(new Date(e.target.value))}
+                    className={styles.dateInput}
+                  />
+                </div>
+                
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>
+                    <input
+                      type="checkbox"
+                      checked={recurrence !== 'none'}
+                      onChange={(e) => setRecurrence(e.target.checked ? 'weekly' : 'none')}
+                      className={styles.checkbox}
+                    />
+                    Recurring
+                  </label>
+                </div>
+                
+                {recurrence !== 'none' && (
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Recurrence Period</label>
+                    <select
+                      value={recurrence}
+                      onChange={(e) => setRecurrence(e.target.value)}
+                      className={styles.selectInput}
+                    >
+                      {recurrenceOptions.filter(option => option.value !== 'none').map((option) => (
+                        <option key={option.value} value={option.value}>{option.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+                
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Notes (optional)</label>
+                  <textarea
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    className={styles.textArea}
+                    placeholder="Add any additional details"
+                  />
+                </div>
+              </div>
             </div>
             
             <button onClick={addChore} className={`${styles.button} ${styles.addButton}`}>
