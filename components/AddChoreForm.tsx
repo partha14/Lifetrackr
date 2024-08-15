@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
-import styles from '../styles/Dashboard.module.css'
-import formStyles from '../styles/Form.module.css'
 import { handleError } from '../utils/errorHandler'
-import { FaPlus, FaCalendarAlt, FaRecycle, FaStickyNote, FaClock, FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools } from 'react-icons/fa'
+import { FaPlus, FaCalendarAlt, FaRecycle, FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools } from 'react-icons/fa'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Card, CardContent } from "@/components/ui/card"
@@ -11,6 +9,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Plus } from "lucide-react"
 
 interface ChoreFormData {
@@ -49,18 +49,13 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
     recurringPeriod: '',
     notes: '',
     user_id,
-    category: '',
+    category: 'Home',
   })
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [activeTab, setActiveTab] = useState("Home")
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
-    }))
+  const handleChange = (name: string, value: string | boolean) => {
+    setFormData(prev => ({ ...prev, [name]: value }))
     setError(null)
   }
 
@@ -73,11 +68,11 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
   }
 
   const choreCategories = [
-    { name: "Home", icon: <FaHome className="mr-2" /> },
-    { name: "Car", icon: <FaCar className="mr-2" /> },
-    { name: "Food", icon: <FaUtensils className="mr-2" /> },
-    { name: "Clothing", icon: <FaTshirt className="mr-2" /> },
-    { name: "Maintenance", icon: <FaTools className="mr-2" /> },
+    { name: "Home", icon: <FaHome className="mr-2 h-4 w-4" /> },
+    { name: "Car", icon: <FaCar className="mr-2 h-4 w-4" /> },
+    { name: "Food", icon: <FaUtensils className="mr-2 h-4 w-4" /> },
+    { name: "Clothing", icon: <FaTshirt className="mr-2 h-4 w-4" /> },
+    { name: "Maintenance", icon: <FaTools className="mr-2 h-4 w-4" /> },
   ]
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -143,18 +138,17 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                 {error}
               </div>
             )}
-            <div>
+            <div className="space-y-2">
               <Label htmlFor="name">Chore Name</Label>
               <Input
                 id="name"
-                name="name"
                 value={formData.name}
-                onChange={handleChange}
+                onChange={(e) => handleChange('name', e.target.value)}
                 placeholder="Enter chore name"
                 required
               />
             </div>
-            <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <Tabs value={formData.category} onValueChange={(value) => handleChange('category', value)}>
               <TabsList className="grid w-full grid-cols-5">
                 {choreCategories.map((category) => (
                   <TabsTrigger key={category.name} value={category.name} className="flex items-center justify-center">
@@ -185,61 +179,50 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                 </TabsContent>
               ))}
             </Tabs>
-      <div className={formStyles.formGrid}>
-        <div className={formStyles.formGroup}>
-          <label htmlFor="dueDate" className={formStyles.label}>
-            <FaCalendarAlt className={formStyles.icon} /> Due Date
-          </label>
-          <input
-            id="dueDate"
-            type="date"
-            name="dueDate"
-            value={formData.dueDate}
-            onChange={handleChange}
-            required
-            className={formStyles.input}
-          />
-        </div>
-        <div className={formStyles.formGroup}>
-          <div className={formStyles.checkboxGroup}>
-            <input
-              type="checkbox"
-              name="isRecurring"
-              checked={formData.isRecurring}
-              onChange={handleChange}
-              id="isRecurring"
-              className={formStyles.checkbox}
-            />
-            <label htmlFor="isRecurring" className={formStyles.checkboxLabel}>
-              <FaRecycle className={formStyles.icon} /> Recurring Chore
-            </label>
-          </div>
-          {formData.isRecurring && (
-            <select
-              id="recurringPeriod"
-              name="recurringPeriod"
-              value={formData.recurringPeriod}
-              onChange={handleChange}
-              className={formStyles.select}
-            >
-              <option value="">Select Recurring Period</option>
-              <option value="daily">Daily</option>
-              <option value="weekly">Weekly</option>
-              <option value="monthly">Monthly</option>
-              <option value="yearly">Yearly</option>
-            </select>
-          )}
-        </div>
-      </div>
-            <div>
-              <Label htmlFor="notes" className="text-sm">Notes (optional)</Label>
+            <div className="space-y-2">
+              <Label htmlFor="dueDate">Due Date</Label>
+              <Input
+                id="dueDate"
+                type="date"
+                value={formData.dueDate}
+                onChange={(e) => handleChange('dueDate', e.target.value)}
+                required
+              />
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="isRecurring"
+                checked={formData.isRecurring}
+                onCheckedChange={(checked) => handleChange('isRecurring', checked as boolean)}
+              />
+              <Label htmlFor="isRecurring">Recurring Chore</Label>
+            </div>
+            {formData.isRecurring && (
+              <div className="space-y-2">
+                <Label htmlFor="recurringPeriod">Recurring Period</Label>
+                <Select
+                  value={formData.recurringPeriod}
+                  onValueChange={(value) => handleChange('recurringPeriod', value)}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Recurring Period" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="daily">Daily</SelectItem>
+                    <SelectItem value="weekly">Weekly</SelectItem>
+                    <SelectItem value="monthly">Monthly</SelectItem>
+                    <SelectItem value="yearly">Yearly</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+            <div className="space-y-2">
+              <Label htmlFor="notes">Notes (optional)</Label>
               <Textarea
                 id="notes"
-                name="notes"
                 value={formData.notes}
-                onChange={handleChange}
+                onChange={(e) => handleChange('notes', e.target.value)}
                 placeholder="Add any additional notes"
-                className="mt-1"
               />
             </div>
           </div>
