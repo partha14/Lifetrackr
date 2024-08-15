@@ -44,7 +44,9 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ texts, onTextChange, placeh
 
   useEffect(() => {
     const unsubscribe = displayText.onChange((v) => {
-      onTextChange(v);
+      if (typeof onTextChange === 'function') {
+        onTextChange(v);
+      }
     });
     return unsubscribe;
   }, [displayText, onTextChange]);
@@ -52,7 +54,11 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ texts, onTextChange, placeh
   return (
     <motion.input
       value={displayText.get()}
-      onChange={(e) => onTextChange(e.target.value)}
+      onChange={(e) => {
+        if (typeof onTextChange === 'function') {
+          onTextChange(e.target.value);
+        }
+      }}
       placeholder={placeholder}
       required={required}
       className={className}
