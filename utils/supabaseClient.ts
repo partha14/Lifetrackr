@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-export const emailConfirmationEnabled = process.env.NEXT_PUBLIC_EMAIL_CONFIRMATION_ENABLED === 'true'
+export const emailConfirmationEnabled = process.env.NEXT_PUBLIC_EMAIL_CONFIRMATION_ENABLED !== 'false'
 
 if (!supabaseUrl || !supabaseAnonKey) {
   throw new Error('Missing Supabase environment variables')
