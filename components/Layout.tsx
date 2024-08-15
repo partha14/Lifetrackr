@@ -9,6 +9,7 @@ import DarkModeToggle from './DarkModeToggle'
 import { useIsLoggedIn } from '../hooks/useIsLoggedIn'
 import { useTheme } from 'next-themes'
 import { Analytics } from "@vercel/analytics/react"
+import Head from 'next/head'
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -99,6 +100,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className={`${styles.container} ${styles.root}`}>
+      <Head>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+      </Head>
       <aside className={`${styles.sidebar} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
         <Link href={isLoggedIn ? "/dashboard" : "/"} className={styles.logo}>
           LifeTrackr <span className={styles.beta}>BETA</span>
@@ -124,6 +128,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </main>
         <footer className={styles.footer}>
           <p>&copy; 2023 LifeTrackr. All rights reserved.</p>
+          <p className={styles.madeBy}>Made with ❤️ by SKP</p>
         </footer>
       </div>
       {isMobileMenuOpen && <div className={styles.overlay} onClick={() => setIsMobileMenuOpen(false)}></div>}
