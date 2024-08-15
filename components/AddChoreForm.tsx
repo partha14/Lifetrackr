@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { handleError } from '../utils/errorHandler'
 import { FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools, FaCalendarAlt, FaPlus } from 'react-icons/fa'
+import { ErrorMessage } from './ErrorMessage'
 
 interface ChoreFormData {
   name: string;
@@ -124,14 +125,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
       <h2 className="text-3xl font-bold text-center mb-6">Add New Chore</h2>
       <div>
         <form onSubmit={handleSubmit} className="space-y-8">
-          {error && (
-            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md" role="alert">
-              <div className="flex">
-                <div className="py-1"><FaExclamationCircle className="text-red-500 mr-4" /></div>
-                <div>{error}</div>
-              </div>
-            </div>
-          )}
+          {error && <ErrorMessage message={error} />}
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
