@@ -272,6 +272,5 @@ export default function Home() {
           <p>© 2023 LifeTrackr. All rights reserved. | We will never sell your data.</p>
         </footer>
       </div>
-    </>
   );
 }
