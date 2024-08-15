@@ -4,7 +4,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import Layout from '../components/Layout'
 import styles from '../styles/Dashboard.module.css'
 import { useRouter } from 'next/router'
-import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch } from 'react-icons/fa'
+import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown } from 'react-icons/fa'
 import { handleError } from '../utils/errorHandler'
 
 const choreCategories = [
@@ -69,6 +69,7 @@ export default function Chores() {
   const [recurrence, setRecurrence] = useState('none')
   const [notes, setNotes] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const getUserId = useCallback(async () => {
     try {
@@ -212,40 +213,52 @@ export default function Chores() {
                   ))}
                 </div>
                 
-                <div className={styles.searchContainer}>
-                  <FaSearch className={styles.searchIcon} />
-                  <input
-                    type="text"
-                    placeholder="Search or type custom"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className={styles.searchInput}
-                  />
-                </div>
-                
-                <div className={styles.templateList}>
-                  {filteredTemplates.length > 0 ? (
-                    filteredTemplates.map((template, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setChoreName(template)}
-                        className={styles.templateButton}
-                      >
-                        {template}
-                      </button>
-                    ))
-                  ) : (
-                    <p className={styles.noTemplates}>No matches. Type to create custom.</p>
+                <div className={styles.dropdownContainer}>
+                  <div className={styles.dropdownHeader} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                    <span>{choreName || "Select a template or type custom"}</span>
+                    <FaChevronDown className={styles.dropdownIcon} />
+                  </div>
+                  {isDropdownOpen && (
+                    <div className={styles.dropdownList}>
+                      <div className={styles.searchContainer}>
+                        <FaSearch className={styles.searchIcon} />
+                        <input
+                          type="text"
+                          placeholder="Search templates"
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          className={styles.searchInput}
+                        />
+                      </div>
+                      {filteredTemplates.length > 0 ? (
+                        filteredTemplates.map((template, index) => (
+                          <div
+                            key={index}
+                            onClick={() => {
+                              setChoreName(template);
+                              setIsDropdownOpen(false);
+                            }}
+                            className={styles.dropdownItem}
+                          >
+                            {template}
+                          </div>
+                        ))
+                      ) : (
+                        <p className={styles.noTemplates}>No matches. Type to create custom.</p>
+                      )}
+                    </div>
                   )}
                 </div>
                 
-                <input
-                  type="text"
-                  value={choreName}
-                  onChange={(e) => setChoreName(e.target.value)}
-                  placeholder="Enter chore name"
-                  className={styles.choreNameInput}
-                />
+                {!isDropdownOpen && (
+                  <input
+                    type="text"
+                    value={choreName}
+                    onChange={(e) => setChoreName(e.target.value)}
+                    placeholder="Enter chore name"
+                    className={styles.choreNameInput}
+                  />
+                )}
               </div>
               
               <div className={styles.formColumn}>
