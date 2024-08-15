@@ -70,12 +70,13 @@ export default function Home() {
             <div className={styles.staticTextBox}>
               <TypingEffect
                 texts={[
+                  "What is the replacement filter for my fridge?",
                   "When did I last change my car's oil?",
                   "What's the warranty status of my laptop?",
-                  "When is my next house cleaning due?",
-                  "How much did I spend on groceries last month?",
+                  "When is my next house cleaning due?"
                 ]}
-                typingSpeed={20}
+                typingSpeed={700}
+                eraseSpeed={1000}
               />
             </div>
           </div>
