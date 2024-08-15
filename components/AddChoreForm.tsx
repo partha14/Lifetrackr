@@ -147,6 +147,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                 value={formData.category} 
                 onChange={(e) => handleChange('category', e.target.value)}
                 className="w-full p-2 border rounded"
+                aria-label="Select chore category"
               >
                 <option value="">Select a category</option>
                 {choreCategories.map((category) => (
@@ -163,6 +164,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                 id="choreTemplate"
                 onChange={(e) => handleTemplateSelect(e.target.value)}
                 className="w-full p-2 border rounded mb-2"
+                aria-label="Select chore template"
               >
                 <option value="">Select a chore template or enter custom name</option>
                 {choreTemplates
