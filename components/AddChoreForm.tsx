@@ -160,22 +160,24 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
         </div>
       </div>
       <div className={formStyles.formGroup}>
-        <label className={formStyles.label}>
+        <label htmlFor="templateSelect" className={formStyles.label}>
           <FaPlus className={formStyles.icon} /> Chore Templates
         </label>
-        <div className={formStyles.templateContainer}>
+        <select
+          id="templateSelect"
+          className={formStyles.select}
+          onChange={(e) => {
+            const selectedTemplate = choreTemplates.find(t => t.name === e.target.value);
+            if (selectedTemplate) handleTemplateSelect(selectedTemplate);
+          }}
+        >
+          <option value="">Select a template</option>
           {choreTemplates.map((template, index) => (
-            <button
-              key={index}
-              type="button"
-              className={formStyles.templateButton}
-              onClick={() => handleTemplateSelect(template)}
-            >
-              {React.createElement(template.icon, { className: formStyles.templateIcon })}
-              {template.name}
-            </button>
+            <option key={index} value={template.name}>
+              {template.name} ({template.category})
+            </option>
           ))}
-        </div>
+        </select>
       </div>
       <div className={formStyles.formGrid}>
         <div className={formStyles.formGroup}>

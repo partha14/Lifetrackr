@@ -1,102 +1,95 @@
 .responsiveForm {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px;
   background-color: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .formTitle {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  margin-bottom: 30px;
   color: #333;
   text-align: center;
 }
 
 .formGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 30px;
 }
 
 .formGroup {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-weight: bold;
   color: #555;
+  font-size: 1.2rem;
 }
 
 .input,
 .select,
 .textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  transition: border-color 0.3s;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: #007bff;
+  outline: none;
 }
 
 .textarea {
-  min-height: 100px;
+  min-height: 150px;
   resize: vertical;
 }
 
 .checkboxGroup {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .checkbox {
-  margin-right: 10px;
+  margin-right: 15px;
+  width: 20px;
+  height: 20px;
 }
 
 .checkboxLabel {
   font-weight: normal;
+  font-size: 1.2rem;
 }
 
-.templateContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.templateButton {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 10px;
-  background-color: #e9ecef;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.templateButton:hover {
-  background-color: #dee2e6;
-}
-
-.templateIcon {
-  margin-right: 5px;
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 45px;
 }
 
 .submitButton {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s;
 }
 
 .submitButton:hover {
@@ -111,23 +104,34 @@
 .errorMessage {
   background-color: #f8d7da;
   color: #721c24;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 30px;
   display: flex;
   align-items: center;
+  font-size: 1.1rem;
 }
 
 .errorIcon {
-  margin-right: 10px;
+  margin-right: 15px;
+  font-size: 1.3rem;
 }
 
 @media (max-width: 768px) {
-  .formGrid {
-    grid-template-columns: 1fr;
+  .responsiveForm {
+    padding: 20px;
   }
   
-  .templateContainer {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  .formTitle {
+    font-size: 1.8rem;
+  }
+  
+  .label,
+  .input,
+  .select,
+  .textarea,
+  .checkboxLabel,
+  .submitButton {
+    font-size: 1.1rem;
   }
 }
