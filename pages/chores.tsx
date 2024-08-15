@@ -269,6 +269,7 @@ export default function Chores() {
                           eraseSpeed={75}
                           eraseDelay={4000}
                           typeDelay={2000}
+                          className="bg-transparent"
                         />
                       )}
                     </div>
