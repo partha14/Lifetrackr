@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { handleError } from '../utils/errorHandler'
-import { FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools, FaCalendarAlt } from 'react-icons/fa'
-import { Plus } from "lucide-react"
+import { FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools, FaCalendarAlt, FaPlus } from 'react-icons/fa'
 
 interface ChoreFormData {
   name: string;
@@ -236,12 +235,12 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
 
           <button 
             type="submit" 
-            className="w-full py-6 text-lg font-semibold bg-blue-500 text-white rounded hover:bg-blue-600" 
+            className="w-full py-6 text-lg font-semibold bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center" 
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Adding...' : (
               <>
-                <Plus className="mr-2 h-5 w-5 inline" /> Add Chore
+                <FaPlus className="mr-2" /> Add Chore
               </>
             )}
           </button>
