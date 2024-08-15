@@ -132,70 +132,59 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`${styles.addChoreForm} ${formStyles.responsiveForm}`}>
-      <h2 className={formStyles.formTitle}>Add New Chore</h2>
-      {error && (
-        <div className={formStyles.errorMessage}>
-          <FaExclamationCircle className={formStyles.errorIcon} />
-          {error}
-        </div>
-      )}
-      <div className={formStyles.formGrid}>
-        <div className={formStyles.formGroup}>
-          <label htmlFor="name" className={formStyles.label}>
-            <FaPlus className={formStyles.icon} /> Chore Name
-          </label>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Enter chore name"
-            required
-            className={formStyles.input}
-          />
-        </div>
-        <div className={formStyles.formGroup}>
-          <label htmlFor="category" className={formStyles.label}>
-            <FaPlus className={formStyles.icon} /> Category
-          </label>
-          <select
-            id="category"
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            className={formStyles.select}
-          >
-            <option value="">Select Category</option>
-            <option value="Home">Home</option>
-            <option value="Car">Car</option>
-            <option value="Food">Food</option>
-            <option value="Clothing">Clothing</option>
-            <option value="Maintenance">Maintenance</option>
-          </select>
-        </div>
-      </div>
-      <div className={formStyles.formGroup}>
-        <label htmlFor="templateSelect" className={formStyles.label}>
-          <FaPlus className={formStyles.icon} /> Chore Templates
-        </label>
-        <select
-          id="templateSelect"
-          className={formStyles.select}
-          onChange={(e) => {
-            const selectedTemplate = choreTemplates.find(t => t.name === e.target.value);
-            if (selectedTemplate) handleTemplateSelect(selectedTemplate);
-          }}
-        >
-          <option value="">Select a template</option>
-          {choreTemplates.map((template, index) => (
-            <option key={index} value={template.name}>
-              {template.name} ({template.category})
-            </option>
-          ))}
-        </select>
-      </div>
+    <Card>
+      <CardContent>
+        <form onSubmit={handleSubmit}>
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold">Add New Chore</h2>
+            {error && (
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <FaExclamationCircle className="inline mr-2" />
+                {error}
+              </div>
+            )}
+            <div>
+              <Label htmlFor="name">Chore Name</Label>
+              <Input
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Enter chore name"
+                required
+              />
+            </div>
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
+              <TabsList className="grid w-full grid-cols-5">
+                {choreCategories.map((category) => (
+                  <TabsTrigger key={category.name} value={category.name} className="flex items-center justify-center">
+                    {category.icon}
+                    <span className="ml-2">{category.name}</span>
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              {choreCategories.map((category) => (
+                <TabsContent key={category.name} value={category.name}>
+                  <ScrollArea className="h-72 rounded-md border p-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      {choreTemplates
+                        .filter((template) => template.category === category.name)
+                        .map((template, index) => (
+                          <Button
+                            key={index}
+                            variant="outline"
+                            className="justify-start"
+                            onClick={() => handleTemplateSelect(template)}
+                          >
+                            {React.createElement(template.icon, { className: "mr-2 h-4 w-4" })}
+                            {template.name}
+                          </Button>
+                        ))}
+                    </div>
+                  </ScrollArea>
+                </TabsContent>
+              ))}
+            </Tabs>
       <div className={formStyles.formGrid}>
         <div className={formStyles.formGroup}>
           <label htmlFor="dueDate" className={formStyles.label}>
