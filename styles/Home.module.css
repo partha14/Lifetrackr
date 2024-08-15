@@ -311,6 +311,31 @@
   color: #666;
 }
 
+.aiShowcase {
+  margin-top: 4rem;
+  text-align: center;
+  background-color: #f0f8ff;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.aiExamples {
+  margin-top: 2rem;
+}
+
+.aiExample {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.aiIcon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  color: #0070f3;
+}
+
 @media (max-width: 768px) {
   .nav {
     flex-direction: column;
