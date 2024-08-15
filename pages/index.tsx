@@ -48,7 +48,7 @@ export default function Home() {
           <Link href="/" className={styles.logo}>LifeTrackr <span className={styles.beta}>BETA</span></Link>
           <div className={styles.navLinks}>
             <Link href="/how-it-works">How It Works</Link>
-            <Link href="/contact">Contact</Link>
+            <Link href="/features">Features</Link>
           </div>
           <div className={styles.authLinks}>
             <Link href="/login" className={styles.loginButton}>Log in</Link>
