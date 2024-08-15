@@ -1,3 +1,9 @@
+import React from 'react'
+import Layout from '../components/Layout'
+import styles from '../styles/StaticPages.module.css'
+import { FaShoppingCart, FaClipboardList, FaBrain, FaChartLine } from 'react-icons/fa'
+
+export default function Features() {
   return (
     <Layout>
       <div className={styles.container}>
