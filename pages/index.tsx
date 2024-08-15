@@ -11,6 +11,7 @@ export default function Home() {
         <title>LifeTrackr Beta - Organize Your Work and Life | Life Management App</title>
         <meta name="description" content="LifeTrackr Beta: The innovative life management app to simplify and organize your work and personal life. Track purchases, manage chores, and more. Join the beta now!" />
         <link rel="icon" href="/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
       </Head>
 
       <main className={styles.main}>
@@ -86,6 +87,7 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <p>© 2023 LifeTrackr. All rights reserved. | We will never sell your data.</p>
+        <p className={styles.madeBy}>Made with ❤️ by PSK</p>
       </footer>
     </div>
   );

@@ -267,6 +267,13 @@
   text-decoration: underline;
 }
 
+.madeBy {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.2rem;
+  color: #ff6b6b;
+  margin-top: 0.5rem;
+}
+
 .upcomingFeatures {
   background-color: #f0f4f8;
   padding: 6rem 2rem;
