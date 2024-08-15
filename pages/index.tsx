@@ -129,7 +129,7 @@ export default function Home() {
             <div className={styles.aiExample}>
               <FaRobot className={styles.aiIcon} />
               <div className={styles.aiChatbox}>
-                <div className={styles.staticTextBox}>
+                <div className={styles.staticTextBox} style={{ height: '100px', overflow: 'hidden' }}>
                   <TypingEffect
                     texts={[
                       "When do I need to replace the air filter in my refrigerator?",
@@ -142,7 +142,7 @@ export default function Home() {
                       "What's the recommended maintenance schedule for my HVAC system?",
                       "When should I replace the batteries in my smoke detectors?"
                     ]}
-                    typingSpeed={80}
+                    typingSpeed={50}
                     eraseSpeed={40}
                     eraseDelay={2000}
                     typeDelay={500}
