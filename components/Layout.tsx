@@ -85,9 +85,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <Link href="/features" className={`${styles.navLink} ${router.pathname === '/features' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
                 Features
               </Link>
-              <Link href="/pricing" className={`${styles.navLink} ${router.pathname === '/pricing' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
-                Pricing
-              </Link>
               <Link href="/login" className={`${styles.navLink} ${router.pathname === '/login' ? styles.active : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
                 Login
               </Link>
