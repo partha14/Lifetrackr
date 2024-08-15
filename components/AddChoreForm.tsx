@@ -12,6 +12,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Plus } from "lucide-react"
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 interface ChoreFormData {
   name: string;
@@ -59,12 +61,15 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
     setError(null)
   }
 
-  const handleTemplateSelect = (template: { name: string; category: string }) => {
-    setFormData(prev => ({
-      ...prev,
-      name: template.name,
-      category: template.category,
-    }))
+  const handleTemplateSelect = (template: string) => {
+    const selectedTemplate = choreTemplates.find(t => t.name === template);
+    if (selectedTemplate) {
+      setFormData(prev => ({
+        ...prev,
+        name: selectedTemplate.name,
+        category: selectedTemplate.category,
+      }))
+    }
   }
 
   const choreCategories = [
@@ -159,23 +164,34 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
               </TabsList>
               {choreCategories.map((category) => (
                 <TabsContent key={category.name} value={category.name}>
-                  <ScrollArea className="h-72 rounded-md border p-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      {choreTemplates
-                        .filter((template) => template.category === category.name)
-                        .map((template, index) => (
-                          <Button
-                            key={index}
-                            variant="outline"
-                            className="justify-start"
-                            onClick={() => handleTemplateSelect(template)}
-                          >
-                            {React.createElement(template.icon, { className: "mr-2 h-4 w-4" })}
-                            {template.name}
-                          </Button>
-                        ))}
-                    </div>
-                  </ScrollArea>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" className="w-full justify-start">
+                        {formData.name || "Select a chore template"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[300px] p-0">
+                      <Command>
+                        <CommandInput placeholder="Search chore templates..." />
+                        <CommandEmpty>No chore template found.</CommandEmpty>
+                        <CommandGroup>
+                          <ScrollArea className="h-72">
+                            {choreTemplates
+                              .filter((template) => template.category === category.name)
+                              .map((template) => (
+                                <CommandItem
+                                  key={template.name}
+                                  onSelect={() => handleTemplateSelect(template.name)}
+                                >
+                                  {React.createElement(template.icon, { className: "mr-2 h-4 w-4" })}
+                                  {template.name}
+                                </CommandItem>
+                              ))}
+                          </ScrollArea>
+                        </CommandGroup>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
                 </TabsContent>
               ))}
             </Tabs>
