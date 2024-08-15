@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import styles from '../styles/Dashboard.module.css'
 import { handleError } from '../utils/errorHandler'
-import { FaPlus, FaCalendarAlt, FaRecycle, FaStickyNote, FaClock } from 'react-icons/fa'
+import { FaPlus, FaCalendarAlt, FaRecycle, FaStickyNote, FaClock, FaExclamationCircle } from 'react-icons/fa'
 
 interface ChoreFormData {
   name: string;
@@ -27,6 +27,8 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
     notes: '',
     user_id,
   })
+  const [error, setError] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
@@ -34,36 +36,41 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
       ...prev,
       [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
     }))
+    setError(null)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError(null)
+    setIsSubmitting(true)
+
     if (!formData.name || !formData.dueDate) {
-      alert('Please fill in all required fields')
+      setError('Please fill in all required fields')
+      setIsSubmitting(false)
       return
     }
+
     try {
       const { name, dueDate, isRecurring, recurringPeriod, notes, user_id } = formData
       const choreData = { name, dueDate, isRecurring, recurringPeriod, notes, user_id }
-      console.log('Attempting to add chore:', choreData)
+      
       if (!user_id) {
         throw new Error('user_id is missing')
       }
+
       const { data: { user } } = await supabase.auth.getUser()
       if (user?.id !== user_id) {
         throw new Error('Unauthorized: user_id does not match authenticated user')
       }
+
       const { data, error } = await supabase
         .from('chores')
         .insert([choreData])
         .select()
       
       if (error) {
-        console.error('Supabase error:', error)
         throw error
       } else {
-        console.log('Chore added successfully. Response:', data)
-        alert('Chore added successfully!')
         setFormData({
           name: '',
           dueDate: '',
@@ -76,12 +83,21 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
       }
     } catch (error) {
       handleError(error, 'An error occurred while adding the chore. Please try again.')
+      setError('Failed to add chore. Please try again.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
   return (
     <form onSubmit={handleSubmit} className={styles.addChoreForm}>
       <h2 className={styles.formTitle}>Add New Chore</h2>
+      {error && (
+        <div className={styles.errorMessage}>
+          <FaExclamationCircle className={styles.errorIcon} />
+          {error}
+        </div>
+      )}
       <div className={styles.formGroup}>
         <label htmlFor="name" className={styles.label}>
           <FaPlus className={styles.icon} /> Chore Name
@@ -159,8 +175,12 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           className={styles.textarea}
         />
       </div>
-      <button type="submit" className={styles.submitButton}>
-        <FaPlus className={styles.buttonIcon} /> Add Chore
+      <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+        {isSubmitting ? 'Adding...' : (
+          <>
+            <FaPlus className={styles.buttonIcon} /> Add Chore
+          </>
+        )}
       </button>
     </form>
   )
