@@ -27,6 +27,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
         setCurrentText(texts[currentIndex].slice(0, currentText.length + 1));
         timeout = setTimeout(typeText, typingSpeed);
       } else {
+        setIsTyping(false);
         timeout = setTimeout(eraseText, eraseDelay);
       }
     };
@@ -37,6 +38,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
         timeout = setTimeout(eraseText, eraseSpeed);
       } else {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
+        setIsTyping(true);
         timeout = setTimeout(typeText, typeDelay);
       }
     };
