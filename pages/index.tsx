@@ -58,6 +58,29 @@ export default function Home() {
           />
         </section>
 
+        <section className={styles.howItWorks}>
+          <h2>How It Works</h2>
+          <div className={styles.steps}>
+            <div className={styles.step}>
+              <h3>1. Add Your Chores</h3>
+              <p>Choose from predefined categories or create custom chores.</p>
+              <img src="/UI-screenshot.png" alt="Add Chore Interface" className={styles.stepImage} />
+            </div>
+            <div className={styles.step}>
+              <h3>2. Set Due Dates</h3>
+              <p>Assign due dates to your chores to stay on track.</p>
+            </div>
+            <div className={styles.step}>
+              <h3>3. Track Recurring Tasks</h3>
+              <p>Set up recurring chores for regular maintenance tasks.</p>
+            </div>
+            <div className={styles.step}>
+              <h3>4. Manage Your Purchases</h3>
+              <p>Log your purchases and track your spending habits.</p>
+            </div>
+          </div>
+        </section>
+
         <section className={styles.cta}>
           <h2>Never Forget Another Important Task</h2>
           <p>Join LifeTrackr Beta today and experience the peace of mind that comes with perfect organization!</p>
