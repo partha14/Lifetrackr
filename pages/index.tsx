@@ -123,8 +123,8 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.7 }}
         >
-          <h2>Experience the Power of AI</h2>
-          <p>Ask LifeTrackr anything about your home, car, or personal tasks:</p>
+          <h2>Experience the Power of AI (Coming Soon!)</h2>
+          <p>Soon, you'll be able to ask LifeTrackr anything about your home, car, or personal tasks:</p>
           <div className={styles.aiExamples}>
             <div className={styles.aiExample}>
               <FaRobot className={styles.aiIcon} />
@@ -132,15 +132,15 @@ export default function Home() {
                 <div className={styles.staticTextBox} style={{ height: '100px', overflow: 'hidden' }}>
                   <TypingEffect
                     texts={[
-                      "When do I need to replace the air filter in my refrigerator?",
-                      "What's the recommended oil type for my next car oil change?",
-                      "When was the last time I scheduled pest control for my home?",
-                      "How often should I clean my gutters?",
-                      "What's the warranty status on my washing machine?",
-                      "When is my next car maintenance due?",
-                      "How long ago did I buy my laptop?",
-                      "What's the recommended maintenance schedule for my HVAC system?",
-                      "When should I replace the batteries in my smoke detectors?"
+                      "What's the best way to organize my weekly chores?",
+                      "How can I create a balanced home maintenance schedule?",
+                      "What are some tips for keeping track of my car's maintenance history?",
+                      "How can I prioritize my tasks more effectively?",
+                      "What's a good system for tracking household inventory?",
+                      "How can I set up reminders for important recurring tasks?",
+                      "What are some strategies for managing long-term home improvement projects?",
+                      "How can I create a budget for annual home maintenance?",
+                      "What's the most efficient way to plan my weekly grocery shopping?"
                     ]}
                     typingSpeed={50}
                     eraseSpeed={40}
@@ -151,7 +151,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <p>LifeTrackr's AI assistant helps you stay on top of your tasks and maintenance schedules effortlessly.</p>
+          <p>LifeTrackr's upcoming AI assistant will help you stay on top of your tasks and maintenance schedules effortlessly.</p>
         </motion.section>
 
         <section className={styles.benefits}>
