@@ -53,7 +53,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>LifeTrackr Beta - Organize Your Work and Life | Life Management App</title>
         <meta name="description" content="LifeTrackr Beta: The innovative life management app to simplify and organize your work and personal life. Track purchases, manage chores, and more. Join the beta now!" />
@@ -73,7 +73,8 @@ export default function Home() {
         <meta name="theme-color" content="#4a90e2" />
       </Head>
 
-      <main className={styles.main}>
+      <div className={styles.container}>
+        <main className={styles.main}>
         <nav className={styles.nav}>
           <Link href="/" className={styles.logo}>
             LifeTrackr <span className={styles.beta}>BETA</span>
@@ -284,11 +285,12 @@ export default function Home() {
           <p>Join LifeTrackr Beta today and experience the peace of mind that comes with perfect organization!</p>
           <Link href="/signup" className={styles.ctaButton}>Join the Beta for Free</Link>
         </section>
-      </main>
+        </main>
 
-      <footer className={styles.footer}>
-        <p>© 2023 LifeTrackr. All rights reserved. | We will never sell your data.</p>
-      </footer>
-    </div>
+        <footer className={styles.footer}>
+          <p>© 2023 LifeTrackr. All rights reserved. | We will never sell your data.</p>
+        </footer>
+      </div>
+    </>
   );
 }
