@@ -15,9 +15,12 @@ const nextConfig = {
     }
     return config;
   },
-  // Add this line to generate the BUILD_ID file
+  // Generate the BUILD_ID file
   generateBuildId: async () => {
-    return 'my-build-id'
+    const fs = require('fs');
+    const buildId = 'my-build-id'; // You can generate a unique ID here if needed
+    fs.writeFileSync('.next/BUILD_ID', buildId);
+    return buildId;
   },
 }
 
