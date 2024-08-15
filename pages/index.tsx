@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css';
 import { FaShoppingCart, FaClipboardList, FaBrain, FaCalendarAlt, FaDollarSign, FaReceipt, FaEnvelope, FaFileAlt, FaRobot } from 'react-icons/fa';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
 import TypingEffect from '../components/TypingEffect';
 
 export default function Home() {
@@ -80,41 +80,76 @@ export default function Home() {
         >
           <motion.h1 key="title1" variants={fadeInUp}>Tired of juggling life's endless tasks?</motion.h1>
           <motion.h1 key="title2" variants={fadeInUp}>Meet LifeTrackr: Your Personal Life Assistant</motion.h1>
-          <motion.p variants={fadeInUp}>
-            Effortlessly organize your life, from chores to purchases. LifeTrackr remembers so you don't have to. Experience the freedom of a well-managed life with our innovative app, now in beta!
-          </motion.p>
           <motion.div variants={fadeInUp}>
-            <Link href="/signup" className={styles.ctaButton}>Join the Beta</Link>
+            {["Effortlessly", "organize", "your", "life,", "from", "chores", "to", "purchases.", "LifeTrackr", "remembers", "so", "you", "don't", "have", "to.", "Experience", "the", "freedom", "of", "a", "well-managed", "life", "with", "our", "innovative", "app,", "now", "in", "beta!"].map((word, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 0.25,
+                  delay: i / 10
+                }}
+                style={{ display: 'inline-block', marginRight: '4px' }}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </motion.div>
+          <motion.div variants={fadeInUp}>
+            <motion.div whileTap={{ scale: 0.95 }}>
+              <Link href="/signup" className={styles.ctaButton}>Join the Beta</Link>
+            </motion.div>
           </motion.div>
         </motion.section>
 
         <section className={styles.features}>
-          <div className={styles.feature}>
-            <FaShoppingCart className={styles.featureIcon} />
-            <h2>🛍️ Track Purchases</h2>
-            <p>Never forget warranty periods or when you bought something.</p>
-            <div className={styles.example}>
-              <strong>Example:</strong> MacBook Pro - 1 year warranty (expires in 8 months)
-            </div>
-          </div>
-          <div className={styles.feature}>
-            <FaClipboardList className={styles.featureIcon} />
-            <h2>✅ Manage Chores</h2>
-            <p>Keep track of important home and vehicle maintenance tasks.</p>
-            <div className={styles.example}>
-              <strong>Examples:</strong>
-              <ul>
-                <li>Change car tires (every 6 months)</li>
-                <li>Replace air filters (every 3 months)</li>
-                <li>Oil change (every 5000 miles)</li>
-              </ul>
-            </div>
-          </div>
-          <div className={styles.feature}>
-            <FaBrain className={styles.featureIcon} />
-            <h2>🧘 Peace of Mind</h2>
-            <p>Free up mental space and never worry about forgetting important tasks.</p>
-          </div>
+          {[
+            {
+              icon: <FaShoppingCart className={styles.featureIcon} />,
+              title: "🛍️ Track Purchases",
+              description: "Never forget warranty periods or when you bought something.",
+              example: "Example: MacBook Pro - 1 year warranty (expires in 8 months)"
+            },
+            {
+              icon: <FaClipboardList className={styles.featureIcon} />,
+              title: "✅ Manage Chores",
+              description: "Keep track of important home and vehicle maintenance tasks.",
+              example: (
+                <>
+                  <strong>Examples:</strong>
+                  <ul>
+                    <li>Change car tires (every 6 months)</li>
+                    <li>Replace air filters (every 3 months)</li>
+                    <li>Oil change (every 5000 miles)</li>
+                  </ul>
+                </>
+              )
+            },
+            {
+              icon: <FaBrain className={styles.featureIcon} />,
+              title: "🧘 Peace of Mind",
+              description: "Free up mental space and never worry about forgetting important tasks."
+            }
+          ].map((feature, index) => (
+            <motion.div
+              key={index}
+              className={styles.feature}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+            >
+              {feature.icon}
+              <h2>{feature.title}</h2>
+              <p>{feature.description}</p>
+              {feature.example && (
+                <div className={styles.example}>
+                  {feature.example}
+                </div>
+              )}
+            </motion.div>
+          ))}
         </section>
 
         <motion.section 
