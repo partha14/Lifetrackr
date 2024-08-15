@@ -971,8 +971,11 @@
   transform: translateY(-50%);
   color: var(--text-color-secondary);
   pointer-events: none;
-  z-index: 2;
+  z-index: 1;
   background-color: transparent;
+  width: calc(100% - 2rem);
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .input {
@@ -985,7 +988,7 @@
   color: var(--text-color);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .input:focus {

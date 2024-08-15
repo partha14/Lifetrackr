@@ -257,8 +257,8 @@ export default function Chores() {
                       className={styles.input}
                       placeholder=" "
                     />
-                    {!choreName && (
-                      <div className={styles.placeholderText}>
+                    <div className={styles.placeholderText}>
+                      {!choreName && (
                         <TypingEffect
                           texts={
                             selectedCategory === 'Home'
@@ -270,8 +270,8 @@ export default function Chores() {
                           eraseDelay={4000}
                           typeDelay={2000}
                         />
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
 
