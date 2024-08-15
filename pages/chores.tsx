@@ -260,14 +260,14 @@ export default function Chores() {
                       <div className={styles.placeholderText}>
                         <TypingEffect
                           texts={
-                            selectedCategory
-                              ? choreCategories.find(c => c.name === selectedCategory)?.templates || []
-                              : ['Enter chore name', 'What needs to be done?', 'Add a new task']
+                            selectedCategory === 'Home'
+                              ? choreCategories.find(c => c.name === 'Home')?.templates.slice(0, 2) || []
+                              : ['Enter chore name', 'What needs to be done?']
                           }
-                          typingSpeed={100}
-                          eraseSpeed={50}
-                          eraseDelay={3000}
-                          typeDelay={1500}
+                          typingSpeed={150}
+                          eraseSpeed={75}
+                          eraseDelay={4000}
+                          typeDelay={2000}
                         />
                       </div>
                     )}
