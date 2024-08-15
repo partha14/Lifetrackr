@@ -44,7 +44,7 @@ const choreTemplates = [
 const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) => {
   const [formData, setFormData] = useState<ChoreFormData>({
     name: '',
-    dueDate: '',
+    dueDate: new Date().toISOString().split('T')[0], // Set default to current date
     isRecurring: false,
     recurringPeriod: '',
     notes: '',
