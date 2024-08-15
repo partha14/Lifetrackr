@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { handleError } from '../utils/errorHandler'
 import { FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools, FaCalendarAlt } from 'react-icons/fa'
+import { Plus } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
