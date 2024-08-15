@@ -186,6 +186,10 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                   placeholder="Or enter custom chore name"
                   required
                   className="w-full p-2 bg-transparent"
+                  typingSpeed={50}
+                  eraseSpeed={30}
+                  eraseDelay={2000}
+                  typeDelay={1000}
                 />
                 <div className="absolute inset-0 pointer-events-none border rounded"></div>
               </div>

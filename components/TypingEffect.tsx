@@ -3,13 +3,27 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 
 interface TypingEffectProps {
   texts: string[];
-  onTextChange: (text: string) => void;
-  placeholder: string;
-  required: boolean;
-  className: string;
+  onTextChange?: (text: string) => void;
+  placeholder?: string;
+  required?: boolean;
+  className?: string;
+  typingSpeed?: number;
+  eraseSpeed?: number;
+  eraseDelay?: number;
+  typeDelay?: number;
 }
 
-const TypingEffect: React.FC<TypingEffectProps> = ({ texts, onTextChange, placeholder, required, className }) => {
+const TypingEffect: React.FC<TypingEffectProps> = ({
+  texts,
+  onTextChange,
+  placeholder = "",
+  required = false,
+  className = "",
+  typingSpeed = 50,
+  eraseSpeed = 50,
+  eraseDelay = 2000,
+  typeDelay = 1000
+}) => {
   const textIndex = useMotionValue(0);
   const baseText = useTransform(textIndex, (latest) => texts[latest] || "");
   const count = useMotionValue(0);
@@ -20,11 +34,11 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ texts, onTextChange, placeh
   useEffect(() => {
     const controls = animate(count, 60, {
       type: "tween",
-      duration: 6, // Increased duration for slower typing
-      ease: "easeInOut",
+      duration: texts[textIndex.get()].length * (60 / typingSpeed),
+      ease: "linear",
       repeat: Infinity,
       repeatType: "reverse",
-      repeatDelay: 1,
+      repeatDelay: eraseDelay,
       onUpdate(latest) {
         if (updatedThisRound.get() === true && latest > 0) {
           updatedThisRound.set(false);
@@ -40,7 +54,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ texts, onTextChange, placeh
     });
 
     return controls.stop;
-  }, []);
+  }, [texts, typingSpeed, eraseDelay]);
 
   useEffect(() => {
     const unsubscribe = displayText.onChange((v) => {
