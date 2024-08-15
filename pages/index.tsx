@@ -78,10 +78,10 @@ export default function Home() {
           animate="animate"
           variants={staggerChildren}
         >
-          <motion.h1 variants={fadeInUp}>Love managing your life...?</motion.h1>
-          <motion.h1 variants={fadeInUp}>You don't have to.</motion.h1>
+          <motion.h1 variants={fadeInUp}>Tired of juggling life's endless tasks?</motion.h1>
+          <motion.h1 variants={fadeInUp}>Meet LifeTrackr: Your Personal Life Assistant</motion.h1>
           <motion.p variants={fadeInUp}>
-            Sit back, relax and let LifeTrackr handle the details. Simplify your life with our innovative management app, now in beta!
+            Effortlessly organize your life, from chores to purchases. LifeTrackr remembers so you don't have to. Experience the freedom of a well-managed life with our innovative app, now in beta!
           </motion.p>
           <motion.div variants={fadeInUp}>
             <Link href="/signup" className={styles.ctaButton}>Join the Beta</Link>
