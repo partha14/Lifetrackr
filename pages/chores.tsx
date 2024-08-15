@@ -43,10 +43,16 @@ class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasErr
 
 export default function Chores() {
   const [chores, setChores] = useState<Chore[]>([])
-  const [showAddChore, setShowAddChore] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [user_id, setUserId] = useState<string | null>(null)
   const router = useRouter()
+
+  const [selectedCategory, setSelectedCategory] = useState(choreCategories[0].name)
+  const [choreName, setChoreName] = useState('')
+  const [dueDate, setDueDate] = useState(new Date())
+  const [recurrence, setRecurrence] = useState('none')
+  const [notes, setNotes] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
 
   const getUserId = useCallback(async () => {
     try {
@@ -91,13 +97,39 @@ export default function Chores() {
     }
   }, [user_id, fetchChores])
 
-  const handleAddChore = () => {
-    setShowAddChore(!showAddChore)
+  const addChore = async () => {
+    if (choreName && selectedCategory && user_id) {
+      try {
+        const { data, error } = await supabase
+          .from('chores')
+          .insert([
+            {
+              name: choreName,
+              category: selectedCategory,
+              dueDate: dueDate.toISOString(),
+              isRecurring: recurrence !== 'none',
+              recurringPeriod: recurrence !== 'none' ? recurrence : null,
+              notes,
+              user_id
+            }
+          ])
+        
+        if (error) throw error
+        
+        fetchChores()
+        resetForm()
+      } catch (error) {
+        handleError(error, 'Failed to add chore')
+      }
+    }
   }
 
-  const handleChoreAdded = () => {
-    fetchChores()
-    setShowAddChore(false)
+  const resetForm = () => {
+    setChoreName('')
+    setDueDate(new Date())
+    setRecurrence('none')
+    setNotes('')
+    setSearchTerm('')
   }
 
   const handleDeleteChore = async (id: number) => {
@@ -117,6 +149,10 @@ export default function Chores() {
     }
   }
 
+  const filteredTemplates = choreCategories
+    .find(c => c.name === selectedCategory)
+    ?.templates.filter(t => t.toLowerCase().includes(searchTerm.toLowerCase())) || []
+
   if (!user_id) {
     return <LoadingSpinner>Loading user data...</LoadingSpinner>
   }
@@ -127,16 +163,99 @@ export default function Chores() {
         <div className={styles.pageContent}>
           <div className={styles.headerContainer}>
             <h1 className={styles.title}><FaClipboardList /> My Chores</h1>
-            <div className={styles.buttonGroup}>
-              <button onClick={handleAddChore} className={`${styles.button} ${styles.addButton}`}>
-                <FaPlus /> {showAddChore ? 'Hide' : 'Add Chore'}
-              </button>
-              <button onClick={fetchChores} className={`${styles.button} ${styles.refreshButton}`}>
-                <FaSync /> Refresh
-              </button>
-            </div>
+            <button onClick={fetchChores} className={`${styles.button} ${styles.refreshButton}`}>
+              <FaSync /> Refresh
+            </button>
           </div>
-          {showAddChore && <AddChoreForm onChoreAdded={handleChoreAdded} user_id={user_id} />}
+          
+          <div className={styles.addChoreSection}>
+            <h2 className={styles.sectionTitle}>Add New Chore</h2>
+            <div className={styles.categoryTabs}>
+              {choreCategories.map((category) => (
+                <button
+                  key={category.name}
+                  onClick={() => setSelectedCategory(category.name)}
+                  className={`${styles.categoryTab} ${selectedCategory === category.name ? styles.activeTab : ''}`}
+                >
+                  <span className={styles.categoryIcon}>{category.icon}</span>
+                  <span className={styles.categoryName}>{category.name}</span>
+                </button>
+              ))}
+            </div>
+            
+            <div className={styles.searchContainer}>
+              <FaSearch className={styles.searchIcon} />
+              <input
+                type="text"
+                placeholder="Search or type custom"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className={styles.searchInput}
+              />
+            </div>
+            
+            <div className={styles.templateList}>
+              {filteredTemplates.length > 0 ? (
+                filteredTemplates.map((template, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setChoreName(template)}
+                    className={styles.templateButton}
+                  >
+                    {template}
+                  </button>
+                ))
+              ) : (
+                <p className={styles.noTemplates}>No matches. Type to create custom.</p>
+              )}
+            </div>
+            
+            <input
+              type="text"
+              value={choreName}
+              onChange={(e) => setChoreName(e.target.value)}
+              placeholder="Enter chore name"
+              className={styles.choreNameInput}
+            />
+            
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Due Date</label>
+              <input
+                type="date"
+                value={dueDate.toISOString().split('T')[0]}
+                onChange={(e) => setDueDate(new Date(e.target.value))}
+                className={styles.dateInput}
+              />
+            </div>
+            
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Recurrence</label>
+              <select
+                value={recurrence}
+                onChange={(e) => setRecurrence(e.target.value)}
+                className={styles.selectInput}
+              >
+                {recurrenceOptions.map((option) => (
+                  <option key={option.value} value={option.value}>{option.label}</option>
+                ))}
+              </select>
+            </div>
+            
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Notes (optional)</label>
+              <textarea
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                className={styles.textArea}
+                placeholder="Add any additional details"
+              />
+            </div>
+            
+            <button onClick={addChore} className={`${styles.button} ${styles.addButton}`}>
+              <FaPlus /> Add Chore
+            </button>
+          </div>
+          
           {isLoading ? (
             <LoadingSpinner>Loading chores...</LoadingSpinner>
           ) : (
@@ -144,8 +263,11 @@ export default function Chores() {
               {chores.length > 0 ? (
                 <div className={styles.cardGrid}>
                   {chores.map((chore) => (
-                    <div key={chore.id} className={styles.card}>
+                    <div key={chore.id} className={`${styles.card} ${styles[chore.category.toLowerCase()]}`}>
                       <h3 className={styles.choreTitle}>{chore.name}</h3>
+                      <p className={styles.choreCategory}>
+                        {choreCategories.find(c => c.name === chore.category)?.icon} {chore.category}
+                      </p>
                       <p className={styles.choreDate}>
                         <FaCalendarAlt className={styles.icon} /> {new Date(chore.dueDate).toLocaleDateString()}
                       </p>
@@ -168,7 +290,7 @@ export default function Chores() {
                 <div className={styles.noChores}>
                   <FaClipboardList className={styles.noChoresIcon} />
                   <p>You haven't added any chores yet.</p>
-                  <p>Click the "Add Chore" button to get started!</p>
+                  <p>Use the form above to add your first chore!</p>
                 </div>
               )}
             </>
