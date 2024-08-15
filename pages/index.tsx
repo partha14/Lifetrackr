@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import { FaShoppingCart, FaClipboardList, FaBrain, FaCalendarAlt, FaDollarSign, FaReceipt, FaEnvelope, FaFileAlt, FaRobot } from 'react-icons/fa';
-import { DocumentTextIcon } from 'lucide-react';
+import { DocumentTextIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
