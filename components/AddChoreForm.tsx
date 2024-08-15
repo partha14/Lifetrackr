@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { handleError } from '../utils/errorHandler'
 import { FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools, FaCalendarAlt, FaPlus } from 'react-icons/fa'
 import { ErrorMessage } from './ErrorMessage'
 import { FormErrorMessage } from './FormErrorMessage'
+import { motion, useMotionValue, useTransform, animate } from "framer-motion"
+import TypingEffect from './TypingEffect'
 
 interface ChoreFormData {
   name: string;
@@ -171,12 +173,16 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                     </option>
                   ))}
               </select>
-              <input
-                type="text"
-                id="name"
-                value={formData.name}
-                onChange={(e) => handleChange('name', e.target.value)}
-                placeholder="Or enter custom chore name (e.g., 'Clean gutters')"
+              <TypingEffect
+                texts={[
+                  "Clean gutters",
+                  "Mow the lawn",
+                  "Wash the car",
+                  "Vacuum the living room",
+                  "Do the laundry"
+                ]}
+                onTextChange={(text) => handleChange('name', text)}
+                placeholder="Or enter custom chore name"
                 required
                 className="w-full p-2 border rounded"
               />
