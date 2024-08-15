@@ -10,7 +10,6 @@ import { Label } from "./ui/label"
 import { Textarea } from "./ui/textarea"
 import { Switch } from "./ui/switch"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-import { Plus } from "lucide-react"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "./ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 
