@@ -10,10 +10,10 @@ interface TypingEffectProps {
 
 const TypingEffect: React.FC<TypingEffectProps> = ({
   texts,
-  typingSpeed = 100,
-  eraseSpeed = 50,
-  eraseDelay = 2000,
-  typeDelay = 1000,
+  typingSpeed = 50, // Increased typing speed
+  eraseSpeed = 30, // Increased erasing speed
+  eraseDelay = 1500,
+  typeDelay = 500,
 }) => {
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
