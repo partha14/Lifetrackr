@@ -220,13 +220,13 @@ export default function Chores() {
                   </div>
                   <div className={styles.dropdownList}>
                     <div className={styles.searchContainer}>
-                      <FaSearch className={styles.searchIcon} />
+                      <FaSearch className={`${styles.searchIcon} text-2xl left-3`} />
                       <input
                         type="text"
                         placeholder="Search templates"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className={`${styles.searchInput} w-full p-3 text-lg border rounded`}
+                        className={`${styles.searchInput} w-full p-4 pl-12 text-xl border rounded`}
                       />
                     </div>
                     {filteredTemplates.length > 0 ? (
