@@ -4,6 +4,8 @@ import styles from '../styles/Dashboard.module.css'
 import formStyles from '../styles/Form.module.css'
 import { handleError } from '../utils/errorHandler'
 import { FaPlus, FaCalendarAlt, FaRecycle, FaStickyNote, FaClock, FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools } from 'react-icons/fa'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface ChoreFormData {
   name: string;
