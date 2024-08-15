@@ -66,17 +66,11 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   }, [displayText, onTextChange]);
 
   return (
-    <motion.input
-      value={displayText.get()}
-      onChange={(e) => {
-        if (typeof onTextChange === 'function') {
-          onTextChange(e.target.value);
-        }
-      }}
-      placeholder={placeholder}
-      required={required}
-      className={`${className} bg-transparent border-none outline-none`}
-    />
+    <motion.span
+      className={`${className} inline-block w-full h-full`}
+    >
+      {displayText}
+    </motion.span>
   );
 };
 
