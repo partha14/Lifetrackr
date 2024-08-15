@@ -132,75 +132,80 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
   return (
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">Add New Chore</CardTitle>
+        <CardTitle className="text-3xl font-bold text-center">Add New Chore</CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-8">
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-              <FaExclamationCircle className="inline mr-2" />
-              {error}
+            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md" role="alert">
+              <div className="flex">
+                <div className="py-1"><FaExclamationCircle className="text-red-500 mr-4" /></div>
+                <div>{error}</div>
+              </div>
             </div>
           )}
           
-          <div className="space-y-2">
-            <Label htmlFor="category">Category</Label>
-            <Select value={formData.category} onValueChange={(value) => handleChange('category', value)}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select a category" />
-              </SelectTrigger>
-              <SelectContent>
-                {choreCategories.map((category) => (
-                  <SelectItem key={category.name} value={category.name}>
-                    <div className="flex items-center">
-                      {React.createElement(category.icon, { className: "mr-2 h-4 w-4" })}
-                      {category.name}
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="category" className="text-lg font-semibold">Category</Label>
+              <Select value={formData.category} onValueChange={(value) => handleChange('category', value)}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select a category" />
+                </SelectTrigger>
+                <SelectContent>
+                  {choreCategories.map((category) => (
+                    <SelectItem key={category.name} value={category.name}>
+                      <div className="flex items-center">
+                        {React.createElement(category.icon, { className: "mr-2 h-5 w-5" })}
+                        {category.name}
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="name" className="text-lg font-semibold">Chore Name</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" className="w-full justify-start">
+                    {formData.name || "Select a chore template or enter custom name"}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[300px] p-0">
+                  <Command>
+                    <CommandInput placeholder="Search chore templates..." />
+                    <CommandEmpty>No chore template found.</CommandEmpty>
+                    <CommandGroup>
+                      {choreTemplates
+                        .filter((template) => !formData.category || template.category === formData.category)
+                        .map((template) => (
+                          <CommandItem
+                            key={template.name}
+                            onSelect={() => handleTemplateSelect(template.name)}
+                          >
+                            {React.createElement(template.icon, { className: "mr-2 h-5 w-5" })}
+                            {template.name}
+                          </CommandItem>
+                        ))}
+                    </CommandGroup>
+                  </Command>
+                </PopoverContent>
+              </Popover>
+              <Input
+                id="name"
+                value={formData.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+                placeholder="Or enter custom chore name"
+                required
+                className="mt-2"
+              />
+            </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="name">Chore Name</Label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="outline" className="w-full justify-start">
-                  {formData.name || "Select a chore template or enter custom name"}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-[300px] p-0">
-                <Command>
-                  <CommandInput placeholder="Search chore templates..." />
-                  <CommandEmpty>No chore template found.</CommandEmpty>
-                  <CommandGroup>
-                    {choreTemplates
-                      .filter((template) => !formData.category || template.category === formData.category)
-                      .map((template) => (
-                        <CommandItem
-                          key={template.name}
-                          onSelect={() => handleTemplateSelect(template.name)}
-                        >
-                          {React.createElement(template.icon, { className: "mr-2 h-4 w-4" })}
-                          {template.name}
-                        </CommandItem>
-                      ))}
-                  </CommandGroup>
-                </Command>
-              </PopoverContent>
-            </Popover>
-            <Input
-              id="name"
-              value={formData.name}
-              onChange={(e) => handleChange('name', e.target.value)}
-              placeholder="Or enter custom chore name"
-              required
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="dueDate">Due Date</Label>
+            <Label htmlFor="dueDate" className="text-lg font-semibold">Due Date</Label>
             <div className="relative">
               <FaCalendarAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <Input
@@ -214,18 +219,18 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
             </div>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 bg-gray-100 p-4 rounded-md">
             <Switch
               id="isRecurring"
               checked={formData.isRecurring}
               onCheckedChange={(checked) => handleChange('isRecurring', checked)}
             />
-            <Label htmlFor="isRecurring">Recurring Chore</Label>
+            <Label htmlFor="isRecurring" className="text-lg font-semibold">Recurring Chore</Label>
           </div>
 
           {formData.isRecurring && (
-            <div className="space-y-2">
-              <Label htmlFor="recurringPeriod">Recurring Period</Label>
+            <div className="space-y-2 bg-blue-50 p-4 rounded-md">
+              <Label htmlFor="recurringPeriod" className="text-lg font-semibold">Recurring Period</Label>
               <Select
                 value={formData.recurringPeriod}
                 onValueChange={(value) => handleChange('recurringPeriod', value)}
@@ -244,19 +249,20 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="notes">Notes (optional)</Label>
+            <Label htmlFor="notes" className="text-lg font-semibold">Notes (optional)</Label>
             <Textarea
               id="notes"
               value={formData.notes}
               onChange={(e) => handleChange('notes', e.target.value)}
               placeholder="Add any additional notes"
+              className="h-24"
             />
           </div>
 
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
+          <Button type="submit" className="w-full py-6 text-lg font-semibold" disabled={isSubmitting}>
             {isSubmitting ? 'Adding...' : (
               <>
-                <Plus className="mr-2 h-4 w-4" /> Add Chore
+                <Plus className="mr-2 h-5 w-5" /> Add Chore
               </>
             )}
           </Button>
