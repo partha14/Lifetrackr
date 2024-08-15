@@ -95,18 +95,23 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           )}
         </nav>
       </aside>
-      <main className={styles.main}>
-        <header className={styles.header}>
-          <button className={styles.mobileMenuButton} onClick={toggleMobileMenu}>
-            <FaBars />
-          </button>
-          <Link href={isLoggedIn ? "/dashboard" : "/"} className={styles.appNameMain}>
-            LifeTrackr <span className={styles.beta}>BETA</span>
-          </Link>
-          <DarkModeToggle />
-        </header>
-        {children}
-      </main>
+      <div className={styles.mainWrapper}>
+        <main className={styles.main}>
+          <header className={styles.header}>
+            <button className={styles.mobileMenuButton} onClick={toggleMobileMenu}>
+              <FaBars />
+            </button>
+            <Link href={isLoggedIn ? "/dashboard" : "/"} className={styles.appNameMain}>
+              LifeTrackr <span className={styles.beta}>BETA</span>
+            </Link>
+            <DarkModeToggle />
+          </header>
+          {children}
+        </main>
+        <footer className={styles.footer}>
+          <p>&copy; 2023 LifeTrackr. All rights reserved.</p>
+        </footer>
+      </div>
       {isMobileMenuOpen && <div className={styles.overlay} onClick={() => setIsMobileMenuOpen(false)}></div>}
       <Analytics />
     </div>
