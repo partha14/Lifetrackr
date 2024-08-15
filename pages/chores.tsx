@@ -184,7 +184,7 @@ export default function Chores() {
             </button>
           </div>
           
-          <div className={styles.addChoreSection}>
+          <div className={`${styles.addChoreSection} ${styles.card}`}>
             <h2 className={styles.sectionTitle}>Add New Chore</h2>
             <div className={styles.categoryTabs}>
               {choreCategories.map((category) => (
