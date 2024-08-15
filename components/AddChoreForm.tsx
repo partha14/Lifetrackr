@@ -3,15 +3,6 @@ import { supabase } from '../utils/supabaseClient'
 import { handleError } from '../utils/errorHandler'
 import { FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools, FaCalendarAlt } from 'react-icons/fa'
 import { Plus } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
-import { Textarea } from "./ui/textarea"
-import { Switch } from "./ui/switch"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "./ui/command"
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 
 interface ChoreFormData {
   name: string;
@@ -130,11 +121,9 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle className="text-3xl font-bold text-center">Add New Chore</CardTitle>
-      </CardHeader>
-      <CardContent>
+    <div className="w-full max-w-2xl mx-auto border rounded-lg p-6">
+      <h2 className="text-3xl font-bold text-center mb-6">Add New Chore</h2>
+      <div>
         <form onSubmit={handleSubmit} className="space-y-8">
           {error && (
             <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md" role="alert">
@@ -147,59 +136,45 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="category" className="text-lg font-semibold">Category</Label>
-              <Select value={formData.category} onValueChange={(value) => handleChange('category', value)}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {choreCategories.map((category) => (
-                    <SelectItem key={category.name} value={category.name}>
-                      <div className="flex items-center">
-                        {React.createElement(category.icon, { className: "mr-2 h-5 w-5" })}
-                        {category.name}
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <label htmlFor="category" className="text-lg font-semibold">Category</label>
+              <select 
+                id="category"
+                value={formData.category} 
+                onChange={(e) => handleChange('category', e.target.value)}
+                className="w-full p-2 border rounded"
+              >
+                <option value="">Select a category</option>
+                {choreCategories.map((category) => (
+                  <option key={category.name} value={category.name}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-lg font-semibold">Chore Name</Label>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="outline" className="w-full justify-start">
-                    {formData.name || "Select a chore template or enter custom name"}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-[300px] p-0">
-                  <Command>
-                    <CommandInput placeholder="Search chore templates..." />
-                    <CommandEmpty>No chore template found.</CommandEmpty>
-                    <CommandGroup>
-                      {choreTemplates
-                        .filter((template) => !formData.category || template.category === formData.category)
-                        .map((template) => (
-                          <CommandItem
-                            key={template.name}
-                            onSelect={() => handleTemplateSelect(template.name)}
-                          >
-                            {React.createElement(template.icon, { className: "mr-2 h-5 w-5" })}
-                            {template.name}
-                          </CommandItem>
-                        ))}
-                    </CommandGroup>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              <Input
+              <label htmlFor="name" className="text-lg font-semibold">Chore Name</label>
+              <select
+                id="choreTemplate"
+                onChange={(e) => handleTemplateSelect(e.target.value)}
+                className="w-full p-2 border rounded mb-2"
+              >
+                <option value="">Select a chore template or enter custom name</option>
+                {choreTemplates
+                  .filter((template) => !formData.category || template.category === formData.category)
+                  .map((template) => (
+                    <option key={template.name} value={template.name}>
+                      {template.name}
+                    </option>
+                  ))}
+              </select>
+              <input
                 id="name"
                 value={formData.name}
                 onChange={(e) => handleChange('name', e.target.value)}
                 placeholder="Or enter custom chore name"
                 required
-                className="mt-2"
+                className="w-full p-2 border rounded"
               />
             </div>
           </div>
@@ -220,12 +195,13 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           </div>
 
           <div className="flex items-center space-x-2 bg-gray-100 p-4 rounded-md">
-            <Switch
+            <input
+              type="checkbox"
               id="isRecurring"
               checked={formData.isRecurring}
-              onCheckedChange={(checked) => handleChange('isRecurring', checked)}
+              onChange={(e) => handleChange('isRecurring', e.target.checked)}
             />
-            <Label htmlFor="isRecurring" className="text-lg font-semibold">Recurring Chore</Label>
+            <label htmlFor="isRecurring" className="text-lg font-semibold">Recurring Chore</label>
           </div>
 
           {formData.isRecurring && (
@@ -260,16 +236,20 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
             />
           </div>
 
-          <Button type="submit" className="w-full py-6 text-lg font-semibold" disabled={isSubmitting}>
+          <button 
+            type="submit" 
+            className="w-full py-6 text-lg font-semibold bg-blue-500 text-white rounded hover:bg-blue-600" 
+            disabled={isSubmitting}
+          >
             {isSubmitting ? 'Adding...' : (
               <>
-                <Plus className="mr-2 h-5 w-5" /> Add Chore
+                <Plus className="mr-2 h-5 w-5 inline" /> Add Chore
               </>
             )}
-          </Button>
+          </button>
         </form>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 
