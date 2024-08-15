@@ -93,11 +93,15 @@
 
 .hero p {
   font-size: 1.3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   animation: slideInFromBottom 1s ease-out;
+}
+
+.heroText {
+  margin-bottom: 2rem;
 }
 
 @keyframes fadeIn {
