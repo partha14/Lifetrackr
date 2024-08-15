@@ -214,10 +214,10 @@ export default function Home() {
                       "When do I need to renew my driver's license?",
                       "What's the due date for my next credit card payment?"
                     ]}
-                    typingSpeed={65}
-                    eraseSpeed={35}
-                    eraseDelay={2700}
-                    typeDelay={650}
+                    typingSpeed={100}
+                    eraseSpeed={50}
+                    eraseDelay={2000}
+                    typeDelay={500}
                     aria-label="AI assistant example questions"
                   />
                 </div>
