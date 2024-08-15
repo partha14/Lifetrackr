@@ -194,7 +194,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                     ]}
                     onTextChange={(text) => handleChange('name', text)}
                     className="w-full h-full p-2 text-gray-400"
-                    typingSpeed={50}
+                    typingSpeed={100}
                     eraseSpeed={30}
                     eraseDelay={2000}
                     typeDelay={1000}
