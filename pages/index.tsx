@@ -3,7 +3,6 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import { FaShoppingCart, FaClipboardList, FaBrain, FaCalendarAlt, FaDollarSign, FaReceipt, FaEnvelope, FaFileAlt, FaRobot } from 'react-icons/fa';
 import React from 'react';
-import { FaFileAlt } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TypingEffect from '../components/TypingEffect';
