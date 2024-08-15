@@ -27,7 +27,6 @@ const recurrenceOptions = [
 interface Chore {
   id: number;
   name: string;
-  category: string;
   dueDate: string;
   isRecurring: boolean;
   recurringPeriod?: string;
@@ -119,7 +118,6 @@ export default function Chores() {
       try {
         const newChore = {
           name: choreName,
-          category: selectedCategory,
           dueDate: dueDate.toISOString(),
           isRecurring: recurrence !== 'none',
           recurringPeriod: recurrence !== 'none' ? recurrence : null,
@@ -312,11 +310,8 @@ export default function Chores() {
               {chores.length > 0 ? (
                 <div className={styles.cardGrid}>
                   {chores.map((chore) => (
-                    <div key={chore.id} className={`${styles.card} ${styles[chore.category.toLowerCase()]}`}>
+                    <div key={chore.id} className={styles.card}>
                       <h3 className={styles.choreTitle}>{chore.name}</h3>
-                      <p className={styles.choreCategory}>
-                        {choreCategories.find(c => c.name === chore.category)?.icon} {chore.category}
-                      </p>
                       <p className={styles.choreDate}>
                         <FaCalendarAlt className={styles.icon} /> {new Date(chore.dueDate).toLocaleDateString()}
                       </p>
