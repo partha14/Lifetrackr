@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown } from 'react-icons/fa'
 import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
-import TypingEffect from '../components/TypingEffect'
 
 const choreCategories = [
   { name: 'Home', color: 'home', icon: '🏠', templates: ['Replace air filters', 'Clean gutters', 'Check smoke detectors', 'Seal windows', 'Service HVAC'] },
