@@ -47,9 +47,9 @@ export default function Home() {
         <nav className={styles.nav}>
           <Link href="/" className={styles.logo}>LifeTrackr <span className={styles.beta}>BETA</span></Link>
           <div className={styles.navLinks}>
-            <Link href="/features">Features</Link>
-            <Link href="/teams">For Teams</Link>
-            <Link href="/about">About</Link>
+            <Link href="/how-it-works">How It Works</Link>
+            <Link href="/pricing">Pricing</Link>
+            <Link href="/contact">Contact</Link>
           </div>
           <div className={styles.authLinks}>
             <Link href="/login" className={styles.loginButton}>Log in</Link>
@@ -112,11 +112,6 @@ export default function Home() {
               <FaReceipt className={styles.featureIcon} />
               <h3>📷 Receipt Scanning</h3>
               <p>Automatically enter purchase data by simply scanning your receipts.</p>
-            </div>
-            <div className={styles.featureCard}>
-              <FaEnvelope className={styles.featureIcon} />
-              <h3>📧 Email Notifications</h3>
-              <p>Get timely email reminders for your high-priority chores due this week.</p>
             </div>
             <div className={styles.featureCard}>
               <FaFileAlt className={styles.featureIcon} />
