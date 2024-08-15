@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { handleError } from '../utils/errorHandler'
-import { FaPlus, FaCalendarAlt, FaRecycle, FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools } from 'react-icons/fa'
+import { FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools } from 'react-icons/fa'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Card, CardContent } from "@/components/ui/card"
