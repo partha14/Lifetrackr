@@ -1,0 +1,25 @@
+.iconMenu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.iconItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.8rem;
+}
+
+.iconItem svg {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .iconMenu {
+    justify-content: space-around;
+  }
+}
