@@ -984,16 +984,24 @@
 .formGroup {
   margin-bottom: 1.5rem;
 }
-.formGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+.formFlexContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .formColumn {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .formFlexContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
