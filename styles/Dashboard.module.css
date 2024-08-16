@@ -1193,17 +1193,29 @@
 
 .dropdownList {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 5px);
   left: 0;
   right: 0;
   max-height: 200px;
   overflow-y: auto;
   background-color: var(--card-background);
   border: 1px solid var(--border-color);
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-  z-index: 10;
+  border-radius: 4px;
+  z-index: 20;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .dropdownList {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 50vh;
+    border-radius: 12px 12px 0 0;
+    z-index: 1000;
+  }
 }
 
 .inputWrapper {
