@@ -171,9 +171,9 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
             )}
           </div>
 
-          <div className="space-y-2 sm:space-y-3">
+          <div className="space-y-4 sm:space-y-6">
             <label htmlFor="name" className="text-base sm:text-lg md:text-xl font-semibold">Chore Name</label>
-            <div className="space-y-3">
+            <div className="space-y-4">
               <select
                 id="choreTemplate"
                 onChange={(e) => handleTemplateSelect(e.target.value)}
