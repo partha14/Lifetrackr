@@ -70,6 +70,7 @@ export default function Chores() {
   const [recurrence, setRecurrence] = useState('none')
   const [notes, setNotes] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const getUserId = useCallback(async () => {
     try {
