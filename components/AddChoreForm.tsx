@@ -74,8 +74,11 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
     { name: "Maintenance", icon: FaTools },
   ];
 
-  const CategoryIcon: React.FC<{ category: string; icon: IconType }> = ({ category, icon: Icon }) => (
-    <div className="flex flex-col items-center justify-center p-2 border rounded hover:bg-gray-100 cursor-pointer transition-colors duration-200">
+  const CategoryIcon: React.FC<{ category: string; icon: IconType; onClick: () => void }> = ({ category, icon: Icon, onClick }) => (
+    <div 
+      className="flex flex-col items-center justify-center p-2 border rounded hover:bg-gray-100 cursor-pointer transition-colors duration-200"
+      onClick={onClick}
+    >
       <Icon className="text-2xl mb-1" />
       <span className="text-xs text-center">{category}</span>
     </div>
