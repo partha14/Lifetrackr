@@ -17,9 +17,52 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 16px;
   background-color: #fff;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+@media (min-width: 600px) {
+  .nav {
+    padding: 1rem 32px;
+  }
+}
+
+.gridSection {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .gridSection {
+    padding: 2rem 32px;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (min-width: 905px) {
+  .gridSection {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+@media (min-width: 1240px) {
+  .gridSection {
+    padding: 2rem 200px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .gridSection {
+    max-width: 1040px;
+    padding: 2rem 0;
+  }
 }
 
 .logo {
@@ -78,30 +121,47 @@
 
 .hero {
   text-align: center;
-  padding: 6rem 2rem;
+  padding: 6rem 0;
   background-color: #4a90e2;
   color: #fff;
   animation: fadeIn 1s ease-out;
 }
 
+.heroContent {
+  grid-column: 1 / -1;
+}
+
 .hero h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
   animation: slideInFromTop 1s ease-out;
 }
 
 .hero p {
-  font-size: 1.3rem;
-  margin-bottom: 3rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
   animation: slideInFromBottom 1s ease-out;
 }
 
-.heroText {
-  margin-bottom: 2rem;
+@media (min-width: 600px) {
+  .heroContent {
+    grid-column: 2 / -2;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .hero p {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 905px) {
+  .heroContent {
+    grid-column: 3 / -3;
+  }
 }
 
 @keyframes fadeIn {
@@ -120,16 +180,13 @@
 }
 
 .features {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding: 6rem 2rem;
   background-color: #fff;
+  padding: 6rem 0;
 }
 
 .feature {
   text-align: center;
-  max-width: 300px;
+  grid-column: span 4;
   margin-bottom: 2rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -145,7 +202,7 @@
   margin-bottom: 1rem;
 }
 
-.feature h2 {
+.feature h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: #333;
@@ -154,6 +211,18 @@
 .feature p {
   color: #666;
   margin-bottom: 1rem;
+}
+
+@media (min-width: 600px) {
+  .feature {
+    grid-column: span 4;
+  }
+}
+
+@media (min-width: 905px) {
+  .feature {
+    grid-column: span 4;
+  }
 }
 
 .example {
