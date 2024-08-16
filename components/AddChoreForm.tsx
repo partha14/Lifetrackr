@@ -76,11 +76,11 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
 
   const CategoryIcon: React.FC<{ category: string; icon: IconType; onClick: () => void; isSelected: boolean }> = ({ category, icon: Icon, onClick, isSelected }) => (
     <div 
-      className={`flex flex-col items-center justify-center p-3 sm:p-2 border rounded cursor-pointer transition-colors duration-200 ${isSelected ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'}`}
+      className={`flex flex-col items-center justify-center p-2 border rounded cursor-pointer transition-colors duration-200 ${isSelected ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'} w-full sm:w-auto`}
       onClick={onClick}
     >
-      <Icon className={`text-2xl sm:text-xl mb-2 sm:mb-1 ${isSelected ? 'text-blue-500' : ''}`} />
-      <span className={`text-sm sm:text-xs text-center ${isSelected ? 'font-semibold' : ''}`}>{category}</span>
+      <Icon className={`text-xl mb-1 ${isSelected ? 'text-blue-500' : ''}`} />
+      <span className={`text-xs text-center ${isSelected ? 'font-semibold' : ''}`}>{category}</span>
     </div>
   );
 
@@ -153,7 +153,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           <div className="space-y-2">
             <label htmlFor="category" className="text-base font-semibold">Category</label>
             <div className="overflow-x-auto pb-2 mb-4">
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 sm:flex-nowrap sm:justify-center">
                 {choreCategories.map((category) => (
                   <CategoryIcon
                     key={category.name}
