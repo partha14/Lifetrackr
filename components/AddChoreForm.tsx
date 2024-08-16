@@ -73,6 +73,13 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
     { name: "Maintenance", icon: FaTools },
   ];
 
+  const CategoryIcon: React.FC<{ category: string; icon: IconType }> = ({ category, icon: Icon }) => (
+    <div className="flex flex-col items-center justify-center p-2 border rounded hover:bg-gray-100 cursor-pointer transition-colors duration-200">
+      <Icon className="text-2xl mb-1" />
+      <span className="text-xs text-center">{category}</span>
+    </div>
+  );
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
@@ -140,6 +147,16 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           <FormErrorMessage name="name" errors={errors} />
           <div className="space-y-2 sm:space-y-3">
             <label htmlFor="category" className="text-base sm:text-lg md:text-xl font-semibold">Category</label>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 mb-4">
+              {choreCategories.map((category) => (
+                <CategoryIcon
+                  key={category.name}
+                  category={category.name}
+                  icon={category.icon}
+                  onClick={() => handleChange('category', category.name)}
+                />
+              ))}
+            </div>
             <select 
               id="category"
               value={formData.category} 
