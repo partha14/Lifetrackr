@@ -351,28 +351,26 @@ export default function Chores() {
           ) : (
             <>
               {chores.length > 0 ? (
-                <div className={styles.cardGrid}>
+                <ul className={styles.choreList}>
                   {chores.map((chore) => (
-                    <div key={chore.id} className={styles.card}>
-                      <h3 className={styles.choreTitle}>{chore.name}</h3>
-                      <p className={styles.choreDate}>
-                        <FaCalendarAlt className={styles.icon} /> {new Date(chore.dueDate).toLocaleDateString()}
-                      </p>
-                      <p className={styles.choreRecurring}>
-                        <FaRecycle className={styles.icon} /> Recurring: {chore.isRecurring ? (
-                          <FaCheckCircle className={styles.iconGreen} />
-                        ) : (
-                          <FaTimesCircle className={styles.iconRed} />
+                    <li key={chore.id} className={styles.choreItem}>
+                      <div className={styles.choreInfo}>
+                        <h3 className={styles.choreTitle}>{chore.name}</h3>
+                        <p className={styles.choreDate}>
+                          <FaCalendarAlt className={styles.icon} /> {new Date(chore.dueDate).toLocaleDateString()}
+                        </p>
+                        {chore.isRecurring && (
+                          <p className={styles.choreRecurring}>
+                            <FaRecycle className={styles.icon} /> {chore.recurringPeriod}
+                          </p>
                         )}
-                      </p>
-                      {chore.isRecurring && <p className={styles.chorePeriod}><FaCalendarAlt className={styles.icon} /> Period: {chore.recurringPeriod}</p>}
-                      {chore.notes && <p className={styles.choreNotes}><FaStickyNote className={styles.icon} /> Notes: {chore.notes}</p>}
+                      </div>
                       <button onClick={() => handleDeleteChore(chore.id)} className={styles.deleteButton}>
-                        <FaTrash /> Delete
+                        <FaTrash />
                       </button>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               ) : (
                 <div className={styles.noChores}>
                   <FaClipboardList className={styles.noChoresIcon} />
