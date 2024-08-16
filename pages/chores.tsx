@@ -200,17 +200,18 @@ export default function Chores() {
             <h2 className={styles.sectionTitle}>Add New Chore</h2>
             <div className={styles.formFlexContainer}>
               <div className={styles.formColumn}>
-                <div className={styles.categoryTabs}>
-                  {choreCategories.map((category) => (
-                    <button
-                      key={category.name}
-                      onClick={() => setSelectedCategory(category.name)}
-                      className={`${styles.categoryTab} ${selectedCategory === category.name ? styles.activeTab : ''}`}
-                    >
-                      <span className={styles.categoryIcon}>{category.icon}</span>
-                      <span className={styles.categoryName}>{category.name}</span>
-                    </button>
-                  ))}
+                <div className={styles.categorySelector}>
+                  <select
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className={styles.categoryDropdown}
+                  >
+                    {choreCategories.map((category) => (
+                      <option key={category.name} value={category.name}>
+                        {category.icon} {category.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 
                 <div className={styles.dropdownContainer}>
