@@ -76,11 +76,11 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
 
   const CategoryIcon: React.FC<{ category: string; icon: IconType; onClick: () => void; isSelected: boolean }> = ({ category, icon: Icon, onClick, isSelected }) => (
     <div 
-      className={`flex flex-col items-center justify-center p-2 border rounded cursor-pointer transition-colors duration-200 ${isSelected ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'}`}
+      className={`flex flex-col items-center justify-center p-2 sm:p-3 md:p-4 border rounded cursor-pointer transition-colors duration-200 ${isSelected ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'}`}
       onClick={onClick}
     >
-      <Icon className={`text-2xl mb-1 ${isSelected ? 'text-blue-500' : ''}`} />
-      <span className={`text-xs text-center ${isSelected ? 'font-semibold' : ''}`}>{category}</span>
+      <Icon className={`text-xl sm:text-2xl md:text-3xl mb-1 ${isSelected ? 'text-blue-500' : ''}`} />
+      <span className={`text-xs sm:text-sm md:text-base text-center ${isSelected ? 'font-semibold' : ''}`}>{category}</span>
     </div>
   );
 
@@ -152,7 +152,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           <div className="space-y-2 sm:space-y-3">
             <label htmlFor="category" className="text-base sm:text-lg md:text-xl font-semibold">Category</label>
             <div className="overflow-x-auto pb-2 mb-4">
-              <div className="flex space-x-4 min-w-max">
+              <div className="flex flex-wrap sm:flex-nowrap justify-center sm:justify-start gap-2 sm:gap-3 md:gap-4">
                 {choreCategories.map((category) => (
                   <CategoryIcon
                     key={category.name}
@@ -165,7 +165,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
               </div>
             </div>
             {formData.category && (
-              <p className="text-sm text-gray-600 mb-2">
+              <p className="text-sm sm:text-base text-gray-600 mb-2">
                 Selected category: <span className="font-semibold">{formData.category}</span>
               </p>
             )}
