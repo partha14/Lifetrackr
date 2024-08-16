@@ -182,7 +182,13 @@ export default function Chores() {
     ?.templates.filter(t => t.toLowerCase().includes(searchTerm.toLowerCase())) || []
 
   if (!user_id) {
-    return <LoadingSpinner size="medium" text="Loading user data..." />
+    return (
+      <Layout>
+        <div className={styles.pageContent}>
+          <LoadingSpinner size="medium" text="Loading user data..." />
+        </div>
+      </Layout>
+    )
   }
 
   return (
