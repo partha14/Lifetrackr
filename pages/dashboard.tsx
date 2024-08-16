@@ -65,11 +65,14 @@ export default function Dashboard() {
   return (
     <Layout>
       <div className={styles.pageContent}>
-        <div className={styles.headerContainer}>
-          <h1 className={styles.title}>
-            <FaTachometerAlt /> Welcome, {isNameLoading ? <LoadingSpinner size="small" /> : userName}!
+        <div className={`${styles.headerContainer} flex flex-wrap items-center justify-between gap-4`}>
+          <h1 className={`${styles.title} flex flex-wrap items-center gap-2`}>
+            <FaTachometerAlt /> 
+            <span className="break-all">
+              Welcome, {isNameLoading ? <LoadingSpinner size="small" /> : userName}!
+            </span>
           </h1>
-          <div className={styles.buttonGroup}>
+          <div className={`${styles.buttonGroup} flex flex-wrap gap-2`}>
             <button onClick={fetchData} className={`${styles.button} ${styles.refreshButton}`}>
               <FaSync /> Refresh
             </button>
