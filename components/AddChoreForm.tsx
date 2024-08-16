@@ -294,7 +294,6 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
       </form>
     </div>
   </div>
-  </div>
   );
 };
 
