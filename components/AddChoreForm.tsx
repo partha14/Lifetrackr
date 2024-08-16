@@ -76,10 +76,10 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
 
   const CategoryIcon: React.FC<{ category: string; icon: IconType; onClick: () => void; isSelected: boolean }> = ({ category, icon: Icon, onClick, isSelected }) => (
     <div 
-      className={`flex flex-col items-center justify-center p-2 border rounded cursor-pointer transition-colors duration-200 ${isSelected ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'} w-full sm:w-auto`}
+      className={`flex flex-col items-center justify-center p-2 border rounded cursor-pointer transition-colors duration-200 ${isSelected ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'} w-full`}
       onClick={onClick}
     >
-      <Icon className={`text-xl mb-1 ${isSelected ? 'text-blue-500' : ''}`} />
+      <Icon className={`text-lg mb-1 ${isSelected ? 'text-blue-500' : ''}`} />
       <span className={`text-xs text-center ${isSelected ? 'font-semibold' : ''}`}>{category}</span>
     </div>
   );
@@ -141,19 +141,19 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="w-full max-w-md mx-auto p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-        <h2 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6">Add New Chore</h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="container mx-auto px-2 py-4 sm:px-4 sm:py-8">
+      <div className="w-full max-w-md mx-auto p-3 sm:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-center mb-3 sm:mb-6">Add New Chore</h2>
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           {error && <ErrorMessage message={error} />}
           
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <FormErrorMessage name="category" errors={errors} />
             <FormErrorMessage name="name" errors={errors} />
             <div className="space-y-2">
-              <label htmlFor="category" className="text-base font-semibold">Category</label>
-              <div className="overflow-x-auto pb-2 mb-4">
-                <div className="flex flex-wrap gap-3 sm:flex-nowrap sm:justify-center">
+              <label htmlFor="category" className="text-sm sm:text-base font-semibold">Category</label>
+              <div className="overflow-x-auto pb-2 mb-2 sm:mb-4">
+                <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3 sm:justify-center">
                   {choreCategories.map((category) => (
                     <CategoryIcon
                       key={category.name}
@@ -166,19 +166,19 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                 </div>
               </div>
               {formData.category && (
-                <p className="text-sm sm:text-base text-gray-600 mb-2">
+                <p className="text-xs sm:text-sm text-gray-600 mb-2">
                   Selected category: <span className="font-semibold">{formData.category}</span>
                 </p>
               )}
             </div>
 
-            <div className="space-y-4">
-              <label htmlFor="name" className="text-base font-semibold">Chore Name</label>
-              <div className="space-y-3">
+            <div className="space-y-3 sm:space-y-4">
+              <label htmlFor="name" className="text-sm sm:text-base font-semibold">Chore Name</label>
+              <div className="space-y-2 sm:space-y-3">
                 <select
                   id="choreTemplate"
                   onChange={(e) => handleTemplateSelect(e.target.value)}
-                  className="w-full p-4 sm:p-3 border rounded text-base"
+                  className="w-full p-3 border rounded text-sm sm:text-base"
                   aria-label="Select chore template"
                 >
                   <option value="">Select a chore template or enter custom name</option>
@@ -198,11 +198,11 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                     onChange={(e) => handleChange('name', e.target.value)}
                     placeholder="Or enter custom chore name"
                     required
-                    className="w-full p-3 border rounded text-base"
+                    className="w-full p-2 sm:p-3 border rounded text-sm sm:text-base"
                     aria-label="Enter custom chore name"
                     aria-required="true"
                   />
-                  <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden hidden sm:block">
                     <TypingEffect
                       texts={[
                         "Clean gutters",
@@ -225,39 +225,39 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           </div>
 
         <div className="space-y-2">
-          <label htmlFor="dueDate" className="text-base font-semibold">Due Date</label>
+          <label htmlFor="dueDate" className="text-sm sm:text-base font-semibold">Due Date</label>
           <div className="relative">
-            <FaCalendarAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
+            <FaCalendarAlt className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg sm:text-xl" />
             <input
               id="dueDate"
               type="date"
               value={formData.dueDate}
               onChange={(e) => handleChange('dueDate', e.target.value)}
-              className="w-full pl-10 p-3 border rounded text-base"
+              className="w-full pl-8 sm:pl-10 p-2 sm:p-3 border rounded text-sm sm:text-base"
               required
             />
           </div>
         </div>
 
-        <div className="flex items-center space-x-3 bg-gray-100 p-4 rounded-md">
+        <div className="flex items-center space-x-3 bg-gray-100 p-3 sm:p-4 rounded-md">
           <input
             type="checkbox"
             id="isRecurring"
             checked={formData.isRecurring}
             onChange={(e) => handleChange('isRecurring', e.target.checked)}
-            className="w-5 h-5"
+            className="w-4 h-4 sm:w-5 sm:h-5"
           />
-          <label htmlFor="isRecurring" className="text-base font-semibold">Recurring Chore</label>
+          <label htmlFor="isRecurring" className="text-sm sm:text-base font-semibold">Recurring Chore</label>
         </div>
 
         {formData.isRecurring && (
-          <div className="space-y-2 bg-blue-50 p-4 rounded-md">
-            <label htmlFor="recurringPeriod" className="text-base font-semibold">Recurring Period</label>
+          <div className="space-y-2 bg-blue-50 p-3 sm:p-4 rounded-md">
+            <label htmlFor="recurringPeriod" className="text-sm sm:text-base font-semibold">Recurring Period</label>
             <select
               id="recurringPeriod"
               value={formData.recurringPeriod}
               onChange={(e) => handleChange('recurringPeriod', e.target.value)}
-              className="w-full p-3 border rounded text-base"
+              className="w-full p-2 sm:p-3 border rounded text-sm sm:text-base"
             >
               <option value="">Select Recurring Period</option>
               <option value="daily">Daily</option>
@@ -270,24 +270,24 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
         )}
 
         <div className="space-y-2">
-          <label htmlFor="notes" className="text-base font-semibold">Notes (optional)</label>
+          <label htmlFor="notes" className="text-sm sm:text-base font-semibold">Notes (optional)</label>
           <textarea
             id="notes"
             value={formData.notes}
             onChange={(e) => handleChange('notes', e.target.value)}
             placeholder="Add any additional notes"
-            className="w-full p-3 border rounded h-24 text-base"
+            className="w-full p-2 sm:p-3 border rounded h-20 sm:h-24 text-sm sm:text-base"
           />
         </div>
 
         <button 
           type="submit" 
-          className="w-full py-3 text-base font-semibold bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center transition duration-300" 
+          className="w-full py-2 sm:py-3 text-sm sm:text-base font-semibold bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center transition duration-300" 
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Adding...' : (
             <>
-              <FaPlus className="mr-2 text-xl" /> Add Chore
+              <FaPlus className="mr-2 text-lg sm:text-xl" /> Add Chore
             </>
           )}
         </button>
