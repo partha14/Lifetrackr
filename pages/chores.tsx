@@ -198,7 +198,7 @@ export default function Chores() {
           
           <div className={`${styles.addChoreSection} ${styles.card}`}>
             <h2 className={styles.sectionTitle}>Add New Chore</h2>
-            <div className={styles.formGrid}>
+            <div className={styles.formFlexContainer}>
               <div className={styles.formColumn}>
                 <div className={styles.categoryTabs}>
                   {choreCategories.map((category) => (
