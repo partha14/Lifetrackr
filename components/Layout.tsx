@@ -16,6 +16,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const [windowWidth, setWindowWidth] = useState(0)
   const router = useRouter()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { isLoggedIn, loading } = useIsLoggedIn()
@@ -40,6 +41,25 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize()
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const getGridColumns = () => {
+    if (windowWidth < 600) return 4
+    if (windowWidth < 905) return 8
+    return 12
+  }
+
+  const gridColumns = getGridColumns()
 
 
   const handleLogout = async () => {
@@ -127,7 +147,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </Link>
             <DarkModeToggle />
           </header>
-          <div className={styles.content}>
+          <div className={`${styles.content} ${styles.responsiveGrid}`} style={{'--grid-columns': gridColumns} as React.CSSProperties}>
             {children}
           </div>
         </main>
