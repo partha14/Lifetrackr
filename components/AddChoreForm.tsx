@@ -130,21 +130,21 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-2 sm:p-4 md:p-6">
-      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-4 sm:mb-6">Add New Chore</h2>
-      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 md:space-y-8">
+    <div className="w-full max-w-3xl mx-auto p-4 sm:p-6 md:p-8">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8">Add New Chore</h2>
+      <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 md:space-y-10">
         {error && <ErrorMessage message={error} />}
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
           <FormErrorMessage name="category" errors={errors} />
           <FormErrorMessage name="name" errors={errors} />
-          <div className="space-y-1 sm:space-y-2">
-            <label htmlFor="category" className="text-sm sm:text-base md:text-lg font-semibold">Category</label>
+          <div className="space-y-2 sm:space-y-3">
+            <label htmlFor="category" className="text-base sm:text-lg md:text-xl font-semibold">Category</label>
             <select 
               id="category"
               value={formData.category} 
               onChange={(e) => handleChange('category', e.target.value)}
-              className="w-full p-2 border rounded text-sm sm:text-base"
+              className="w-full p-3 border rounded text-base sm:text-lg"
               aria-label="Select chore category"
             >
               <option value="">Select a category</option>
@@ -156,12 +156,12 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
             </select>
           </div>
 
-          <div className="space-y-1 sm:space-y-2">
-            <label htmlFor="name" className="text-sm sm:text-base md:text-lg font-semibold">Chore Name</label>
+          <div className="space-y-2 sm:space-y-3">
+            <label htmlFor="name" className="text-base sm:text-lg md:text-xl font-semibold">Chore Name</label>
             <select
               id="choreTemplate"
               onChange={(e) => handleTemplateSelect(e.target.value)}
-              className="w-full p-2 border rounded mb-2 text-sm sm:text-base"
+              className="w-full p-3 border rounded mb-3 text-base sm:text-lg"
               aria-label="Select chore template"
             >
               <option value="">Select a chore template or enter custom name</option>
@@ -181,7 +181,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                 onChange={(e) => handleChange('name', e.target.value)}
                 placeholder="Or enter custom chore name"
                 required
-                className="w-full p-2 border rounded text-sm sm:text-base"
+                className="w-full p-3 border rounded text-base sm:text-lg"
                 aria-label="Enter custom chore name"
                 aria-required="true"
               />
@@ -195,7 +195,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
                     "Do the laundry"
                   ]}
                   onTextChange={(text) => handleChange('name', text)}
-                  className="w-full h-full p-2 text-gray-400 text-sm sm:text-base"
+                  className="w-full h-full p-3 text-gray-400 text-base sm:text-lg"
                   typingSpeed={100}
                   eraseSpeed={30}
                   eraseDelay={2000}
@@ -206,39 +206,40 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           </div>
         </div>
 
-        <div className="space-y-1 sm:space-y-2">
-          <label htmlFor="dueDate" className="text-sm sm:text-base md:text-lg font-semibold">Due Date</label>
+        <div className="space-y-2 sm:space-y-3">
+          <label htmlFor="dueDate" className="text-base sm:text-lg md:text-xl font-semibold">Due Date</label>
           <div className="relative">
-            <FaCalendarAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <FaCalendarAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
             <input
               id="dueDate"
               type="date"
               value={formData.dueDate}
               onChange={(e) => handleChange('dueDate', e.target.value)}
-              className="w-full pl-10 p-2 border rounded text-sm sm:text-base"
+              className="w-full pl-12 p-3 border rounded text-base sm:text-lg"
               required
             />
           </div>
         </div>
 
-        <div className="flex items-center space-x-2 bg-gray-100 p-2 sm:p-3 md:p-4 rounded-md">
+        <div className="flex items-center space-x-3 bg-gray-100 p-4 sm:p-5 rounded-md">
           <input
             type="checkbox"
             id="isRecurring"
             checked={formData.isRecurring}
             onChange={(e) => handleChange('isRecurring', e.target.checked)}
+            className="w-5 h-5"
           />
-          <label htmlFor="isRecurring" className="text-sm sm:text-base md:text-lg font-semibold">Recurring Chore</label>
+          <label htmlFor="isRecurring" className="text-base sm:text-lg md:text-xl font-semibold">Recurring Chore</label>
         </div>
 
         {formData.isRecurring && (
-          <div className="space-y-1 sm:space-y-2 bg-blue-50 p-2 sm:p-3 md:p-4 rounded-md">
-            <label htmlFor="recurringPeriod" className="text-sm sm:text-base md:text-lg font-semibold">Recurring Period</label>
+          <div className="space-y-2 sm:space-y-3 bg-blue-50 p-4 sm:p-5 rounded-md">
+            <label htmlFor="recurringPeriod" className="text-base sm:text-lg md:text-xl font-semibold">Recurring Period</label>
             <select
               id="recurringPeriod"
               value={formData.recurringPeriod}
               onChange={(e) => handleChange('recurringPeriod', e.target.value)}
-              className="w-full p-2 border rounded text-sm sm:text-base"
+              className="w-full p-3 border rounded text-base sm:text-lg"
             >
               <option value="">Select Recurring Period</option>
               <option value="daily">Daily</option>
@@ -250,25 +251,25 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           </div>
         )}
 
-        <div className="space-y-1 sm:space-y-2">
-          <label htmlFor="notes" className="text-sm sm:text-base md:text-lg font-semibold">Notes (optional)</label>
+        <div className="space-y-2 sm:space-y-3">
+          <label htmlFor="notes" className="text-base sm:text-lg md:text-xl font-semibold">Notes (optional)</label>
           <textarea
             id="notes"
             value={formData.notes}
             onChange={(e) => handleChange('notes', e.target.value)}
             placeholder="Add any additional notes"
-            className="w-full p-2 border rounded h-20 sm:h-24 text-sm sm:text-base"
+            className="w-full p-3 border rounded h-24 sm:h-32 text-base sm:text-lg"
           />
         </div>
 
         <button 
           type="submit" 
-          className="w-full py-2 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center" 
+          className="w-full py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-semibold bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center transition duration-300" 
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Adding...' : (
             <>
-              <FaPlus className="mr-2" /> Add Chore
+              <FaPlus className="mr-3 text-xl" /> Add Chore
             </>
           )}
         </button>
