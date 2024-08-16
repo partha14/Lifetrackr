@@ -141,12 +141,13 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
   }
 
   return (
-    <div className="w-full max-w-md mx-auto p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-center mb-6">Add New Chore</h2>
-      <form onSubmit={handleSubmit} className="space-y-6">
-        {error && <ErrorMessage message={error} />}
-        
-        <div className="space-y-6">
+    <div className="container mx-auto px-4 py-8">
+      <div className="w-full max-w-md mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold text-center mb-6">Add New Chore</h2>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {error && <ErrorMessage message={error} />}
+          
+          <div className="space-y-6">
           <FormErrorMessage name="category" errors={errors} />
           <FormErrorMessage name="name" errors={errors} />
           <div className="space-y-2">
