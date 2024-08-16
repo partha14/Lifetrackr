@@ -827,6 +827,10 @@
   box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
 }
 
+.categoryTabs {
+  display: none;
+}
+
 @media (min-width: 769px) {
   .categorySelector {
     display: none;
@@ -849,6 +853,15 @@
     transition: all 0.3s ease;
   }
 
+  .categoryTab:hover {
+    background-color: var(--secondary-color-light);
+  }
+
+  .activeTab {
+    background-color: var(--secondary-color-light);
+    font-weight: bold;
+  }
+
   .categoryIcon {
     font-size: 2rem;
     margin-bottom: 0.5rem;
@@ -856,6 +869,16 @@
 
   .categoryName {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .categoryTabs {
+    display: none;
+  }
+
+  .categorySelector {
+    display: block;
   }
 }
 

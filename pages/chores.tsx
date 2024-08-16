@@ -213,6 +213,18 @@ export default function Chores() {
                     ))}
                   </select>
                 </div>
+                <div className={styles.categoryTabs}>
+                  {choreCategories.map((category) => (
+                    <button
+                      key={category.name}
+                      onClick={() => setSelectedCategory(category.name)}
+                      className={`${styles.categoryTab} ${selectedCategory === category.name ? styles.activeTab : ''}`}
+                    >
+                      <span className={styles.categoryIcon}>{category.icon}</span>
+                      <span className={styles.categoryName}>{category.name}</span>
+                    </button>
+                  ))}
+                </div>
                 
                 <div className={styles.dropdownContainer}>
                   <div className={styles.dropdownHeader}>
