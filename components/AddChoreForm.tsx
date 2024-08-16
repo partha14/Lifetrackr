@@ -76,11 +76,11 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
 
   const CategoryIcon: React.FC<{ category: string; icon: IconType; onClick: () => void; isSelected: boolean }> = ({ category, icon: Icon, onClick, isSelected }) => (
     <div 
-      className={`flex flex-col items-center justify-center p-2 border rounded cursor-pointer transition-colors duration-200 ${isSelected ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'} w-full`}
+      className={`flex flex-col items-center justify-center p-1 sm:p-2 border rounded cursor-pointer transition-colors duration-200 ${isSelected ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'} w-full`}
       onClick={onClick}
     >
-      <Icon className={`text-lg mb-1 ${isSelected ? 'text-blue-500' : ''}`} />
-      <span className={`text-xs text-center ${isSelected ? 'font-semibold' : ''}`}>{category}</span>
+      <Icon className={`text-base sm:text-lg mb-1 ${isSelected ? 'text-blue-500' : ''}`} />
+      <span className={`text-xs sm:text-sm text-center ${isSelected ? 'font-semibold' : ''}`}>{category}</span>
     </div>
   );
 
@@ -144,16 +144,16 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
     <div className="container mx-auto px-2 py-4 sm:px-4 sm:py-8">
       <div className="w-full max-w-md mx-auto p-3 sm:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
         <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-center mb-3 sm:mb-6">Add New Chore</h2>
-        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-6">
           {error && <ErrorMessage message={error} />}
           
-          <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-3 sm:space-y-6">
             <FormErrorMessage name="category" errors={errors} />
             <FormErrorMessage name="name" errors={errors} />
             <div className="space-y-2">
               <label htmlFor="category" className="text-sm sm:text-base font-semibold">Category</label>
-              <div className="overflow-x-auto pb-2 mb-2 sm:mb-4">
-                <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3 sm:justify-center">
+              <div className="mb-2 sm:mb-4">
+                <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-3 sm:justify-center">
                   {choreCategories.map((category) => (
                     <CategoryIcon
                       key={category.name}
@@ -172,55 +172,34 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
               )}
             </div>
 
-            <div className="space-y-3 sm:space-y-4">
+            <div className="space-y-2 sm:space-y-4">
               <label htmlFor="name" className="text-sm sm:text-base font-semibold">Chore Name</label>
-              <div className="space-y-2 sm:space-y-3">
-                <select
-                  id="choreTemplate"
-                  onChange={(e) => handleTemplateSelect(e.target.value)}
-                  className="w-full p-3 border rounded text-sm sm:text-base"
-                  aria-label="Select chore template"
-                >
-                  <option value="">Select a chore template or enter custom name</option>
-                  {choreTemplates
-                    .filter((template) => !formData.category || template.category === formData.category)
-                    .map((template) => (
-                      <option key={template.name} value={template.name}>
-                        {template.name}
-                      </option>
-                    ))}
-                </select>
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) => handleChange('name', e.target.value)}
-                    placeholder="Or enter custom chore name"
-                    required
-                    className="w-full p-2 sm:p-3 border rounded text-sm sm:text-base"
-                    aria-label="Enter custom chore name"
-                    aria-required="true"
-                  />
-                  <div className="absolute inset-0 pointer-events-none overflow-hidden hidden sm:block">
-                    <TypingEffect
-                      texts={[
-                        "Clean gutters",
-                        "Mow the lawn",
-                        "Wash the car",
-                        "Vacuum the living room",
-                        "Do the laundry"
-                      ]}
-                      onTextChange={(text) => handleChange('name', text)}
-                      className="w-full h-full p-3 text-gray-400 text-base"
-                      typingSpeed={100}
-                      eraseSpeed={30}
-                      eraseDelay={2000}
-                      typeDelay={1000}
-                    />
-                  </div>
-                </div>
-              </div>
+              <input
+                type="text"
+                id="name"
+                value={formData.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+                placeholder="Enter chore name"
+                required
+                className="w-full p-2 sm:p-3 border rounded text-sm sm:text-base"
+                aria-label="Enter chore name"
+                aria-required="true"
+              />
+              <select
+                id="choreTemplate"
+                onChange={(e) => handleTemplateSelect(e.target.value)}
+                className="w-full p-2 sm:p-3 border rounded text-sm sm:text-base"
+                aria-label="Select chore template"
+              >
+                <option value="">Or select a chore template</option>
+                {choreTemplates
+                  .filter((template) => !formData.category || template.category === formData.category)
+                  .map((template) => (
+                    <option key={template.name} value={template.name}>
+                      {template.name}
+                    </option>
+                  ))}
+              </select>
             </div>
           </div>
 
