@@ -76,11 +76,11 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
 
   const CategoryIcon: React.FC<{ category: string; icon: IconType; onClick: () => void; isSelected: boolean }> = ({ category, icon: Icon, onClick, isSelected }) => (
     <div 
-      className={`flex flex-col items-center justify-center p-2 border rounded cursor-pointer transition-colors duration-200 ${isSelected ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'}`}
+      className={`flex flex-col items-center justify-center p-3 sm:p-2 border rounded cursor-pointer transition-colors duration-200 ${isSelected ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'}`}
       onClick={onClick}
     >
-      <Icon className={`text-xl mb-1 ${isSelected ? 'text-blue-500' : ''}`} />
-      <span className={`text-xs text-center ${isSelected ? 'font-semibold' : ''}`}>{category}</span>
+      <Icon className={`text-2xl sm:text-xl mb-2 sm:mb-1 ${isSelected ? 'text-blue-500' : ''}`} />
+      <span className={`text-sm sm:text-xs text-center ${isSelected ? 'font-semibold' : ''}`}>{category}</span>
     </div>
   );
 
@@ -142,8 +142,8 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="w-full max-w-md mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center mb-6">Add New Chore</h2>
+      <div className="w-full max-w-md mx-auto p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        <h2 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6">Add New Chore</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           {error && <ErrorMessage message={error} />}
           
@@ -153,7 +153,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           <div className="space-y-2">
             <label htmlFor="category" className="text-base font-semibold">Category</label>
             <div className="overflow-x-auto pb-2 mb-4">
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-2">
                 {choreCategories.map((category) => (
                   <CategoryIcon
                     key={category.name}
@@ -178,7 +178,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
               <select
                 id="choreTemplate"
                 onChange={(e) => handleTemplateSelect(e.target.value)}
-                className="w-full p-3 border rounded text-base"
+                className="w-full p-4 sm:p-3 border rounded text-base"
                 aria-label="Select chore template"
               >
                 <option value="">Select a chore template or enter custom name</option>
