@@ -74,13 +74,13 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
     { name: "Maintenance", icon: FaTools },
   ];
 
-  const CategoryIcon: React.FC<{ category: string; icon: IconType; onClick: () => void }> = ({ category, icon: Icon, onClick }) => (
+  const CategoryIcon: React.FC<{ category: string; icon: IconType; onClick: () => void; isSelected: boolean }> = ({ category, icon: Icon, onClick, isSelected }) => (
     <div 
-      className="flex flex-col items-center justify-center p-2 border rounded hover:bg-gray-100 cursor-pointer transition-colors duration-200"
+      className={`flex flex-col items-center justify-center p-2 border rounded cursor-pointer transition-colors duration-200 ${isSelected ? 'bg-blue-100 border-blue-500' : 'hover:bg-gray-100'}`}
       onClick={onClick}
     >
-      <Icon className="text-2xl mb-1" />
-      <span className="text-xs text-center">{category}</span>
+      <Icon className={`text-2xl mb-1 ${isSelected ? 'text-blue-500' : ''}`} />
+      <span className={`text-xs text-center ${isSelected ? 'font-semibold' : ''}`}>{category}</span>
     </div>
   );
 
@@ -151,30 +151,24 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           <FormErrorMessage name="name" errors={errors} />
           <div className="space-y-2 sm:space-y-3">
             <label htmlFor="category" className="text-base sm:text-lg md:text-xl font-semibold">Category</label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 mb-4">
-              {choreCategories.map((category) => (
-                <CategoryIcon
-                  key={category.name}
-                  category={category.name}
-                  icon={category.icon}
-                  onClick={() => handleChange('category', category.name)}
-                />
-              ))}
+            <div className="overflow-x-auto pb-2 mb-4">
+              <div className="flex space-x-4 min-w-max">
+                {choreCategories.map((category) => (
+                  <CategoryIcon
+                    key={category.name}
+                    category={category.name}
+                    icon={category.icon}
+                    onClick={() => handleChange('category', category.name)}
+                    isSelected={formData.category === category.name}
+                  />
+                ))}
+              </div>
             </div>
-            <select 
-              id="category"
-              value={formData.category} 
-              onChange={(e) => handleChange('category', e.target.value)}
-              className="w-full p-3 border rounded text-base sm:text-lg"
-              aria-label="Select chore category"
-            >
-              <option value="">Select a category</option>
-              {choreCategories.map((category) => (
-                <option key={category.name} value={category.name}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
+            {formData.category && (
+              <p className="text-sm text-gray-600 mb-2">
+                Selected category: <span className="font-semibold">{formData.category}</span>
+              </p>
+            )}
           </div>
 
           <div className="space-y-2 sm:space-y-3">
