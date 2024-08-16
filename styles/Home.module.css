@@ -525,3 +525,49 @@
   padding: 10px;
   box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.beta {
+  font-size: 0.8rem;
+  vertical-align: super;
+  color: #0070f3;
+}
+
+.navLinks, .authLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+.navLinks a, .authLinks a {
+  text-decoration: none;
+  color: #333;
+}
+
+.loginButton, .signupButton, .ctaButton {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.loginButton {
+  color: #0070f3;
+  border: 1px solid #0070f3;
+}
+
+.signupButton, .ctaButton {
+  background-color: #0070f3;
+  color: white;
+}
