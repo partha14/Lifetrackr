@@ -1168,7 +1168,7 @@
 
 .dropdownContainer {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .dropdownHeader {
@@ -1193,7 +1193,7 @@
 
 .dropdownList {
   position: absolute;
-  top: calc(100% + 5px);
+  top: 100%;
   left: 0;
   right: 0;
   max-height: 200px;
@@ -1203,18 +1203,20 @@
   border-radius: 4px;
   z-index: 20;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
 }
 
 @media (max-width: 768px) {
   .dropdownList {
-    position: fixed;
-    top: auto;
-    bottom: 0;
+    position: absolute;
+    top: 100%;
+    bottom: auto;
     left: 0;
     right: 0;
-    max-height: 50vh;
-    border-radius: 12px 12px 0 0;
-    z-index: 1000;
+    max-height: 200px;
+    border-radius: 4px;
+    z-index: 20;
+    margin-top: 5px;
   }
 }
 
