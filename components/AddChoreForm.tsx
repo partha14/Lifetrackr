@@ -173,49 +173,51 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
 
           <div className="space-y-2 sm:space-y-3">
             <label htmlFor="name" className="text-base sm:text-lg md:text-xl font-semibold">Chore Name</label>
-            <select
-              id="choreTemplate"
-              onChange={(e) => handleTemplateSelect(e.target.value)}
-              className="w-full p-3 border rounded mb-3 text-sm sm:text-base md:text-lg"
-              aria-label="Select chore template"
-            >
-              <option value="">Select a chore template or enter custom name</option>
-              {choreTemplates
-                .filter((template) => !formData.category || template.category === formData.category)
-                .map((template) => (
-                  <option key={template.name} value={template.name}>
-                    {template.name}
-                  </option>
-                ))}
-            </select>
-            <div className="relative">
-              <input
-                type="text"
-                id="name"
-                value={formData.name}
-                onChange={(e) => handleChange('name', e.target.value)}
-                placeholder="Or enter custom chore name"
-                required
-                className="w-full p-3 border rounded text-base sm:text-lg"
-                aria-label="Enter custom chore name"
-                aria-required="true"
-              />
-              <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <TypingEffect
-                  texts={[
-                    "Clean gutters",
-                    "Mow the lawn",
-                    "Wash the car",
-                    "Vacuum the living room",
-                    "Do the laundry"
-                  ]}
-                  onTextChange={(text) => handleChange('name', text)}
-                  className="w-full h-full p-3 text-gray-400 text-base sm:text-lg"
-                  typingSpeed={100}
-                  eraseSpeed={30}
-                  eraseDelay={2000}
-                  typeDelay={1000}
+            <div className="space-y-3">
+              <select
+                id="choreTemplate"
+                onChange={(e) => handleTemplateSelect(e.target.value)}
+                className="w-full p-3 border rounded text-sm sm:text-base md:text-lg"
+                aria-label="Select chore template"
+              >
+                <option value="">Select a chore template or enter custom name</option>
+                {choreTemplates
+                  .filter((template) => !formData.category || template.category === formData.category)
+                  .map((template) => (
+                    <option key={template.name} value={template.name}>
+                      {template.name}
+                    </option>
+                  ))}
+              </select>
+              <div className="relative">
+                <input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => handleChange('name', e.target.value)}
+                  placeholder="Or enter custom chore name"
+                  required
+                  className="w-full p-3 border rounded text-base sm:text-lg"
+                  aria-label="Enter custom chore name"
+                  aria-required="true"
                 />
+                <div className="absolute inset-0 pointer-events-none overflow-hidden hidden sm:block">
+                  <TypingEffect
+                    texts={[
+                      "Clean gutters",
+                      "Mow the lawn",
+                      "Wash the car",
+                      "Vacuum the living room",
+                      "Do the laundry"
+                    ]}
+                    onTextChange={(text) => handleChange('name', text)}
+                    className="w-full h-full p-3 text-gray-400 text-base sm:text-lg"
+                    typingSpeed={100}
+                    eraseSpeed={30}
+                    eraseDelay={2000}
+                    typeDelay={1000}
+                  />
+                </div>
               </div>
             </div>
           </div>
