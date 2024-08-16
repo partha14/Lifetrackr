@@ -153,7 +153,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           <div className="space-y-2">
             <label htmlFor="category" className="text-base font-semibold">Category</label>
             <div className="overflow-x-auto pb-2 mb-4">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-2">
+              <div className="flex flex-wrap gap-3">
                 {choreCategories.map((category) => (
                   <CategoryIcon
                     key={category.name}
