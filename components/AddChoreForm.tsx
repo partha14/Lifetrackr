@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { handleError } from '../utils/errorHandler'
-import { FaExclamationCircle, FaHome, FaCar, FaUtensils, FaTshirt, FaTools, FaCalendarAlt, FaPlus } from 'react-icons/fa'
+import { FaHome, FaCar, FaUtensils, FaTshirt, FaTools, FaCalendarAlt, FaPlus } from 'react-icons/fa'
 import { ErrorMessage } from './ErrorMessage'
 import { FormErrorMessage } from './FormErrorMessage'
-import { motion, useMotionValue, useTransform, animate } from "framer-motion"
 import TypingEffect from './TypingEffect'
 
 interface ChoreFormData {
@@ -131,151 +130,149 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto border rounded-lg p-6">
-      <h2 className="text-3xl font-bold text-center mb-6">Add New Chore</h2>
-      <div>
-        <form onSubmit={handleSubmit} className="space-y-8">
-          {error && <ErrorMessage message={error} />}
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <FormErrorMessage name="category" errors={errors} />
-            <FormErrorMessage name="name" errors={errors} />
-            <div className="space-y-2">
-              <label htmlFor="category" className="text-lg font-semibold">Category</label>
-              <select 
-                id="category"
-                value={formData.category} 
-                onChange={(e) => handleChange('category', e.target.value)}
-                className="w-full p-2 border rounded"
-                aria-label="Select chore category"
-              >
-                <option value="">Select a category</option>
-                {choreCategories.map((category) => (
-                  <option key={category.name} value={category.name}>
-                    {category.name}
+    <div className="w-full max-w-2xl mx-auto p-4 md:p-6">
+      <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">Add New Chore</h2>
+      <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
+        {error && <ErrorMessage message={error} />}
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <FormErrorMessage name="category" errors={errors} />
+          <FormErrorMessage name="name" errors={errors} />
+          <div className="space-y-2">
+            <label htmlFor="category" className="text-base md:text-lg font-semibold">Category</label>
+            <select 
+              id="category"
+              value={formData.category} 
+              onChange={(e) => handleChange('category', e.target.value)}
+              className="w-full p-2 border rounded"
+              aria-label="Select chore category"
+            >
+              <option value="">Select a category</option>
+              {choreCategories.map((category) => (
+                <option key={category.name} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="name" className="text-base md:text-lg font-semibold">Chore Name</label>
+            <select
+              id="choreTemplate"
+              onChange={(e) => handleTemplateSelect(e.target.value)}
+              className="w-full p-2 border rounded mb-2"
+              aria-label="Select chore template"
+            >
+              <option value="">Select a chore template or enter custom name</option>
+              {choreTemplates
+                .filter((template) => !formData.category || template.category === formData.category)
+                .map((template) => (
+                  <option key={template.name} value={template.name}>
+                    {template.name}
                   </option>
                 ))}
-              </select>
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-lg font-semibold">Chore Name</label>
-              <select
-                id="choreTemplate"
-                onChange={(e) => handleTemplateSelect(e.target.value)}
-                className="w-full p-2 border rounded mb-2"
-                aria-label="Select chore template"
-              >
-                <option value="">Select a chore template or enter custom name</option>
-                {choreTemplates
-                  .filter((template) => !formData.category || template.category === formData.category)
-                  .map((template) => (
-                    <option key={template.name} value={template.name}>
-                      {template.name}
-                    </option>
-                  ))}
-              </select>
-              <div className="relative">
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => handleChange('name', e.target.value)}
-                  placeholder="Or enter custom chore name"
-                  required
-                  className="w-full p-2 border rounded"
-                  aria-label="Enter custom chore name"
-                  aria-required="true"
+            </select>
+            <div className="relative">
+              <input
+                type="text"
+                id="name"
+                value={formData.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+                placeholder="Or enter custom chore name"
+                required
+                className="w-full p-2 border rounded"
+                aria-label="Enter custom chore name"
+                aria-required="true"
+              />
+              <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <TypingEffect
+                  texts={[
+                    "Clean gutters",
+                    "Mow the lawn",
+                    "Wash the car",
+                    "Vacuum the living room",
+                    "Do the laundry"
+                  ]}
+                  onTextChange={(text) => handleChange('name', text)}
+                  className="w-full h-full p-2 text-gray-400"
+                  typingSpeed={100}
+                  eraseSpeed={30}
+                  eraseDelay={2000}
+                  typeDelay={1000}
                 />
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  <TypingEffect
-                    texts={[
-                      "Clean gutters",
-                      "Mow the lawn",
-                      "Wash the car",
-                      "Vacuum the living room",
-                      "Do the laundry"
-                    ]}
-                    onTextChange={(text) => handleChange('name', text)}
-                    className="w-full h-full p-2 text-gray-400"
-                    typingSpeed={100}
-                    eraseSpeed={30}
-                    eraseDelay={2000}
-                    typeDelay={1000}
-                  />
-                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="space-y-2">
-            <label htmlFor="dueDate" className="text-lg font-semibold">Due Date</label>
-            <div className="relative">
-              <FaCalendarAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              <input
-                id="dueDate"
-                type="date"
-                value={formData.dueDate}
-                onChange={(e) => handleChange('dueDate', e.target.value)}
-                className="pl-10"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center space-x-2 bg-gray-100 p-4 rounded-md">
+        <div className="space-y-2">
+          <label htmlFor="dueDate" className="text-base md:text-lg font-semibold">Due Date</label>
+          <div className="relative">
+            <FaCalendarAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
-              type="checkbox"
-              id="isRecurring"
-              checked={formData.isRecurring}
-              onChange={(e) => handleChange('isRecurring', e.target.checked)}
+              id="dueDate"
+              type="date"
+              value={formData.dueDate}
+              onChange={(e) => handleChange('dueDate', e.target.value)}
+              className="w-full pl-10 p-2 border rounded"
+              required
             />
-            <label htmlFor="isRecurring" className="text-lg font-semibold">Recurring Chore</label>
           </div>
+        </div>
 
-          {formData.isRecurring && (
-            <div className="space-y-2 bg-blue-50 p-4 rounded-md">
-              <label htmlFor="recurringPeriod" className="text-lg font-semibold">Recurring Period</label>
-              <select
-                id="recurringPeriod"
-                value={formData.recurringPeriod}
-                onChange={(e) => handleChange('recurringPeriod', e.target.value)}
-                className="w-full p-2 border rounded"
-              >
-                <option value="">Select Recurring Period</option>
-                <option value="daily">Daily</option>
-                <option value="weekly">Weekly</option>
-                <option value="monthly">Monthly</option>
-                <option value="quarterly">Quarterly</option>
-                <option value="yearly">Yearly</option>
-              </select>
-            </div>
+        <div className="flex items-center space-x-2 bg-gray-100 p-3 md:p-4 rounded-md">
+          <input
+            type="checkbox"
+            id="isRecurring"
+            checked={formData.isRecurring}
+            onChange={(e) => handleChange('isRecurring', e.target.checked)}
+          />
+          <label htmlFor="isRecurring" className="text-base md:text-lg font-semibold">Recurring Chore</label>
+        </div>
+
+        {formData.isRecurring && (
+          <div className="space-y-2 bg-blue-50 p-3 md:p-4 rounded-md">
+            <label htmlFor="recurringPeriod" className="text-base md:text-lg font-semibold">Recurring Period</label>
+            <select
+              id="recurringPeriod"
+              value={formData.recurringPeriod}
+              onChange={(e) => handleChange('recurringPeriod', e.target.value)}
+              className="w-full p-2 border rounded"
+            >
+              <option value="">Select Recurring Period</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="quarterly">Quarterly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+          </div>
+        )}
+
+        <div className="space-y-2">
+          <label htmlFor="notes" className="text-base md:text-lg font-semibold">Notes (optional)</label>
+          <textarea
+            id="notes"
+            value={formData.notes}
+            onChange={(e) => handleChange('notes', e.target.value)}
+            placeholder="Add any additional notes"
+            className="w-full p-2 border rounded h-24"
+          />
+        </div>
+
+        <button 
+          type="submit" 
+          className="w-full py-3 md:py-4 text-base md:text-lg font-semibold bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center" 
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Adding...' : (
+            <>
+              <FaPlus className="mr-2" /> Add Chore
+            </>
           )}
-
-          <div className="space-y-2">
-            <label htmlFor="notes" className="text-lg font-semibold">Notes (optional)</label>
-            <textarea
-              id="notes"
-              value={formData.notes}
-              onChange={(e) => handleChange('notes', e.target.value)}
-              placeholder="Add any additional notes"
-              className="h-24"
-            />
-          </div>
-
-          <button 
-            type="submit" 
-            className="w-full py-6 text-lg font-semibold bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center" 
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Adding...' : (
-              <>
-                <FaPlus className="mr-2" /> Add Chore
-              </>
-            )}
-          </button>
-        </form>
-      </div>
+        </button>
+      </form>
     </div>
   );
 };
