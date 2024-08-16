@@ -148,81 +148,81 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
           {error && <ErrorMessage message={error} />}
           
           <div className="space-y-6">
-          <FormErrorMessage name="category" errors={errors} />
-          <FormErrorMessage name="name" errors={errors} />
-          <div className="space-y-2">
-            <label htmlFor="category" className="text-base font-semibold">Category</label>
-            <div className="overflow-x-auto pb-2 mb-4">
-              <div className="flex flex-wrap gap-3 sm:flex-nowrap sm:justify-center">
-                {choreCategories.map((category) => (
-                  <CategoryIcon
-                    key={category.name}
-                    category={category.name}
-                    icon={category.icon}
-                    onClick={() => handleChange('category', category.name)}
-                    isSelected={formData.category === category.name}
-                  />
-                ))}
-              </div>
-            </div>
-            {formData.category && (
-              <p className="text-sm sm:text-base text-gray-600 mb-2">
-                Selected category: <span className="font-semibold">{formData.category}</span>
-              </p>
-            )}
-          </div>
-
-          <div className="space-y-4">
-            <label htmlFor="name" className="text-base font-semibold">Chore Name</label>
-            <div className="space-y-3">
-              <select
-                id="choreTemplate"
-                onChange={(e) => handleTemplateSelect(e.target.value)}
-                className="w-full p-4 sm:p-3 border rounded text-base"
-                aria-label="Select chore template"
-              >
-                <option value="">Select a chore template or enter custom name</option>
-                {choreTemplates
-                  .filter((template) => !formData.category || template.category === formData.category)
-                  .map((template) => (
-                    <option key={template.name} value={template.name}>
-                      {template.name}
-                    </option>
+            <FormErrorMessage name="category" errors={errors} />
+            <FormErrorMessage name="name" errors={errors} />
+            <div className="space-y-2">
+              <label htmlFor="category" className="text-base font-semibold">Category</label>
+              <div className="overflow-x-auto pb-2 mb-4">
+                <div className="flex flex-wrap gap-3 sm:flex-nowrap sm:justify-center">
+                  {choreCategories.map((category) => (
+                    <CategoryIcon
+                      key={category.name}
+                      category={category.name}
+                      icon={category.icon}
+                      onClick={() => handleChange('category', category.name)}
+                      isSelected={formData.category === category.name}
+                    />
                   ))}
-              </select>
-              <div className="relative">
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => handleChange('name', e.target.value)}
-                  placeholder="Or enter custom chore name"
-                  required
-                  className="w-full p-3 border rounded text-base"
-                  aria-label="Enter custom chore name"
-                  aria-required="true"
-                />
-                <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
-                  <TypingEffect
-                    texts={[
-                      "Clean gutters",
-                      "Mow the lawn",
-                      "Wash the car",
-                      "Vacuum the living room",
-                      "Do the laundry"
-                    ]}
-                    onTextChange={(text) => handleChange('name', text)}
-                    className="w-full h-full p-3 text-gray-400 text-base"
-                    typingSpeed={100}
-                    eraseSpeed={30}
-                    eraseDelay={2000}
-                    typeDelay={1000}
+                </div>
+              </div>
+              {formData.category && (
+                <p className="text-sm sm:text-base text-gray-600 mb-2">
+                  Selected category: <span className="font-semibold">{formData.category}</span>
+                </p>
+              )}
+            </div>
+
+            <div className="space-y-4">
+              <label htmlFor="name" className="text-base font-semibold">Chore Name</label>
+              <div className="space-y-3">
+                <select
+                  id="choreTemplate"
+                  onChange={(e) => handleTemplateSelect(e.target.value)}
+                  className="w-full p-4 sm:p-3 border rounded text-base"
+                  aria-label="Select chore template"
+                >
+                  <option value="">Select a chore template or enter custom name</option>
+                  {choreTemplates
+                    .filter((template) => !formData.category || template.category === formData.category)
+                    .map((template) => (
+                      <option key={template.name} value={template.name}>
+                        {template.name}
+                      </option>
+                    ))}
+                </select>
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="name"
+                    value={formData.name}
+                    onChange={(e) => handleChange('name', e.target.value)}
+                    placeholder="Or enter custom chore name"
+                    required
+                    className="w-full p-3 border rounded text-base"
+                    aria-label="Enter custom chore name"
+                    aria-required="true"
                   />
+                  <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
+                    <TypingEffect
+                      texts={[
+                        "Clean gutters",
+                        "Mow the lawn",
+                        "Wash the car",
+                        "Vacuum the living room",
+                        "Do the laundry"
+                      ]}
+                      onTextChange={(text) => handleChange('name', text)}
+                      className="w-full h-full p-3 text-gray-400 text-base"
+                      typingSpeed={100}
+                      eraseSpeed={30}
+                      eraseDelay={2000}
+                      typeDelay={1000}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
         <div className="space-y-2">
           <label htmlFor="dueDate" className="text-base font-semibold">Due Date</label>
