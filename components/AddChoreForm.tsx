@@ -135,7 +135,7 @@ const AddChoreForm: React.FC<AddChoreFormProps> = ({ onChoreAdded, user_id }) =>
       <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 md:space-y-10">
         {error && <ErrorMessage message={error} />}
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+        <div className="space-y-6 sm:space-y-8">
           <FormErrorMessage name="category" errors={errors} />
           <FormErrorMessage name="name" errors={errors} />
           <div className="space-y-2 sm:space-y-3">
