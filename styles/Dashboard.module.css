@@ -421,6 +421,21 @@
   margin: 0;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.choreItem {
+  animation: fadeIn 0.5s ease-out;
+}
+
 .choreItem {
   display: flex;
   justify-content: space-between;
@@ -428,7 +443,12 @@
   padding: 1rem;
   border-bottom: 1px solid var(--border-color);
   background-color: var(--card-background);
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.choreItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .choreItem:last-child {
