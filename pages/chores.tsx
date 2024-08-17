@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown } from 'react-icons/fa'
 import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
-import { toast } from 'react-toastify'
 
 const choreCategories = [
   { name: 'Home', color: 'home', icon: '🏠', templates: ['Replace air filters', 'Clean gutters', 'Check smoke detectors', 'Seal windows', 'Service HVAC'] },
@@ -92,7 +91,7 @@ export default function Chores() {
     } catch (error) {
       console.error('Error in getUserId:', error)
       handleError(error, 'Failed to get user information')
-      toast.error('Failed to get user information. Please try again.')
+      console.error('Failed to get user information. Please try again.')
     }
   }, [router])
 
@@ -116,7 +115,7 @@ export default function Chores() {
     } catch (error) {
       console.error('Error in fetchChores:', error)
       handleError(error, 'Failed to fetch chores')
-      toast.error('Failed to fetch chores. Please try again.')
+      console.error('Failed to fetch chores. Please try again.')
     } finally {
       setIsLoading(false)
     }
