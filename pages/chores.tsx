@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown } from 'react-icons/fa'
 import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
+import { toast } from 'react-toastify'
 
 const choreCategories = [
   { name: 'Home', color: 'home', icon: '🏠', templates: ['Replace air filters', 'Clean gutters', 'Check smoke detectors', 'Seal windows', 'Service HVAC'] },
@@ -35,23 +36,32 @@ interface Chore {
   user_id: string;
 }
 
-class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
+class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean, errorMessage: string}> {
   constructor(props: {children: React.ReactNode}) {
     super(props)
-    this.state = { hasError: false }
+    this.state = { hasError: false, errorMessage: '' }
   }
 
-  static getDerivedStateFromError(_: Error) {
-    return { hasError: true }
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, errorMessage: error.message }
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("Uncaught error:", error, errorInfo)
+    // You could also log this error to an error reporting service
   }
 
   render() {
     if (this.state.hasError) {
-      return <h1 className={styles.errorMessage}>Something went wrong. Please try refreshing the page.</h1>
+      return (
+        <div className={styles.errorContainer}>
+          <h1 className={styles.errorMessage}>Something went wrong.</h1>
+          <p className={styles.errorDetails}>{this.state.errorMessage}</p>
+          <button onClick={() => window.location.reload()} className={styles.refreshButton}>
+            Refresh Page
+          </button>
+        </div>
+      )
     }
 
     return this.props.children
@@ -80,7 +90,9 @@ export default function Chores() {
         router.push('/login')
       }
     } catch (error) {
+      console.error('Error in getUserId:', error)
       handleError(error, 'Failed to get user information')
+      toast.error('Failed to get user information. Please try again.')
     }
   }, [router])
 
@@ -102,7 +114,9 @@ export default function Chores() {
       
       setChores(data || [])
     } catch (error) {
+      console.error('Error in fetchChores:', error)
       handleError(error, 'Failed to fetch chores')
+      toast.error('Failed to fetch chores. Please try again.')
     } finally {
       setIsLoading(false)
     }
