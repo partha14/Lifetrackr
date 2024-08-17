@@ -219,7 +219,7 @@ export default function Chores() {
             <h2 className={styles.sectionTitle}>Add New Chore</h2>
             <div className={styles.formFlexContainer}>
               <div className={styles.formColumn}>
-                <div className={styles.categorySelector}>
+                <div className={`${styles.categorySelector} ${styles.mobileOnly}`}>
                   <select
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
@@ -232,7 +232,7 @@ export default function Chores() {
                     ))}
                   </select>
                 </div>
-                <div className={styles.categoryTabs}>
+                <div className={`${styles.categoryTabs} ${styles.desktopOnly}`}>
                   {choreCategories.map((category) => (
                     <button
                       key={category.name}
