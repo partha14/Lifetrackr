@@ -233,43 +233,35 @@ export default function Chores() {
                 </div>
                 
                 <div className={styles.dropdownContainer}>
-                  <div 
-                    className={styles.dropdownHeader} 
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  >
+                  <div className={styles.dropdownHeader}>
                     <span>Select a template or type custom</span>
-                    <FaChevronDown className={`${styles.dropdownIcon} ${isDropdownOpen ? styles.dropdownIconOpen : ''}`} />
+                    <FaChevronDown className={styles.dropdownIcon} />
                   </div>
-                  {isDropdownOpen && (
-                    <div className={styles.dropdownList}>
-                      <div className={styles.searchContainer}>
-                        <FaSearch className={`${styles.searchIcon} text-2xl left-3`} />
-                        <input
-                          type="text"
-                          placeholder="Search templates"
-                          value={searchTerm}
-                          onChange={(e) => setSearchTerm(e.target.value)}
-                          className={`${styles.searchInput} w-full p-4 pl-12 text-xl border rounded`}
-                        />
-                      </div>
-                      {filteredTemplates.length > 0 ? (
-                        filteredTemplates.map((template, index) => (
-                          <div
-                            key={index}
-                            onClick={() => {
-                              setChoreName(template)
-                              setIsDropdownOpen(false)
-                            }}
-                            className={styles.dropdownItem}
-                          >
-                            {template}
-                          </div>
-                        ))
-                      ) : (
-                        <p className={styles.noTemplates}>No matches found.</p>
-                      )}
+                  <div className={styles.dropdownList}>
+                    <div className={styles.searchContainer}>
+                      <FaSearch className={`${styles.searchIcon} text-2xl left-3`} />
+                      <input
+                        type="text"
+                        placeholder="Search templates"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className={`${styles.searchInput} w-full p-4 pl-12 text-xl border rounded`}
+                      />
                     </div>
-                  )}
+                    {filteredTemplates.length > 0 ? (
+                      filteredTemplates.map((template, index) => (
+                        <div
+                          key={index}
+                          onClick={() => setChoreName(template)}
+                          className={styles.dropdownItem}
+                        >
+                          {template}
+                        </div>
+                      ))
+                    ) : (
+                      <p className={styles.noTemplates}>No matches found.</p>
+                    )}
+                  </div>
                 </div>
               </div>
               
