@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown } from 'react-icons/fa'
 import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
-import { toast } from 'react-toastify'
 
 const choreCategories = [
   { name: 'Home', color: 'home', icon: '🏠', templates: ['Replace air filters', 'Clean gutters', 'Check smoke detectors', 'Seal windows', 'Service HVAC'] },
@@ -153,7 +152,7 @@ export default function Chores() {
         console.log('Chore added successfully:', data)
         await fetchChores()
         resetForm()
-        toast.success('Chore added successfully!')
+        alert('Chore added successfully!')
       } catch (error) {
         console.error('Failed to add chore:', error)
         if (error instanceof Error) {
@@ -186,7 +185,7 @@ export default function Chores() {
         if (error) throw error
         
         fetchChores()
-        toast.success('Chore deleted successfully!')
+        alert('Chore deleted successfully!')
       } catch (error) {
         handleError(error, 'Failed to delete chore')
       }
