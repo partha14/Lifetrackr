@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, ErrorInfo } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import LoadingSpinner from '../components/LoadingSpinner'
 import Layout from '../components/Layout'
@@ -8,6 +8,7 @@ import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboar
 import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
 import toast, { Toaster } from 'react-hot-toast'
+import ErrorBoundary from '../components/ErrorBoundary'
 
 const choreCategories = [
   { name: 'Home', color: 'home', icon: '🏠', templates: ['Replace air filters', 'Clean gutters', 'Check smoke detectors', 'Seal windows', 'Service HVAC'] },
@@ -36,37 +37,6 @@ interface Chore {
   user_id: string;
 }
 
-class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean, errorMessage: string}> {
-  constructor(props: {children: React.ReactNode}) {
-    super(props)
-    this.state = { hasError: false, errorMessage: '' }
-  }
-
-  static getDerivedStateFromError(error: Error) {
-    return { hasError: true, errorMessage: error.message }
-  }
-
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error("Uncaught error:", error, errorInfo)
-    // You could also log this error to an error reporting service
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div className={styles.errorContainer}>
-          <h1 className={styles.errorMessage}>Something went wrong.</h1>
-          <p className={styles.errorDetails}>{this.state.errorMessage}</p>
-          <button onClick={() => window.location.reload()} className={styles.refreshButton}>
-            Refresh Page
-          </button>
-        </div>
-      )
-    }
-
-    return this.props.children
-  }
-}
 
 export default function Chores() {
   const [chores, setChores] = useState<Chore[]>([])
