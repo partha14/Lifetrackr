@@ -105,6 +105,73 @@ export default function Home() {
           </div>
         </section>
 
+        <section className={styles.testimonials}>
+          <h2>What Our Users Say</h2>
+          <div className={styles.testimonialGrid}>
+            <div className={styles.testimonial}>
+              <p>"LifeTrackr has completely transformed how I manage my home. It's like having a personal assistant!"</p>
+              <p className={styles.testimonialAuthor}>- Sarah K., Homeowner</p>
+            </div>
+            <div className={styles.testimonial}>
+              <p>"The purchase tracking feature has saved me so much money on warranties. Highly recommended!"</p>
+              <p className={styles.testimonialAuthor}>- Mike R., Tech Enthusiast</p>
+            </div>
+            <div className={styles.testimonial}>
+              <p>"As a busy parent, LifeTrackr helps me stay on top of household chores effortlessly."</p>
+              <p className={styles.testimonialAuthor}>- Emily L., Working Mom</p>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.pricing}>
+          <h2>Pricing Plans</h2>
+          <div className={styles.pricingGrid}>
+            <div className={styles.pricingCard}>
+              <h3>Basic</h3>
+              <p className={styles.price}>$0 / month</p>
+              <ul>
+                <li>Up to 50 chores</li>
+                <li>Up to 100 purchase records</li>
+                <li>Basic reporting</li>
+              </ul>
+              <Link href="/signup" className={styles.ctaButton}>Start For Free</Link>
+            </div>
+            <div className={styles.pricingCard}>
+              <h3>Pro</h3>
+              <p className={styles.price}>$9.99 / month</p>
+              <ul>
+                <li>Unlimited chores</li>
+                <li>Unlimited purchase records</li>
+                <li>Advanced reporting</li>
+                <li>Priority support</li>
+              </ul>
+              <Link href="/signup" className={styles.ctaButton}>Start 14-Day Free Trial</Link>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.whyChoose}>
+          <h2>Why Choose LifeTrackr?</h2>
+          <div className={styles.reasonsGrid}>
+            <div className={styles.reason}>
+              <h3>All-in-One Solution</h3>
+              <p>Manage your entire household from a single app.</p>
+            </div>
+            <div className={styles.reason}>
+              <h3>AI-Powered Insights</h3>
+              <p>Get smart recommendations to optimize your home management.</p>
+            </div>
+            <div className={styles.reason}>
+              <h3>Money-Saving Features</h3>
+              <p>Track warranties and expenses to reduce unnecessary costs.</p>
+            </div>
+            <div className={styles.reason}>
+              <h3>Time-Saving Automation</h3>
+              <p>Automate recurring tasks and never forget a chore again.</p>
+            </div>
+          </div>
+        </section>
+
         <section className={styles.cta}>
           <h2>Experience the Future of Home and Life Management</h2>
           <p>Join LifeTrackr Beta today and transform the way you organize your household and life!</p>

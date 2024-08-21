@@ -397,6 +397,133 @@
   margin-top: 0.5rem;
 }
 
+.testimonials {
+  background-color: #f9f9f9;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.testimonialGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.testimonialAuthor {
+  font-weight: bold;
+  color: #4a90e2;
+}
+
+.pricing {
+  background-color: #f0f4f8;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.pricing h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pricingCard {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pricingCard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #4a90e2;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.pricingCard ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.pricingCard li {
+  margin-bottom: 0.5rem;
+}
+
+.whyChoose {
+  background-color: #fff;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.whyChoose h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.reasonsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.reason {
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: transform 0.3s ease;
+}
+
+.reason:hover {
+  transform: translateY(-5px);
+}
+
+.reason h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #4a90e2;
+}
+
+.reason p {
+  color: #666;
+}
+
 .upcomingFeatures {
   background-color: #f0f4f8;
   padding: 6rem 2rem;
