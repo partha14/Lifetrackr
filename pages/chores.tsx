@@ -471,49 +471,59 @@ function EditChoreForm({ chore, onSave, onCancel }: EditChoreFormProps) {
                 <div className={styles.choreGrid}>
                   {chores.map((chore) => (
                     <div key={chore.id} className={styles.choreCard}>
-                      <div className={styles.choreHeader}>
-                        <h3 className={styles.choreTitle}>{chore.name}</h3>
-                        <div className={styles.choreActions}>
-                          <button 
-                            onClick={() => handleEditChore(chore.id)} 
-                            className={styles.editButton}
-                            aria-label="Edit chore"
-                          >
-                            <FaEdit />
-                          </button>
-                          <button 
-                            onClick={() => handleDeleteChore(chore.id)} 
-                            className={styles.deleteButton}
-                            aria-label="Delete chore"
-                          >
-                            <FaTrash />
-                          </button>
-                        </div>
-                      </div>
-                      <div className={styles.choreInfo}>
-                        <div className={styles.choreInfoItem}>
-                          <FaCalendarAlt className={styles.icon} />
-                          <span>{new Date(chore.dueDate).toLocaleDateString()}</span>
-                        </div>
-                        {chore.isRecurring && (
-                          <div className={styles.choreInfoItem}>
-                            <FaRecycle className={styles.icon} />
-                            <span>{chore.recurringPeriod}</span>
+                      {editingChore && editingChore.id === chore.id ? (
+                        <EditChoreForm
+                          chore={editingChore}
+                          onSave={handleSaveEdit}
+                          onCancel={() => setEditingChore(null)}
+                        />
+                      ) : (
+                        <>
+                          <div className={styles.choreHeader}>
+                            <h3 className={styles.choreTitle}>{chore.name}</h3>
+                            <div className={styles.choreActions}>
+                              <button 
+                                onClick={() => handleEditChore(chore)} 
+                                className={styles.editButton}
+                                aria-label="Edit chore"
+                              >
+                                <FaEdit />
+                              </button>
+                              <button 
+                                onClick={() => handleDeleteChore(chore.id)} 
+                                className={styles.deleteButton}
+                                aria-label="Delete chore"
+                              >
+                                <FaTrash />
+                              </button>
+                            </div>
                           </div>
-                        )}
-                        {chore.notes && (
-                          <div className={styles.choreInfoItem}>
-                            <FaStickyNote className={styles.icon} />
-                            <span>{chore.notes}</span>
+                          <div className={styles.choreInfo}>
+                            <div className={styles.choreInfoItem}>
+                              <FaCalendarAlt className={styles.icon} />
+                              <span>{new Date(chore.dueDate).toLocaleDateString()}</span>
+                            </div>
+                            {chore.isRecurring && (
+                              <div className={styles.choreInfoItem}>
+                                <FaRecycle className={styles.icon} />
+                                <span>{chore.recurringPeriod}</span>
+                              </div>
+                            )}
+                            {chore.notes && (
+                              <div className={styles.choreInfoItem}>
+                                <FaStickyNote className={styles.icon} />
+                                <span>{chore.notes}</span>
+                              </div>
+                            )}
                           </div>
-                        )}
-                      </div>
-                      <button 
-                        onClick={() => handleCompleteChore(chore.id)} 
-                        className={styles.completeButton}
-                      >
-                        <FaCheckCircle /> Mark as Complete
-                      </button>
+                          <button 
+                            onClick={() => handleCompleteChore(chore.id)} 
+                            className={styles.completeButton}
+                          >
+                            <FaCheckCircle /> Mark as Complete
+                          </button>
+                        </>
+                      )}
                     </div>
                   ))}
                 </div>
