@@ -278,6 +278,55 @@
   margin: 2rem auto;
 }
 
+.faq {
+  background-color: #f9f9f9;
+  padding: 4rem 5%;
+  text-align: center;
+}
+
+.faq h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.faqList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  flex-basis: calc(50% - 1rem);
+  max-width: 400px;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.faqItem h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #4a90e2;
+}
+
+.faqItem p {
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .faq {
+    padding: 4rem 2rem;
+  }
+  
+  .faqItem {
+    flex-basis: 100%;
+  }
+}
+
 .stepImage {
   width: 100%;
   height: auto;
