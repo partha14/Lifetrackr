@@ -362,13 +362,22 @@ export default function Chores() {
                     <div key={chore.id} className={styles.choreCard}>
                       <div className={styles.choreHeader}>
                         <h3 className={styles.choreTitle}>{chore.name}</h3>
-                        <button 
-                          onClick={() => handleDeleteChore(chore.id)} 
-                          className={styles.deleteButton}
-                          aria-label="Delete chore"
-                        >
-                          <FaTimes />
-                        </button>
+                        <div className={styles.choreActions}>
+                          <button 
+                            onClick={() => handleEditChore(chore.id)} 
+                            className={styles.editButton}
+                            aria-label="Edit chore"
+                          >
+                            <FaEdit />
+                          </button>
+                          <button 
+                            onClick={() => handleDeleteChore(chore.id)} 
+                            className={styles.deleteButton}
+                            aria-label="Delete chore"
+                          >
+                            <FaTrash />
+                          </button>
+                        </div>
                       </div>
                       <div className={styles.choreInfo}>
                         <div className={styles.choreInfoItem}>
@@ -388,14 +397,12 @@ export default function Chores() {
                           </div>
                         )}
                       </div>
-                      <div className={styles.choreActions}>
-                        <button className={styles.editButton}>
-                          <FaEdit /> Edit
-                        </button>
-                        <button className={styles.completeButton}>
-                          <FaCheckCircle /> Complete
-                        </button>
-                      </div>
+                      <button 
+                        onClick={() => handleCompleteChore(chore.id)} 
+                        className={styles.completeButton}
+                      >
+                        <FaCheckCircle /> Mark as Complete
+                      </button>
                     </div>
                   ))}
                 </div>
