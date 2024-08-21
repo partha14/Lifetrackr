@@ -148,3 +148,5 @@ coverage
 
 # Next.js build output
 .next
+
+CONVENTIONS.md

@@ -88,19 +88,11 @@ export default function Home() {
           <div className={styles.faqList}>
             <div className={styles.faqItem}>
               <h3>How is LifeTrackr different from other home management apps?</h3>
-              <p>LifeTrackr goes beyond home management, offering a comprehensive life organization solution. Our AI-powered features and customizable approach make it adaptable to any lifestyle.</p>
-            </div>
-            <div className={styles.faqItem}>
-              <h3>Is my data safe with LifeTrackr?</h3>
-              <p>Absolutely. We use bank-level encryption to protect your data and never sell your information to third parties.</p>
+              <p>LifeTrackr goes beyond home management, offering a comprehensive life organization solution. Our AI-powered natural language Q&A about your date aims to provide accurate answers without any hallucinations</p>
             </div>
             <div className={styles.faqItem}>
               <h3>Can I use LifeTrackr for both personal and work tasks?</h3>
               <p>Yes! LifeTrackr is designed to manage all aspects of your life, including personal, work, and everything in between.</p>
-            </div>
-            <div className={styles.faqItem}>
-              <h3>What devices can I use LifeTrackr on?</h3>
-              <p>LifeTrackr is available on iOS, Android, and as a web app, allowing you to access your information from any device.</p>
             </div>
           </div>
         </section>
@@ -109,16 +101,16 @@ export default function Home() {
           <h2>What Our Users Say</h2>
           <div className={styles.testimonialGrid}>
             <div className={styles.testimonial}>
-              <p>"LifeTrackr has completely transformed how I manage my home. It's like having a personal assistant!"</p>
-              <p className={styles.testimonialAuthor}>- Sarah K., Homeowner</p>
+              <p>"Yet another To-do app with the AI tag! /s"</p>
+              <p className={styles.testimonialAuthor}>- Sarah K., random person on Twitter</p>
             </div>
             <div className={styles.testimonial}>
-              <p>"The purchase tracking feature has saved me so much money on warranties. Highly recommended!"</p>
+              <p>"My 8 y.o. can code up this app in 5hrs using AI"</p>
               <p className={styles.testimonialAuthor}>- Mike R., Tech Enthusiast</p>
             </div>
             <div className={styles.testimonial}>
-              <p>"As a busy parent, LifeTrackr helps me stay on top of household chores effortlessly."</p>
-              <p className={styles.testimonialAuthor}>- Emily L., Working Mom</p>
+              <p>"Best app. So proud of you!"</p>
+              <p className={styles.testimonialAuthor}>- The Developer's mom</p>
             </div>
           </div>
         </section>
