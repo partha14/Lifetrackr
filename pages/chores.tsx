@@ -181,11 +181,12 @@ export default function Chores() {
 
       if (error) throw error
       
+      console.log('Fetched chores:', data)
       setChores(data || [])
     } catch (error) {
       console.error('Error in fetchChores:', error)
       handleError(error, 'Failed to fetch chores')
-      console.error('Failed to fetch chores. Please try again.')
+      toast.error('Failed to fetch chores. Please try again.')
     } finally {
       setIsLoading(false)
     }
