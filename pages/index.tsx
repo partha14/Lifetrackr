@@ -32,29 +32,60 @@ export default function Home() {
         </nav>
 
         <section className={styles.hero}>
-          <h1>Tired of juggling life's endless tasks?</h1>
-          <h2>Meet LifeTrackr: Your Personal Life Assistant</h2>
-          <p>Effortlessly organize your life, from chores to purchases.</p>
-          <p>LifeTrackr remembers so you don't have to.</p>
-          <p>Experience the freedom of a well-managed life with our innovative beta app!</p>
-          <Link href="/signup" className={styles.ctaButton}>Join the Beta</Link>
+          <h1>Beyond Home Management: Your All-in-One Life Assistant</h1>
+          <h2>LifeTrackr: Simplifying Your Home and Life</h2>
+          <p>Manage purchases, track warranties, schedule chores, and much more.</p>
+          <p>LifeTrackr: Your digital memory for a smarter, organized life.</p>
+          <p>Join our beta and experience the next level of life management!</p>
+          <Link href="/signup" className={styles.ctaButton}>Start Your Free Trial</Link>
+        </section>
+
+        <section className={styles.comparison}>
+          <h2>Why Choose LifeTrackr?</h2>
+          <div className={styles.comparisonTable}>
+            <div className={styles.comparisonItem}>
+              <h3>LifeTrackr</h3>
+              <ul>
+                <li>Comprehensive life management</li>
+                <li>Smart chore scheduling</li>
+                <li>Purchase tracking with warranty alerts</li>
+                <li>AI-powered assistance (coming soon)</li>
+                <li>Customizable for any lifestyle</li>
+              </ul>
+            </div>
+            <div className={styles.comparisonItem}>
+              <h3>Other Apps</h3>
+              <ul>
+                <li>Limited to home management</li>
+                <li>Basic task tracking</li>
+                <li>Manual warranty tracking</li>
+                <li>No AI integration</li>
+                <li>One-size-fits-all approach</li>
+              </ul>
+            </div>
+          </div>
         </section>
 
         <section className={styles.features}>
           <FeatureCard
             icon={<FaShoppingCart className={styles.featureIcon} />}
-            title="Track Purchases"
-            description="Never forget warranty periods or when you bought something."
+            title="Smart Purchase Tracking"
+            description="Log purchases, set warranty reminders, and get alerts for optimal replacement times."
           />
           <FeatureCard
             icon={<FaClipboardList className={styles.featureIcon} />}
-            title="Manage Chores"
-            description="Keep track of important home and vehicle maintenance tasks."
+            title="Intelligent Chore Management"
+            description="AI-powered chore scheduling that adapts to your lifestyle and home needs."
           />
           <FeatureCard
             icon={<FaBrain className={styles.featureIcon} />}
-            title="Peace of Mind"
-            description="Free up mental space and never worry about forgetting important tasks."
+            title="Life-Wide Organization"
+            description="Manage not just your home, but your entire life - work, personal, and everything in between."
+          />
+          <FeatureCard
+            icon={<FaRobot className={styles.featureIcon} />}
+            title="AI Assistant (Coming Soon)"
+            description="Get personalized advice and answers about your home, purchases, and tasks."
           />
         </section>
 
@@ -80,10 +111,32 @@ export default function Home() {
           </div>
         </section>
 
+        <section className={styles.faq}>
+          <h2>Frequently Asked Questions</h2>
+          <div className={styles.faqList}>
+            <div className={styles.faqItem}>
+              <h3>How is LifeTrackr different from other home management apps?</h3>
+              <p>LifeTrackr goes beyond home management, offering a comprehensive life organization solution. Our AI-powered features and customizable approach make it adaptable to any lifestyle.</p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3>Is my data safe with LifeTrackr?</h3>
+              <p>Absolutely. We use bank-level encryption to protect your data and never sell your information to third parties.</p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3>Can I use LifeTrackr for both personal and work tasks?</h3>
+              <p>Yes! LifeTrackr is designed to manage all aspects of your life, including personal, work, and everything in between.</p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3>What devices can I use LifeTrackr on?</h3>
+              <p>LifeTrackr is available on iOS, Android, and as a web app, allowing you to access your information from any device.</p>
+            </div>
+          </div>
+        </section>
+
         <section className={styles.cta}>
-          <h2>Never Forget Another Important Task</h2>
-          <p>Join LifeTrackr Beta today and experience the peace of mind that comes with perfect organization!</p>
-          <Link href="/signup" className={styles.ctaButton}>Join the Beta for Free</Link>
+          <h2>Experience the Future of Life Management</h2>
+          <p>Join LifeTrackr Beta today and transform the way you organize your life!</p>
+          <Link href="/signup" className={styles.ctaButton}>Start Your Free Trial</Link>
         </section>
 
         <section className={styles.aiShowcase}>
