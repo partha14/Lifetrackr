@@ -1284,36 +1284,6 @@
   background-color: var(--hover-color);
 }
 
-@media (max-width: 768px) {
-  .dropdownContainer {
-    margin-bottom: 1.5rem;
-  }
-
-  .dropdownHeader {
-    font-size: 1.1rem;
-    padding: 1rem;
-  }
-
-  .dropdownList {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    max-height: 200px;
-    overflow-y: auto;
-    background-color: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    z-index: 20;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 5px;
-  }
-
-  .dropdownItem {
-    padding: 1rem;
-    font-size: 1.1rem;
-  }
-}
 
 .inputWrapper {
   position: relative;
