@@ -123,32 +123,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.pricing}>
-          <h2>Pricing Plans</h2>
-          <div className={styles.pricingGrid}>
-            <div className={styles.pricingCard}>
-              <h3>Basic</h3>
-              <p className={styles.price}>$0 / month</p>
-              <ul>
-                <li>Up to 50 chores</li>
-                <li>Up to 100 purchase records</li>
-                <li>Basic reporting</li>
-              </ul>
-              <Link href="/signup" className={styles.ctaButton}>Start For Free</Link>
-            </div>
-            <div className={styles.pricingCard}>
-              <h3>Pro</h3>
-              <p className={styles.price}>$9.99 / month</p>
-              <ul>
-                <li>Unlimited chores</li>
-                <li>Unlimited purchase records</li>
-                <li>Advanced reporting</li>
-                <li>Priority support</li>
-              </ul>
-              <Link href="/signup" className={styles.ctaButton}>Start 14-Day Free Trial</Link>
-            </div>
-          </div>
-        </section>
 
         <section className={styles.whyChoose}>
           <h2>Why Choose LifeTrackr?</h2>
