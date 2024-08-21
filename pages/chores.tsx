@@ -250,7 +250,7 @@ export default function Chores() {
 
   const handleSaveEdit = async (editedChore: Chore) => {
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('chores')
         .update({
           name: editedChore.name,
@@ -260,12 +260,17 @@ export default function Chores() {
           notes: editedChore.notes
         })
         .eq('id', editedChore.id)
+        .select()
 
       if (error) throw error
 
-      setEditingChore(null)
-      fetchChores()
-      toast.success('Chore updated successfully!')
+      if (data) {
+        setChores(chores.map(chore => chore.id === editedChore.id ? data[0] : chore))
+        setEditingChore(null)
+        toast.success('Chore updated successfully!')
+      } else {
+        throw new Error('No data returned from update operation')
+      }
     } catch (error) {
       handleError(error, 'Failed to update chore')
     }
