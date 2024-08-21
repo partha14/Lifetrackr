@@ -4,7 +4,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import Layout from '../components/Layout'
 import styles from '../styles/Dashboard.module.css'
 import { useRouter } from 'next/router'
-import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown, FaChevronUp } from 'react-icons/fa'
+import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown, FaChevronUp, FaTimes } from 'react-icons/fa'
 import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
 import toast, { Toaster } from 'react-hot-toast'
@@ -362,8 +362,12 @@ export default function Chores() {
                     <div key={chore.id} className={styles.choreCard}>
                       <div className={styles.choreHeader}>
                         <h3 className={styles.choreTitle}>{chore.name}</h3>
-                        <button onClick={() => handleDeleteChore(chore.id)} className={styles.deleteButton}>
-                          <FaTrash />
+                        <button 
+                          onClick={() => handleDeleteChore(chore.id)} 
+                          className={styles.deleteButton}
+                          aria-label="Delete chore"
+                        >
+                          <FaTimes />
                         </button>
                       </div>
                       <div className={styles.choreInfo}>
