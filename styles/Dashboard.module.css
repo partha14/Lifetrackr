@@ -911,6 +911,7 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
   }
 
   .categoryTab {
@@ -922,6 +923,8 @@
     background: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    width: calc(20% - 1rem);
+    margin-bottom: 1rem;
   }
 
   .categoryTab:hover {
@@ -939,7 +942,19 @@
   }
 
   .categoryName {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .categoryTabs {
+    flex-wrap: nowrap;
+  }
+
+  .categoryTab {
+    width: auto;
+    margin-bottom: 0;
   }
 }
 
