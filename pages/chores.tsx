@@ -125,10 +125,10 @@ function EditChoreForm({ chore, onSave, onCancel }: EditChoreFormProps) {
       </div>
       <div className={styles.formActions}>
         <button type="submit" className={`${styles.button} ${styles.saveButton}`}>
-          <FaSave className={styles.buttonIcon} /> Save
+          <FaSave className={styles.buttonIcon} /> 
         </button>
         <button type="button" onClick={onCancel} className={`${styles.button} ${styles.cancelButton}`}>
-          <FaTimes className={styles.buttonIcon} /> Cancel
+          <FaTimes className={styles.buttonIcon} /> 
         </button>
       </div>
     </form>
