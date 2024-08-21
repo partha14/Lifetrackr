@@ -4,7 +4,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import Layout from '../components/Layout'
 import styles from '../styles/Dashboard.module.css'
 import { useRouter } from 'next/router'
-import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown, FaChevronUp, FaTimes, FaEdit } from 'react-icons/fa'
+import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown, FaChevronUp, FaTimes, FaEdit, FaSave } from 'react-icons/fa'
 import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
 import toast, { Toaster } from 'react-hot-toast'
@@ -39,6 +39,89 @@ interface Chore {
 
 
 export default function Chores() {
+
+// ... (rest of the component code)
+
+}
+
+interface EditChoreFormProps {
+  chore: Chore;
+  onSave: (editedChore: Chore) => void;
+  onCancel: () => void;
+}
+
+function EditChoreForm({ chore, onSave, onCancel }: EditChoreFormProps) {
+  const [editedChore, setEditedChore] = useState<Chore>(chore);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setEditedChore(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSave(editedChore);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className={styles.editForm}>
+      <input
+        type="text"
+        name="name"
+        value={editedChore.name}
+        onChange={handleChange}
+        className={styles.input}
+        required
+      />
+      <input
+        type="date"
+        name="dueDate"
+        value={editedChore.dueDate.split('T')[0]}
+        onChange={handleChange}
+        className={styles.input}
+        required
+      />
+      <div className={styles.checkboxGroup}>
+        <input
+          type="checkbox"
+          name="isRecurring"
+          checked={editedChore.isRecurring}
+          onChange={(e) => setEditedChore(prev => ({ ...prev, isRecurring: e.target.checked }))}
+          className={styles.checkbox}
+        />
+        <label>Recurring</label>
+      </div>
+      {editedChore.isRecurring && (
+        <select
+          name="recurringPeriod"
+          value={editedChore.recurringPeriod}
+          onChange={handleChange}
+          className={styles.input}
+        >
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+      )}
+      <textarea
+        name="notes"
+        value={editedChore.notes || ''}
+        onChange={handleChange}
+        className={styles.textarea}
+        placeholder="Notes (optional)"
+      />
+      <div className={styles.formActions}>
+        <button type="submit" className={styles.saveButton}>
+          <FaSave /> Save
+        </button>
+        <button type="button" onClick={onCancel} className={styles.cancelButton}>
+          <FaTimes /> Cancel
+        </button>
+      </div>
+    </form>
+  );
+}
   const [chores, setChores] = useState<Chore[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [user_id, setUserId] = useState<string | null>(null)
@@ -51,6 +134,7 @@ export default function Chores() {
   const [notes, setNotes] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
   const [isFormVisible, setIsFormVisible] = useState(false)
+  const [editingChore, setEditingChore] = useState<Chore | null>(null)
 
   const getUserId = useCallback(async () => {
     try {
@@ -144,6 +228,33 @@ export default function Chores() {
     setRecurrence('none')
     setNotes('')
     setSearchTerm('')
+  }
+
+  const handleEditChore = (chore: Chore) => {
+    setEditingChore(chore)
+  }
+
+  const handleSaveEdit = async (editedChore: Chore) => {
+    try {
+      const { error } = await supabase
+        .from('chores')
+        .update({
+          name: editedChore.name,
+          dueDate: editedChore.dueDate,
+          isRecurring: editedChore.isRecurring,
+          recurringPeriod: editedChore.recurringPeriod,
+          notes: editedChore.notes
+        })
+        .eq('id', editedChore.id)
+
+      if (error) throw error
+
+      setEditingChore(null)
+      fetchChores()
+      toast.success('Chore updated successfully!')
+    } catch (error) {
+      handleError(error, 'Failed to update chore')
+    }
   }
 
   const handleDeleteChore = async (id: number) => {
