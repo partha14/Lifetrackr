@@ -4,7 +4,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import Layout from '../components/Layout'
 import styles from '../styles/Dashboard.module.css'
 import { useRouter } from 'next/router'
-import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown, FaChevronUp, FaTimes } from 'react-icons/fa'
+import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown, FaChevronUp, FaTimes, FaEdit } from 'react-icons/fa'
 import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
 import toast, { Toaster } from 'react-hot-toast'
@@ -371,19 +371,30 @@ export default function Chores() {
                         </button>
                       </div>
                       <div className={styles.choreInfo}>
-                        <p className={styles.choreDate}>
-                          <FaCalendarAlt className={styles.icon} /> {new Date(chore.dueDate).toLocaleDateString()}
-                        </p>
+                        <div className={styles.choreInfoItem}>
+                          <FaCalendarAlt className={styles.icon} />
+                          <span>{new Date(chore.dueDate).toLocaleDateString()}</span>
+                        </div>
                         {chore.isRecurring && (
-                          <p className={styles.choreRecurring}>
-                            <FaRecycle className={styles.icon} /> {chore.recurringPeriod}
-                          </p>
+                          <div className={styles.choreInfoItem}>
+                            <FaRecycle className={styles.icon} />
+                            <span>{chore.recurringPeriod}</span>
+                          </div>
                         )}
                         {chore.notes && (
-                          <p className={styles.choreNotes}>
-                            <FaStickyNote className={styles.icon} /> {chore.notes}
-                          </p>
+                          <div className={styles.choreInfoItem}>
+                            <FaStickyNote className={styles.icon} />
+                            <span>{chore.notes}</span>
+                          </div>
                         )}
+                      </div>
+                      <div className={styles.choreActions}>
+                        <button className={styles.editButton}>
+                          <FaEdit /> Edit
+                        </button>
+                        <button className={styles.completeButton}>
+                          <FaCheckCircle /> Complete
+                        </button>
                       </div>
                     </div>
                   ))}
