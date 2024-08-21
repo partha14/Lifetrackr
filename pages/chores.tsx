@@ -201,151 +201,153 @@ export default function Chores() {
               </button>
             </div>
             {isFormVisible && (
-              <div className={styles.formFlexContainer}>
-              <div className={styles.formColumn}>
-                <div className={`${styles.categorySelector} ${styles.mobileOnly}`}>
-                  <select
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                    className={styles.categoryDropdown}
-                  >
-                    {choreCategories.map((category) => (
-                      <option key={category.name} value={category.name}>
-                        {category.icon} {category.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className={`${styles.categoryTabs} ${styles.desktopOnly}`}>
-                  {choreCategories.map((category) => (
-                    <button
-                      key={category.name}
-                      onClick={() => setSelectedCategory(category.name)}
-                      className={`${styles.categoryTab} ${selectedCategory === category.name ? styles.activeTab : ''}`}
-                    >
-                      <span className={styles.categoryIcon}>{category.icon}</span>
-                      <span className={styles.categoryName}>{category.name}</span>
-                    </button>
-                  ))}
-                </div>
-                
-                <div className={styles.dropdownContainer}>
-                  <div className={styles.dropdownHeader}>
-                    <span>Select a template or type custom</span>
-                    <FaChevronDown className={styles.dropdownIcon} />
+              <div>
+                <div className={styles.formFlexContainer}>
+                  <div className={styles.formColumn}>
+                    <div className={`${styles.categorySelector} ${styles.mobileOnly}`}>
+                      <select
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(e.target.value)}
+                        className={styles.categoryDropdown}
+                      >
+                        {choreCategories.map((category) => (
+                          <option key={category.name} value={category.name}>
+                            {category.icon} {category.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className={`${styles.categoryTabs} ${styles.desktopOnly}`}>
+                      {choreCategories.map((category) => (
+                        <button
+                          key={category.name}
+                          onClick={() => setSelectedCategory(category.name)}
+                          className={`${styles.categoryTab} ${selectedCategory === category.name ? styles.activeTab : ''}`}
+                        >
+                          <span className={styles.categoryIcon}>{category.icon}</span>
+                          <span className={styles.categoryName}>{category.name}</span>
+                        </button>
+                      ))}
+                    </div>
+                  
+                    <div className={styles.dropdownContainer}>
+                      <div className={styles.dropdownHeader}>
+                        <span>Select a template or type custom</span>
+                        <FaChevronDown className={styles.dropdownIcon} />
+                      </div>
+                      <div className={styles.dropdownList}>
+                        <div className={styles.searchContainer}>
+                          <FaSearch className={`${styles.searchIcon} text-2xl left-3`} />
+                          <input
+                            type="text"
+                            placeholder="Search templates"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className={`${styles.searchInput} w-full p-4 pl-12 text-xl border rounded`}
+                          />
+                        </div>
+                        {filteredTemplates.length > 0 ? (
+                          filteredTemplates.map((template, index) => (
+                            <div
+                              key={index}
+                              onClick={() => setChoreName(template)}
+                              className={styles.dropdownItem}
+                            >
+                              {template}
+                            </div>
+                          ))
+                        ) : (
+                          <p className={styles.noTemplates}>No matches found.</p>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  <div className={styles.dropdownList}>
-                    <div className={styles.searchContainer}>
-                      <FaSearch className={`${styles.searchIcon} text-2xl left-3`} />
+                
+                  <div className={styles.formColumn}>
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Chore Name</label>
+                      <div className={styles.inputWrapper}>
+                        <input
+                          type="text"
+                          value={choreName}
+                          onChange={(e) => setChoreName(e.target.value)}
+                          className={styles.input}
+                          placeholder=" "
+                        />
+                        <div className={styles.placeholderText}>
+                          {!choreName && (
+                            <TypingEffect
+                              texts={
+                                selectedCategory === 'Home'
+                                  ? choreCategories.find(c => c.name === 'Home')?.templates.slice(0, 2) || []
+                                  : ['Enter chore name', 'What needs to be done?']
+                              }
+                              typingSpeed={150}
+                              eraseSpeed={75}
+                              eraseDelay={4000}
+                              typeDelay={2000}
+                              className="bg-transparent"
+                            />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Due Date</label>
                       <input
-                        type="text"
-                        placeholder="Search templates"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className={`${styles.searchInput} w-full p-4 pl-12 text-xl border rounded`}
+                        type="date"
+                        value={dueDate.toISOString().split('T')[0]}
+                        onChange={(e) => setDueDate(new Date(e.target.value))}
+                        className={styles.input}
                       />
                     </div>
-                    {filteredTemplates.length > 0 ? (
-                      filteredTemplates.map((template, index) => (
-                        <div
-                          key={index}
-                          onClick={() => setChoreName(template)}
-                          className={styles.dropdownItem}
-                        >
-                          {template}
-                        </div>
-                      ))
-                    ) : (
-                      <p className={styles.noTemplates}>No matches found.</p>
-                    )}
-                  </div>
-                </div>
-              </div>
-              
-              <div className={styles.formColumn}>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Chore Name</label>
-                  <div className={styles.inputWrapper}>
-                    <input
-                      type="text"
-                      value={choreName}
-                      onChange={(e) => setChoreName(e.target.value)}
-                      className={styles.input}
-                      placeholder=" "
-                    />
-                    <div className={styles.placeholderText}>
-                      {!choreName && (
-                        <TypingEffect
-                          texts={
-                            selectedCategory === 'Home'
-                              ? choreCategories.find(c => c.name === 'Home')?.templates.slice(0, 2) || []
-                              : ['Enter chore name', 'What needs to be done?']
-                          }
-                          typingSpeed={150}
-                          eraseSpeed={75}
-                          eraseDelay={4000}
-                          typeDelay={2000}
-                          className="bg-transparent"
+                  
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>
+                        <input
+                          type="checkbox"
+                          checked={recurrence !== 'none'}
+                          onChange={(e) => setRecurrence(e.target.checked ? 'weekly' : 'none')}
+                          className={styles.checkbox}
                         />
-                      )}
+                        Recurring
+                      </label>
+                    </div>
+                  
+                    {recurrence !== 'none' && (
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>Recurrence Period</label>
+                        <select
+                          value={recurrence}
+                          onChange={(e) => setRecurrence(e.target.value)}
+                          className={styles.input}
+                        >
+                          {recurrenceOptions.filter(option => option.value !== 'none').map((option) => (
+                            <option key={option.value} value={option.value}>{option.label}</option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
+                  
+                    <div className={styles.formGroup}>
+                      <label className={styles.label}>Notes (optional)</label>
+                      <textarea
+                        value={notes}
+                        onChange={(e) => setNotes(e.target.value)}
+                        className={styles.input}
+                        placeholder="Add any additional details"
+                        rows={4}
+                      />
                     </div>
                   </div>
                 </div>
-
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Due Date</label>
-                  <input
-                    type="date"
-                    value={dueDate.toISOString().split('T')[0]}
-                    onChange={(e) => setDueDate(new Date(e.target.value))}
-                    className={styles.input}
-                  />
-                </div>
-                
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>
-                    <input
-                      type="checkbox"
-                      checked={recurrence !== 'none'}
-                      onChange={(e) => setRecurrence(e.target.checked ? 'weekly' : 'none')}
-                      className={styles.checkbox}
-                    />
-                    Recurring
-                  </label>
-                </div>
-                
-                {recurrence !== 'none' && (
-                  <div className={styles.formGroup}>
-                    <label className={styles.label}>Recurrence Period</label>
-                    <select
-                      value={recurrence}
-                      onChange={(e) => setRecurrence(e.target.value)}
-                      className={styles.input}
-                    >
-                      {recurrenceOptions.filter(option => option.value !== 'none').map((option) => (
-                        <option key={option.value} value={option.value}>{option.label}</option>
-                      ))}
-                    </select>
-                  </div>
-                )}
-                
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>Notes (optional)</label>
-                  <textarea
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
-                    className={styles.input}
-                    placeholder="Add any additional details"
-                    rows={4}
-                  />
-                </div>
-              </div>
-              </div>
               
-              <div className={styles.formGroup}>
-                <button onClick={addChore} className={`${styles.button} ${styles.addButton}`}>
-                  <FaPlus /> Add Chore
-                </button>
+                <div className={styles.formGroup}>
+                  <button onClick={addChore} className={`${styles.button} ${styles.addButton}`}>
+                    <FaPlus /> Add Chore
+                  </button>
+                </div>
               </div>
             )}
           </div>
