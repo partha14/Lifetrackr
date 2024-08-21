@@ -32,11 +32,9 @@ export default function Home() {
         </nav>
 
         <section className={styles.hero}>
-          <h1>Beyond Home Management: Your All-in-One Life Assistant</h1>
-          <h2>LifeTrackr: Revolutionizing Household Management and Life Organization</h2>
-          <p>Elevate your home management experience: Manage purchases, track warranties, schedule household chores, and much more.</p>
-          <p>LifeTrackr: Your digital memory for a smarter, organized home and life.</p>
-          <p>Join our beta and experience the next level of household and life management!</p>
+          <h1>LifeTrackr: Your All-in-One Home and Life Assistant</h1>
+          <h2>Revolutionize Your Household Management</h2>
+          <p>Manage purchases, track warranties, and schedule chores effortlessly. Experience smarter home and life organization today!</p>
           <Link href="/signup" className={styles.ctaButton}>Start Your Free Trial</Link>
         </section>
 
