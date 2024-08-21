@@ -38,42 +38,6 @@ export default function Home() {
           <Link href="/signup" className={styles.ctaButton}>Start Your Free Trial</Link>
         </section>
 
-        <section className={styles.comparison}>
-          <h2>Why Choose LifeTrackr for Home Management?</h2>
-          <div className={styles.comparisonGrid}>
-            <div className={styles.comparisonHeader}>
-              <h3>Feature</h3>
-              <h3>LifeTrackr</h3>
-              <h3>Other Apps</h3>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>Management Scope</span>
-              <span>Comprehensive household and life management</span>
-              <span>Limited to basic home management</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>Task Scheduling</span>
-              <span>Smart chore scheduling</span>
-              <span>Basic task tracking</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>Purchase Tracking</span>
-              <span>With warranty alerts</span>
-              <span>Manual warranty tracking</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>AI Integration</span>
-              <span>AI-powered assistance (coming soon)</span>
-              <span>No AI integration</span>
-            </div>
-            <div className={styles.comparisonRow}>
-              <span>Customization</span>
-              <span>Customizable for any lifestyle</span>
-              <span>One-size-fits-all approach</span>
-            </div>
-          </div>
-        </section>
-
         <section className={styles.features}>
           <FeatureCard
             icon={<FaShoppingCart className={styles.featureIcon} />}
@@ -144,7 +108,7 @@ export default function Home() {
         <section className={styles.cta}>
           <h2>Experience the Future of Home and Life Management</h2>
           <p>Join LifeTrackr Beta today and transform the way you organize your household and life!</p>
-          <Link href="/signup" className={styles.ctaButton}>Start Your Free Home Management Trial</Link>
+          <Link href="/signup" className={styles.ctaButton}>Start For Free</Link>
         </section>
 
         <section className={styles.aiShowcase}>
