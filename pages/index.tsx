@@ -3,8 +3,8 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import { FaShoppingCart, FaClipboardList, FaBrain, FaRobot } from 'react-icons/fa';
 import TypingEffect from '../components/TypingEffect';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { useRef, useState } from 'react';
 
 export default function Home() {
   return (
@@ -86,14 +86,9 @@ export default function Home() {
         <section className={styles.faq}>
           <h2>Frequently Asked Questions</h2>
           <div className={styles.faqList}>
-            <div className={styles.faqItem}>
-              <h3>How is LifeTrackr different from other home management apps?</h3>
-              <p>LifeTrackr goes beyond home management, offering a comprehensive life organization solution. Our AI-powered natural language Q&A about your date aims to provide accurate answers without any hallucinations</p>
-            </div>
-            <div className={styles.faqItem}>
-              <h3>Can I use LifeTrackr for both personal and work tasks?</h3>
-              <p>Yes! LifeTrackr is designed to manage all aspects of your life, including personal, work, and everything in between.</p>
-            </div>
+            {faqItems.map((item, index) => (
+              <FAQItem key={index} question={item.question} answer={item.answer} />
+            ))}
           </div>
         </section>
 
@@ -196,5 +191,39 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
       <h3>{title}</h3>
       <p>{description}</p>
     </motion.div>
+  );
+}
+const faqItems = [
+  {
+    question: "How is LifeTrackr different from other home management apps?",
+    answer: "LifeTrackr goes beyond home management, offering a comprehensive life organization solution. Our AI-powered natural language Q&A about your data aims to provide accurate answers without any hallucinations."
+  },
+  {
+    question: "Can I use LifeTrackr for both personal and work tasks?",
+    answer: "Yes! LifeTrackr is designed to manage all aspects of your life, including personal, work, and everything in between."
+  },
+  // Add more FAQ items here
+];
+
+function FAQItem({ question, answer }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className={styles.faqItem}>
+      <h3 onClick={() => setIsOpen(!isOpen)} style={{ cursor: 'pointer' }}>
+        {question} {isOpen ? '▲' : '▼'}
+      </h3>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.p
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+          >
+            {answer}
+          </motion.p>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

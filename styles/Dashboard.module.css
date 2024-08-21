@@ -132,7 +132,7 @@
 .beta {
   font-size: 0.8rem;
   background-color: var(--secondary-color);
-  color: var(--button-text-color);
+  color: #000000;
   padding: 2px 6px;
   border-radius: 10px;
   margin-left: 5px;
@@ -1111,6 +1111,13 @@
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.input:focus-visible,
+.select:focus-visible,
+.textarea:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 .input:placeholder-shown {
