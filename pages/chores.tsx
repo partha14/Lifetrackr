@@ -274,11 +274,12 @@ export default function Chores() {
 
       if (data && data.length > 0) {
         setChores(chores.map(chore => chore.id === editedChore.id ? data[0] : chore))
-        setEditingChore(null)
-        toast.success('Chore updated successfully!')
       } else {
-        throw new Error('No data returned from update operation')
+        // If no data is returned, update the chore directly
+        setChores(chores.map(chore => chore.id === editedChore.id ? editedChore : chore))
       }
+      setEditingChore(null)
+      toast.success('Chore updated successfully!')
     } catch (error) {
       console.error('Error in handleSaveEdit:', error);
       handleError(error, 'Failed to update chore')
