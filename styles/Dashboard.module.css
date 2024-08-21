@@ -157,8 +157,17 @@
 
 .pageContent {
   flex: 1;
-  padding: 2rem;
+  padding: 1rem;
   background-color: var(--background-light);
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .pageContent {
+    padding: 2rem;
+  }
 }
 
 .nav {
@@ -190,13 +199,23 @@
 
 .headerContainer {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 3rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
   background-color: var(--card-background);
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .headerContainer {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+  }
 }
 
 .title {
@@ -616,9 +635,17 @@
   color: var(--text-color);
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  padding: 1rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid #e0e0e0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 2rem;
+  }
 }
 
 .card:hover {
@@ -1169,13 +1196,13 @@
 .formFlexContainer {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .formColumn {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   width: 100%;
 }
 
@@ -1184,6 +1211,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+  }
+  
+  .formColumn {
+    gap: 1.5rem;
   }
 }
 
