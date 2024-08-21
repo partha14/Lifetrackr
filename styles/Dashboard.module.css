@@ -507,38 +507,29 @@
   gap: 0.5rem;
 }
 
-.editButton,
 .deleteButton {
-  background-color: transparent;
+  background-color: var(--error-color);
+  color: white;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
-  font-size: 1.1rem;
-  transition: color 0.3s ease, transform 0.2s ease;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
-}
-
-.editButton {
-  color: var(--secondary-color);
-}
-
-.editButton:hover {
-  color: var(--secondary-color-dark);
-  transform: scale(1.1);
-}
-
-.deleteButton {
-  color: var(--error-color);
+  border-radius: 4px;
+  gap: 0.5rem;
 }
 
 .deleteButton:hover {
-  color: var(--error-color-dark);
-  transform: scale(1.1);
+  background-color: var(--error-color-dark);
+  transform: translateY(-2px);
+}
+
+.deleteButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--error-color-light);
 }
 
 .completeButton {
