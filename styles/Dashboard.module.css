@@ -1353,6 +1353,26 @@
   padding: 2rem;
 }
 
+.addChoreSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.toggleFormButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.toggleFormButton:hover {
+  transform: scale(1.1);
+}
+
 .formGrid {
   gap: 2.5rem;
 }

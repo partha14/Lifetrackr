@@ -4,7 +4,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import Layout from '../components/Layout'
 import styles from '../styles/Dashboard.module.css'
 import { useRouter } from 'next/router'
-import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown } from 'react-icons/fa'
+import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown, FaChevronUp } from 'react-icons/fa'
 import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
 import toast, { Toaster } from 'react-hot-toast'
@@ -80,6 +80,7 @@ export default function Chores() {
   const [recurrence, setRecurrence] = useState('none')
   const [notes, setNotes] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
+  const [isFormVisible, setIsFormVisible] = useState(false)
 
   const getUserId = useCallback(async () => {
     try {
@@ -220,8 +221,17 @@ export default function Chores() {
           </div>
           
           <div className={`${styles.addChoreSection} ${styles.card}`}>
-            <h2 className={styles.sectionTitle}>Add New Chore</h2>
-            <div className={styles.formFlexContainer}>
+            <div className={styles.addChoreSectionHeader}>
+              <h2 className={styles.sectionTitle}>Add New Chore</h2>
+              <button 
+                className={styles.toggleFormButton}
+                onClick={() => setIsFormVisible(!isFormVisible)}
+              >
+                {isFormVisible ? <FaChevronUp /> : <FaChevronDown />}
+              </button>
+            </div>
+            {isFormVisible && (
+              <div className={styles.formFlexContainer}>
               <div className={styles.formColumn}>
                 <div className={`${styles.categorySelector} ${styles.mobileOnly}`}>
                   <select
@@ -360,13 +370,14 @@ export default function Chores() {
                   />
                 </div>
               </div>
-            </div>
-            
-            <div className={styles.formGroup}>
-              <button onClick={addChore} className={`${styles.button} ${styles.addButton}`}>
-                <FaPlus /> Add Chore
-              </button>
-            </div>
+              </div>
+              
+              <div className={styles.formGroup}>
+                <button onClick={addChore} className={`${styles.button} ${styles.addButton}`}>
+                  <FaPlus /> Add Chore
+                </button>
+              </div>
+            )}
           </div>
           
           {isLoading ? (
