@@ -37,13 +37,6 @@ interface Chore {
   user_id: string;
 }
 
-
-export default function Chores() {
-
-// ... (rest of the component code)
-
-}
-
 interface EditChoreFormProps {
   chore: Chore;
   onSave: (editedChore: Chore) => void;
@@ -122,6 +115,8 @@ function EditChoreForm({ chore, onSave, onCancel }: EditChoreFormProps) {
     </form>
   );
 }
+
+export default function Chores() {
   const [chores, setChores] = useState<Chore[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [user_id, setUserId] = useState<string | null>(null)
