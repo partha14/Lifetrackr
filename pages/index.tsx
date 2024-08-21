@@ -33,15 +33,15 @@ export default function Home() {
 
         <section className={styles.hero}>
           <h1>Beyond Home Management: Your All-in-One Life Assistant</h1>
-          <h2>LifeTrackr: Simplifying Your Home and Life</h2>
-          <p>Manage purchases, track warranties, schedule chores, and much more.</p>
-          <p>LifeTrackr: Your digital memory for a smarter, organized life.</p>
-          <p>Join our beta and experience the next level of life management!</p>
+          <h2>LifeTrackr: Revolutionizing Household Management and Life Organization</h2>
+          <p>Elevate your home management experience: Manage purchases, track warranties, schedule household chores, and much more.</p>
+          <p>LifeTrackr: Your digital memory for a smarter, organized home and life.</p>
+          <p>Join our beta and experience the next level of household and life management!</p>
           <Link href="/signup" className={styles.ctaButton}>Start Your Free Trial</Link>
         </section>
 
         <section className={styles.comparison}>
-          <h2>Why Choose LifeTrackr?</h2>
+          <h2>Why Choose LifeTrackr for Home Management?</h2>
           <div className={styles.comparisonGrid}>
             <div className={styles.comparisonHeader}>
               <h3>Feature</h3>
@@ -50,8 +50,8 @@ export default function Home() {
             </div>
             <div className={styles.comparisonRow}>
               <span>Management Scope</span>
-              <span>Comprehensive life management</span>
-              <span>Limited to home management</span>
+              <span>Comprehensive household and life management</span>
+              <span>Limited to basic home management</span>
             </div>
             <div className={styles.comparisonRow}>
               <span>Task Scheduling</span>
@@ -144,9 +144,9 @@ export default function Home() {
         </section>
 
         <section className={styles.cta}>
-          <h2>Experience the Future of Life Management</h2>
-          <p>Join LifeTrackr Beta today and transform the way you organize your life!</p>
-          <Link href="/signup" className={styles.ctaButton}>Start Your Free Trial</Link>
+          <h2>Experience the Future of Home and Life Management</h2>
+          <p>Join LifeTrackr Beta today and transform the way you organize your household and life!</p>
+          <Link href="/signup" className={styles.ctaButton}>Start Your Free Home Management Trial</Link>
         </section>
 
         <section className={styles.aiShowcase}>
