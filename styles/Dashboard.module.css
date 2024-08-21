@@ -1512,22 +1512,39 @@
 
 .formActions {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
   gap: 1rem;
   margin-top: 1rem;
+}
+
+@media (min-width: 480px) {
+  .formActions {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
 }
 
 .button {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1rem;
   border: none;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.1s ease;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .button {
+    width: auto;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
 }
 
 .button:hover {
