@@ -545,12 +545,6 @@ export default function Chores() {
                               </div>
                             )}
                           </div>
-                          <button 
-                            onClick={() => handleCompleteChore(chore.id)} 
-                            className={styles.completeButton}
-                          >
-                            <FaCheckCircle /> Mark as Complete
-                          </button>
                         </>
                       )}
                     </div>
