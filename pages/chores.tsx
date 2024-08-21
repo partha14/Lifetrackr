@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown } from 'react-icons/fa'
 import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
+import toast, { Toaster } from 'react-hot-toast'
 
 const choreCategories = [
   { name: 'Home', color: 'home', icon: '🏠', templates: ['Replace air filters', 'Clean gutters', 'Check smoke detectors', 'Seal windows', 'Service HVAC'] },
@@ -152,17 +153,17 @@ export default function Chores() {
         console.log('Chore added successfully:', data)
         await fetchChores()
         resetForm()
-        alert('Chore added successfully!')
+        toast.success('Chore added successfully!')
       } catch (error) {
         console.error('Failed to add chore:', error)
         if (error instanceof Error) {
-          alert(`Failed to add chore: ${error.message}`)
+          toast.error(`Failed to add chore: ${error.message}`)
         } else {
-          alert('Failed to add chore. Please try again.')
+          toast.error('Failed to add chore. Please try again.')
         }
       }
     } else {
-      alert('Please fill in all required fields.')
+      toast.error('Please fill in all required fields.')
     }
   }
 
@@ -185,7 +186,7 @@ export default function Chores() {
         if (error) throw error
         
         fetchChores()
-        alert('Chore deleted successfully!')
+        toast.success('Chore deleted successfully!')
       } catch (error) {
         handleError(error, 'Failed to delete chore')
       }
@@ -209,6 +210,7 @@ export default function Chores() {
   return (
     <ErrorBoundary>
       <Layout>
+        <Toaster position="top-right" />
         <div className={styles.pageContent}>
           <div className={styles.headerContainer}>
             <h1 className={styles.title}><FaClipboardList /> My Chores</h1>
