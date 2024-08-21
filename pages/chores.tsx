@@ -250,7 +250,7 @@ export default function Chores() {
 
   const handleSaveEdit = async (editedChore: Chore) => {
     try {
-      console.log('Edited chore:', editedChore); // Log the edited chore
+      console.log('Edited chore:', editedChore);
 
       if (!editedChore || !editedChore.id) {
         throw new Error('Invalid chore data');
@@ -270,19 +270,21 @@ export default function Chores() {
 
       if (error) throw error
 
-      console.log('Update response:', data); // Log the response
+      console.log('Update response:', data);
 
       if (data && data.length > 0) {
-        setChores(chores.map(chore => chore.id === editedChore.id ? data[0] : chore))
+        setChores(prevChores => prevChores.map(chore => chore.id === editedChore.id ? data[0] : chore));
       } else {
-        // If no data is returned, update the chore directly
-        setChores(chores.map(chore => chore.id === editedChore.id ? editedChore : chore))
+        setChores(prevChores => prevChores.map(chore => chore.id === editedChore.id ? editedChore : chore));
       }
-      setEditingChore(null)
-      toast.success('Chore updated successfully!')
+      setEditingChore(null);
+      toast.success('Chore updated successfully!');
+      
+      // Fetch chores again to ensure we have the latest data
+      await fetchChores();
     } catch (error) {
       console.error('Error in handleSaveEdit:', error);
-      handleError(error, 'Failed to update chore')
+      handleError(error, 'Failed to update chore');
     }
   }
 
