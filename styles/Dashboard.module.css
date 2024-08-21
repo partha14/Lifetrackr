@@ -898,53 +898,86 @@
   box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
 }
 
-.categoryTabs {
+/* .categoryTabs {
   display: none;
 }
 
 @media (min-width: 769px) {
-  .categorySelector {
-    display: none;
-  }
-
   .categoryTabs {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 1rem;
-    flex-wrap: nowrap;
+    margin-bottom: rem;
+    flex-wrap: nowrap; 
   }
 
   .categoryTab {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; 
     align-items: center;
     padding: 0.75rem;
     border: none;
     background: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    flex: 1;
-  }
-
-  .categoryTab:hover {
-    background-color: var(--secondary-color-light);
-  }
-
-  .activeTab {
-    background-color: var(--secondary-color-light);
-    font-weight: bold;
+    flex: 1; 
   }
 
   .categoryIcon {
     font-size: 2rem;
-    margin-bottom: 0.5rem;
+    margin-right: 0.5rem; 
   }
 
   .categoryName {
     font-size: 0.9rem;
-    text-align: center;
+    text-align: left; 
+  }
+} */
+
+.categoryTabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+  flex-wrap: nowrap;
+}
+
+.categoryTab {
+  display: inline-flex;
+  flex-direction: row; /* Default to vertical alignment */
+  align-items: center;
+  padding: 0.75rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+@media screen and (min-width: 768px) {
+  .categoryTab {
+    flex-direction: row; /* Change to horizontal alignment on larger screens */
+    justify-content: center; /* Center content within the button */
   }
 }
+
+.categoryTab:hover {
+  background-color: var(--secondary-color-light);
+}
+
+.activeTab {
+  background-color: var(--secondary-color-light);
+  font-weight: bold;
+}
+
+.categoryIcon {
+  font-size: 2rem;
+  margin-right: 0.5rem; /* Space between icon and name */
+}
+
+.categoryName {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 
 @media (max-width: 768px) {
   .categoryTabs {
@@ -1338,3 +1371,4 @@
     display: none;
   }
 }
+
