@@ -1377,3 +1377,9 @@
   }
 }
 
+@media (max-width: 768px) {                                           
+  .dropdownContainer {                                                
+    margin-bottom: 13rem;                                              
+  }                                                                   
+                                                                      
+}
