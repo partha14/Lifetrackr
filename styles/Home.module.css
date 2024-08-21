@@ -646,3 +646,41 @@
   background-color: #0070f3;
   color: white;
 }
+.comparison {
+  margin: 2rem 0;
+}
+
+.comparisonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.comparisonHeader {
+  display: contents;
+}
+
+.comparisonHeader h3 {
+  font-weight: bold;
+  padding: 0.5rem;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.comparisonRow {
+  display: contents;
+}
+
+.comparisonRow span {
+  padding: 0.5rem;
+  border: 1px solid #e0e0e0;
+}
+
+.comparisonRow span:first-child {
+  font-weight: bold;
+}
+
+.comparisonRow:nth-child(even) {
+  background-color: #f9f9f9;
+}
