@@ -58,58 +58,77 @@ function EditChoreForm({ chore, onSave, onCancel }: EditChoreFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className={styles.editForm}>
-      <input
-        type="text"
-        name="name"
-        value={editedChore.name}
-        onChange={handleChange}
-        className={styles.input}
-        required
-      />
-      <input
-        type="date"
-        name="dueDate"
-        value={editedChore.dueDate.split('T')[0]}
-        onChange={handleChange}
-        className={styles.input}
-        required
-      />
-      <div className={styles.checkboxGroup}>
+      <div className={styles.formGroup}>
+        <label htmlFor="name" className={styles.label}>Chore Name</label>
         <input
-          type="checkbox"
-          name="isRecurring"
-          checked={editedChore.isRecurring}
-          onChange={(e) => setEditedChore(prev => ({ ...prev, isRecurring: e.target.checked }))}
-          className={styles.checkbox}
-        />
-        <label>Recurring</label>
-      </div>
-      {editedChore.isRecurring && (
-        <select
-          name="recurringPeriod"
-          value={editedChore.recurringPeriod}
+          id="name"
+          type="text"
+          name="name"
+          value={editedChore.name}
           onChange={handleChange}
           className={styles.input}
-        >
-          <option value="daily">Daily</option>
-          <option value="weekly">Weekly</option>
-          <option value="monthly">Monthly</option>
-          <option value="yearly">Yearly</option>
-        </select>
+          required
+        />
+      </div>
+      <div className={styles.formGroup}>
+        <label htmlFor="dueDate" className={styles.label}>Due Date</label>
+        <input
+          id="dueDate"
+          type="date"
+          name="dueDate"
+          value={editedChore.dueDate.split('T')[0]}
+          onChange={handleChange}
+          className={styles.input}
+          required
+        />
+      </div>
+      <div className={styles.formGroup}>
+        <div className={styles.checkboxGroup}>
+          <input
+            id="isRecurring"
+            type="checkbox"
+            name="isRecurring"
+            checked={editedChore.isRecurring}
+            onChange={(e) => setEditedChore(prev => ({ ...prev, isRecurring: e.target.checked }))}
+            className={styles.checkbox}
+          />
+          <label htmlFor="isRecurring" className={styles.checkboxLabel}>Recurring</label>
+        </div>
+      </div>
+      {editedChore.isRecurring && (
+        <div className={styles.formGroup}>
+          <label htmlFor="recurringPeriod" className={styles.label}>Recurrence</label>
+          <select
+            id="recurringPeriod"
+            name="recurringPeriod"
+            value={editedChore.recurringPeriod}
+            onChange={handleChange}
+            className={styles.select}
+          >
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+          </select>
+        </div>
       )}
-      <textarea
-        name="notes"
-        value={editedChore.notes || ''}
-        onChange={handleChange}
-        className={styles.textarea}
-        placeholder="Notes (optional)"
-      />
+      <div className={styles.formGroup}>
+        <label htmlFor="notes" className={styles.label}>Notes (optional)</label>
+        <textarea
+          id="notes"
+          name="notes"
+          value={editedChore.notes || ''}
+          onChange={handleChange}
+          className={styles.textarea}
+          placeholder="Add any additional details"
+        />
+      </div>
       <div className={styles.formActions}>
-        <button type="submit" className={styles.saveButton}>
-          <FaSave /> Save
+        <button type="submit" className={`${styles.button} ${styles.saveButton}`}>
+          <FaSave className={styles.buttonIcon} /> Save Changes
         </button>
-        <button type="button" onClick={onCancel} className={styles.cancelButton}>
-          <FaTimes /> Cancel
+        <button type="button" onClick={onCancel} className={`${styles.button} ${styles.cancelButton}`}>
+          <FaTimes className={styles.buttonIcon} /> Cancel
         </button>
       </div>
     </form>
