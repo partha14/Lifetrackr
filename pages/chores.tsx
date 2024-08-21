@@ -2,6 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import LoadingSpinner from '../components/LoadingSpinner'
 import Layout from '../components/Layout'
+import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown, FaChevronUp, FaTimes, FaEdit, FaSave } from 'react-icons/fa'
+import TypingEffect from '../components/TypingEffect'
+import { handleError } from '../utils/errorHandler'
+import toast, { Toaster } from 'react-hot-toast'
+import styles from '../styles/Dashboard.module.css'
 import styles from '../styles/Dashboard.module.css'
 import { useRouter } from 'next/router'
 import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown, FaChevronUp, FaTimes, FaEdit, FaSave } from 'react-icons/fa'
@@ -125,10 +130,10 @@ function EditChoreForm({ chore, onSave, onCancel }: EditChoreFormProps) {
       </div>
       <div className={styles.formActions}>
         <button type="submit" className={`${styles.button} ${styles.saveButton}`}>
-          <FaSave className={styles.buttonIcon} /> 
+          <FaSave className={styles.buttonIcon} /> Save
         </button>
         <button type="button" onClick={onCancel} className={`${styles.button} ${styles.cancelButton}`}>
-          <FaTimes className={styles.buttonIcon} /> 
+          <FaTimes className={styles.buttonIcon} /> Cancel
         </button>
       </div>
     </form>
