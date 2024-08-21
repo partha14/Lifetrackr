@@ -42,26 +42,36 @@ export default function Home() {
 
         <section className={styles.comparison}>
           <h2>Why Choose LifeTrackr?</h2>
-          <div className={styles.comparisonTable}>
-            <div className={styles.comparisonItem}>
+          <div className={styles.comparisonGrid}>
+            <div className={styles.comparisonHeader}>
+              <h3>Feature</h3>
               <h3>LifeTrackr</h3>
-              <ul>
-                <li>Comprehensive life management</li>
-                <li>Smart chore scheduling</li>
-                <li>Purchase tracking with warranty alerts</li>
-                <li>AI-powered assistance (coming soon)</li>
-                <li>Customizable for any lifestyle</li>
-              </ul>
-            </div>
-            <div className={styles.comparisonItem}>
               <h3>Other Apps</h3>
-              <ul>
-                <li>Limited to home management</li>
-                <li>Basic task tracking</li>
-                <li>Manual warranty tracking</li>
-                <li>No AI integration</li>
-                <li>One-size-fits-all approach</li>
-              </ul>
+            </div>
+            <div className={styles.comparisonRow}>
+              <span>Management Scope</span>
+              <span>Comprehensive life management</span>
+              <span>Limited to home management</span>
+            </div>
+            <div className={styles.comparisonRow}>
+              <span>Task Scheduling</span>
+              <span>Smart chore scheduling</span>
+              <span>Basic task tracking</span>
+            </div>
+            <div className={styles.comparisonRow}>
+              <span>Purchase Tracking</span>
+              <span>With warranty alerts</span>
+              <span>Manual warranty tracking</span>
+            </div>
+            <div className={styles.comparisonRow}>
+              <span>AI Integration</span>
+              <span>AI-powered assistance (coming soon)</span>
+              <span>No AI integration</span>
+            </div>
+            <div className={styles.comparisonRow}>
+              <span>Customization</span>
+              <span>Customizable for any lifestyle</span>
+              <span>One-size-fits-all approach</span>
             </div>
           </div>
         </section>
