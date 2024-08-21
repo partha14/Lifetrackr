@@ -357,11 +357,16 @@ export default function Chores() {
           ) : (
             <>
               {chores.length > 0 ? (
-                <ul className={styles.choreList}>
+                <div className={styles.choreGrid}>
                   {chores.map((chore) => (
-                    <li key={chore.id} className={styles.choreItem}>
-                      <div className={styles.choreInfo}>
+                    <div key={chore.id} className={styles.choreCard}>
+                      <div className={styles.choreHeader}>
                         <h3 className={styles.choreTitle}>{chore.name}</h3>
+                        <button onClick={() => handleDeleteChore(chore.id)} className={styles.deleteButton}>
+                          <FaTrash />
+                        </button>
+                      </div>
+                      <div className={styles.choreInfo}>
                         <p className={styles.choreDate}>
                           <FaCalendarAlt className={styles.icon} /> {new Date(chore.dueDate).toLocaleDateString()}
                         </p>
@@ -370,13 +375,15 @@ export default function Chores() {
                             <FaRecycle className={styles.icon} /> {chore.recurringPeriod}
                           </p>
                         )}
+                        {chore.notes && (
+                          <p className={styles.choreNotes}>
+                            <FaStickyNote className={styles.icon} /> {chore.notes}
+                          </p>
+                        )}
                       </div>
-                      <button onClick={() => handleDeleteChore(chore.id)} className={styles.deleteButton}>
-                        <FaTrash />
-                      </button>
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
               ) : (
                 <div className={styles.noChores}>
                   <FaClipboardList className={styles.noChoresIcon} />

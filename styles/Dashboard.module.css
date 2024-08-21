@@ -435,10 +435,75 @@
   margin-bottom: 1rem;
 }
 
-.choreList {
-  list-style-type: none;
-  padding: 0;
+.choreGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.choreCard {
+  background-color: var(--card-background);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.choreCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.choreHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.choreTitle {
+  font-size: 1.3rem;
   margin: 0;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.choreInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.choreDate,
+.choreRecurring,
+.choreNotes {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  color: var(--text-color-secondary);
+}
+
+.icon {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+
+.deleteButton {
+  background-color: transparent;
+  border: none;
+  color: var(--error-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.deleteButton:hover {
+  color: var(--error-color-dark);
+  transform: scale(1.1);
 }
 
 @keyframes fadeIn {
@@ -452,83 +517,9 @@
   }
 }
 
-.choreItem {
-  animation: fadeIn 0.5s ease-out;
-}
-
-.choreItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid var(--border-color);
-  background-color: var(--card-background);
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.choreItem:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.choreItem:last-child {
-  border-bottom: none;
-}
-
-.choreInfo {
-  flex: 1;
-}
-
-.choreTitle {
-  font-size: 1.2rem;
-  margin: 0 0 0.5rem 0;
-  color: var(--primary-color);
-}
-
-.choreDate,
-.choreRecurring {
-  font-size: 0.9rem;
-  color: var(--text-color-secondary);
-  display: flex;
-  align-items: center;
-  margin: 0.25rem 0;
-}
-
-.icon {
-  margin-right: 0.5rem;
-}
-
-.deleteButton {
-  background-color: transparent;
-  border: none;
-  color: var(--error-color);
-  cursor: pointer;
-  padding: 0.5rem;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-.deleteButton:hover {
-  color: var(--error-color-dark);
-}
-
-@media (min-width: 769px) {
-  .choreList {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
-  }
-
-  .choreItem {
-    flex-direction: column;
-    align-items: flex-start;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-  }
-
-  .deleteButton {
-    align-self: flex-end;
-    margin-top: 1rem;
+@media (max-width: 768px) {
+  .choreGrid {
+    grid-template-columns: 1fr;
   }
 }
 
