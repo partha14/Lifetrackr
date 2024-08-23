@@ -262,6 +262,10 @@ export default function Chores() {
         throw new Error('Chore ID is missing');
       }
 
+      if (!user_id) {
+        throw new Error('User ID is missing');
+      }
+
       const { error } = await supabase
         .from('chores')
         .update({
@@ -270,6 +274,7 @@ export default function Chores() {
           isRecurring: editedChore.isRecurring,
           recurringPeriod: editedChore.isRecurring ? editedChore.recurringPeriod : null,
           notes: editedChore.notes,
+          user_id: user_id, // Include the user_id in the update
         })
         .eq('id', choreId)
 
@@ -281,7 +286,7 @@ export default function Chores() {
       console.log('Chore updated successfully');
       // Ensure the updated chore is reflected in the state
       setChores(prevChores => prevChores.map(chore => 
-        chore.id === choreId ? { ...chore, ...editedChore } : chore // Merge changes
+        chore.id === choreId ? { ...chore, ...editedChore, user_id } : chore // Merge changes and include user_id
       ));
       setEditingChore(null);
       toast.success('Chore updated successfully!');
