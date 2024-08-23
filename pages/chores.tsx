@@ -269,9 +269,9 @@ export default function Chores() {
           isRecurring: editedChore.isRecurring,
           recurringPeriod: editedChore.isRecurring ? editedChore.recurringPeriod : null,
           notes: editedChore.notes,
+          user_id: editedChore.user_id,
         })
         .eq('id', editedChore.id)
-        .eq('user_id', editedChore.user_id)
         .select()
 
       if (error) {
@@ -290,7 +290,7 @@ export default function Chores() {
         toast.success('Chore updated successfully!');
       } else {
         console.error('No data returned from update operation');
-        toast.error('Failed to update chore. Please try again.');
+        throw new Error('No data returned from update operation');
       }
 
     } catch (error) {
