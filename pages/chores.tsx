@@ -286,7 +286,13 @@ export default function Chores() {
         setEditingChore(null);
         toast.success('Chore updated successfully!');
       } else {
-        throw new Error('No data returned from update operation');
+        // If no data is returned, assume the update was successful
+        // and update the local state with the edited chore
+        setChores(prevChores => prevChores.map(chore => 
+          chore.id === editedChore.id ? editedChore : chore
+        ));
+        setEditingChore(null);
+        toast.success('Chore updated successfully!');
       }
 
       // Fetch chores again to ensure state is in sync with the database
