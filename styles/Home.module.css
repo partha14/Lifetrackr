@@ -541,7 +541,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
@@ -570,6 +570,28 @@
   font-weight: bold;
   color: #4a90e2;
   font-size: 1.1rem;
+}
+
+@media (min-width: 1200px) {
+  .screenshotGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .screenshotItem {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .screenshotGrid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .screenshotItem {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 @media (max-width: 768px) {

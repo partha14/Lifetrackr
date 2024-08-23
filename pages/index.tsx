@@ -66,15 +66,15 @@ export default function Home() {
           <h2>See LifeTrackr in Action</h2>
           <div className={styles.screenshotGrid}>
             <div className={styles.screenshotItem}>
-              <Image src="/UI-screenshot.png" alt="LifeTrackr UI" width={400} height={300} />
+              <Image src="/UI-screenshot.png" alt="LifeTrackr UI" width={600} height={450} layout="responsive" />
               <p>Intuitive User Interface</p>
             </div>
             <div className={styles.screenshotItem}>
-              <Image src="/Calendarview.png" alt="Calendar View" width={400} height={300} />
+              <Image src="/Calendarview.png" alt="Calendar View" width={600} height={450} layout="responsive" />
               <p>Organized Calendar View</p>
             </div>
             <div className={styles.screenshotItem}>
-              <Image src="/ListOfChores.png" alt="List of Chores" width={400} height={300} />
+              <Image src="/ListOfChores.png" alt="List of Chores" width={600} height={450} layout="responsive" />
               <p>Comprehensive Chore List</p>
             </div>
           </div>
