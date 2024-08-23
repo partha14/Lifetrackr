@@ -591,7 +591,20 @@ export default function Chores() {
               }))}
               startAccessor="start"
               endAccessor="end"
-              style={{ height: 500 }}
+              style={{ height: 600 }}
+              views={['month', 'week', 'day']}
+              defaultView="month"
+              toolbar={true}
+              className={styles.reactBigCalendar}
+              eventPropGetter={(event) => ({
+                className: styles.calendarEvent,
+                style: {
+                  backgroundColor: event.title.toLowerCase().includes('clean') ? '#4CAF50' :
+                                   event.title.toLowerCase().includes('car') ? '#2196F3' :
+                                   event.title.toLowerCase().includes('garden') ? '#FF9800' :
+                                   event.title.toLowerCase().includes('home') ? '#9C27B0' : '#E91E63',
+                },
+              })}
             />
           </div>
         </div>

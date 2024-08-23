@@ -906,6 +906,85 @@
 
   .calendarSection {
     margin-top: 2rem;
+    background-color: var(--card-background);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .reactBigCalendar {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .reactBigCalendar .rbc-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+  }
+
+  .reactBigCalendar .rbc-month-view {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .reactBigCalendar .rbc-day-bg {
+    background-color: var(--background-light);
+  }
+
+  .reactBigCalendar .rbc-off-range-bg {
+    background-color: var(--background-dark);
+  }
+
+  .reactBigCalendar .rbc-today {
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+  }
+
+  .calendarEvent {
+    border-radius: 4px;
+    color: white;
+    padding: 2px 5px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .reactBigCalendar .rbc-toolbar {
+    margin-bottom: 1rem;
+  }
+
+  .reactBigCalendar .rbc-toolbar button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .reactBigCalendar .rbc-toolbar button:hover {
+    background-color: var(--primary-color-dark);
+  }
+
+  .reactBigCalendar .rbc-toolbar button.rbc-active {
+    background-color: var(--secondary-color);
+  }
+
+  @media (max-width: 768px) {
+    .calendarSection {
+      padding: 1rem;
+    }
+
+    .reactBigCalendar {
+      font-size: 0.9rem;
+    }
+
+    .calendarEvent {
+      font-size: 0.75rem;
+    }
   }
 
   .cardGrid {
