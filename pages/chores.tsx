@@ -261,20 +261,15 @@ export default function Chores() {
         throw new Error('User ID is missing');
       }
 
-      const updatedChore = {
-        name: editedChore.name,
-        dueDate: new Date(editedChore.dueDate).toISOString(),
-        isRecurring: editedChore.isRecurring,
-        recurringPeriod: editedChore.isRecurring ? editedChore.recurringPeriod : null,
-        notes: editedChore.notes,
-        user_id: editedChore.user_id
-      };
-
-      console.log('Sending update to Supabase:', updatedChore);
-
       const { data, error } = await supabase
         .from('chores')
-        .update(updatedChore)
+        .update({
+          name: editedChore.name,
+          dueDate: new Date(editedChore.dueDate).toISOString(),
+          isRecurring: editedChore.isRecurring,
+          recurringPeriod: editedChore.isRecurring ? editedChore.recurringPeriod : null,
+          notes: editedChore.notes,
+        })
         .eq('id', editedChore.id)
         .eq('user_id', editedChore.user_id)
         .select()
@@ -291,19 +286,12 @@ export default function Chores() {
         setChores(prevChores => prevChores.map(chore => 
           chore.id === editedChore.id ? data[0] : chore
         ));
+        setEditingChore(null);
+        toast.success('Chore updated successfully!');
       } else {
-        console.log('No data returned, updating local state with edited chore');
-        setChores(prevChores => prevChores.map(chore => 
-          chore.id === editedChore.id ? editedChore : chore
-        ));
+        console.error('No data returned from update operation');
+        toast.error('Failed to update chore. Please try again.');
       }
-
-      setEditingChore(null);
-      toast.success('Chore updated successfully!');
-
-      // Fetch chores again to ensure state is in sync with the database
-      console.log('Fetching chores to sync state');
-      await fetchChores();
 
     } catch (error) {
       console.error('Error in handleSaveEdit:', error);
