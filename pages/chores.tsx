@@ -105,10 +105,10 @@ function EditChoreForm({ chore, onSave, onCancel }: EditChoreFormProps) {
             onChange={handleChange}
             className={styles.select}
           >
-            <option value="daily">Daily</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
-            <option value="yearly">Yearly</option>
+            <option key="daily" value="daily">Daily</option>
+            <option key="weekly" value="weekly">Weekly</option>
+            <option key="monthly" value="monthly">Monthly</option>
+            <option key="yearly" value="yearly">Yearly</option>
           </select>
         </div>
       )}
@@ -245,9 +245,9 @@ export default function Chores() {
     setSearchTerm('')
   }
 
-  const handleEditChore = (chore: Chore) => {
+  const handleEditChore = useCallback((chore: Chore) => {
     setEditingChore(chore)
-  }
+  }, [])
 
   const handleSaveEdit = async (editedChore: Chore) => {
     try {
