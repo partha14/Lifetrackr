@@ -62,6 +62,23 @@ export default function Home() {
           />
         </section>
 
+        <section className={styles.screenshots}>
+          <h2>See LifeTrackr in Action</h2>
+          <div className={styles.screenshotGrid}>
+            <div className={styles.screenshotItem}>
+              <Image src="/UI-screenshot.png" alt="LifeTrackr UI" width={400} height={300} />
+              <p>Intuitive User Interface</p>
+            </div>
+            <div className={styles.screenshotItem}>
+              <Image src="/Calendarview.png" alt="Calendar View" width={400} height={300} />
+              <p>Organized Calendar View</p>
+            </div>
+            <div className={styles.screenshotItem}>
+              <Image src="/ListOfChores.png" alt="List of Chores" width={400} height={300} />
+              <p>Comprehensive Chore List</p>
+            </div>
+          </div>
+        </section>
 
         <section className={styles.howItWorks}>
           <h2>How It Works</h2>
@@ -141,23 +158,7 @@ export default function Home() {
           <Link href="/signup" className={styles.ctaButton}>Start For Free</Link>
         </section>
 
-        <section className={styles.screenshots}>
-          <h2>See LifeTrackr in Action</h2>
-          <div className={styles.screenshotGrid}>
-            <div className={styles.screenshotItem}>
-              <Image src="/UI-screenshot.png" alt="LifeTrackr UI" width={400} height={300} />
-              <p>Intuitive User Interface</p>
-            </div>
-            <div className={styles.screenshotItem}>
-              <Image src="/Calendarview.png" alt="Calendar View" width={400} height={300} />
-              <p>Organized Calendar View</p>
-            </div>
-            <div className={styles.screenshotItem}>
-              <Image src="/ListOfChores.png" alt="List of Chores" width={400} height={300} />
-              <p>Comprehensive Chore List</p>
-            </div>
-          </div>
-        </section>
+
 
         <section className={styles.aiShowcase}>
           <h2>Coming Soon: AI-Powered Assistance</h2>
