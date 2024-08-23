@@ -62,6 +62,7 @@ export default function Home() {
           />
         </section>
 
+
         <section className={styles.howItWorks}>
           <h2>How It Works</h2>
           <div className={styles.steps}>
