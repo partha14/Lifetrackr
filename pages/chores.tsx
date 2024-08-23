@@ -545,7 +545,7 @@ export default function Chores() {
                           <div className={styles.choreInfo}>
                             <div className={styles.choreInfoItem}>
                               <FaCalendarAlt className={styles.icon} />
-                              <span>{new Date(chore.dueDate).toLocaleDateString()}</span>
+                              <span>{new Date(chore.dueDate).toISOString().split('T')[0]}</span>
                             </div>
                             {chore.isRecurring && (
                               <div className={styles.choreInfoItem}>
