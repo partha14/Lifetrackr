@@ -198,7 +198,7 @@ export default function Chores() {
     }
   }, [user_id, fetchChores])
 
-  const addChore = async () => {
+  const addChore = useCallback(async () => {
     if (choreName && selectedCategory && user_id) {
       try {
         const newChore = {
@@ -235,7 +235,7 @@ export default function Chores() {
     } else {
       toast.error('Please fill in all required fields.')
     }
-  }
+  }, [choreName, selectedCategory, user_id, dueDate, recurrence, notes, fetchChores])
 
   const resetForm = () => {
     setChoreName('')
@@ -316,9 +316,11 @@ export default function Chores() {
     }
   }
 
-  const filteredTemplates = choreCategories
-    .find(c => c.name === selectedCategory)
-    ?.templates.filter(t => t.toLowerCase().includes(searchTerm.toLowerCase())) || []
+  const filteredTemplates = useMemo(() => {
+    return choreCategories
+      .find(c => c.name === selectedCategory)
+      ?.templates.filter(t => t.toLowerCase().includes(searchTerm.toLowerCase())) || []
+  }, [selectedCategory, searchTerm])
 
   if (!user_id) {
     return (
