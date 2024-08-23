@@ -907,9 +907,14 @@
   .calendarSection {
     margin-top: 2rem;
     background-color: var(--card-background);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .calendarSection:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
   }
 
   .reactBigCalendar {
@@ -923,14 +928,15 @@
     font-weight: 600;
     border-bottom: none;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
   }
 
   .reactBigCalendar .rbc-month-view {
     border: none;
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   }
 
   .reactBigCalendar .rbc-day-bg {
@@ -940,74 +946,78 @@
 
   .reactBigCalendar .rbc-off-range-bg {
     background-color: var(--background-dark);
-    opacity: 0.5;
+    opacity: 0.3;
   }
 
   .reactBigCalendar .rbc-today {
-    background-color: rgba(var(--primary-color-rgb), 0.1);
+    background-color: rgba(var(--primary-color-rgb), 0.15);
   }
 
   .calendarEvent {
-    border-radius: 6px;
+    border-radius: 8px;
     color: var(--text-color-inverse);
-    padding: 6px 10px;
+    padding: 8px 12px;
     font-size: 0.85rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .calendarEvent:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
   .reactBigCalendar .rbc-toolbar {
     margin-bottom: 2rem;
-    padding: 1rem;
+    padding: 1.5rem;
     background-color: var(--background-light);
-    border-radius: 12px;
+    border-radius: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   }
 
   .reactBigCalendar .rbc-toolbar button {
     background-color: var(--primary-color);
     color: var(--text-color-inverse);
     border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
+    padding: 12px 24px;
+    border-radius: 30px;
     font-weight: 600;
     transition: all 0.3s ease;
     margin: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
   }
 
   .reactBigCalendar .rbc-toolbar button:hover {
     background-color: var(--primary-color-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
   .reactBigCalendar .rbc-toolbar button.rbc-active {
     background-color: var(--secondary-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 
   .reactBigCalendar .rbc-event {
     background-color: var(--primary-color);
     border: none;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
   }
 
   .reactBigCalendar .rbc-event:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
   .reactBigCalendar .rbc-event.rbc-selected {
@@ -1015,13 +1025,15 @@
   }
 
   .reactBigCalendar .rbc-date-cell {
-    padding: 10px;
+    padding: 12px;
     font-weight: 600;
     color: var(--text-color);
+    font-size: 1rem;
   }
 
   .reactBigCalendar .rbc-off-range {
     color: var(--text-color-secondary);
+    opacity: 0.6;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -1039,11 +1051,11 @@
 
     .reactBigCalendar .rbc-off-range-bg {
       background-color: var(--background-darker);
-      opacity: 0.7;
+      opacity: 0.5;
     }
 
     .reactBigCalendar .rbc-today {
-      background-color: rgba(var(--primary-color-rgb), 0.2);
+      background-color: rgba(var(--primary-color-rgb), 0.25);
     }
   }
 
@@ -1058,17 +1070,17 @@
 
     .calendarEvent {
       font-size: 0.75rem;
-      padding: 4px 6px;
+      padding: 6px 8px;
     }
 
     .reactBigCalendar .rbc-toolbar {
       flex-direction: column;
       align-items: stretch;
-      gap: 0.75rem;
+      gap: 1rem;
     }
 
     .reactBigCalendar .rbc-toolbar button {
-      padding: 10px 16px;
+      padding: 12px 20px;
       width: 100%;
     }
   }
