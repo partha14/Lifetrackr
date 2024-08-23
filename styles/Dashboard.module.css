@@ -908,7 +908,7 @@
     margin-top: 2rem;
     background-color: var(--card-background);
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
@@ -918,13 +918,14 @@
 
   .reactBigCalendar .rbc-header {
     background-color: var(--primary-color);
-    color: white;
-    padding: 10px;
+    color: var(--text-color-inverse);
+    padding: 12px;
     font-weight: bold;
+    border-bottom: 1px solid var(--border-color);
   }
 
   .reactBigCalendar .rbc-month-view {
-    border: none;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
   }
@@ -938,13 +939,13 @@
   }
 
   .reactBigCalendar .rbc-today {
-    background-color: rgba(var(--primary-color-rgb), 0.1);
+    background-color: rgba(var(--primary-color-rgb), 0.15);
   }
 
   .calendarEvent {
     border-radius: 4px;
-    color: white;
-    padding: 2px 5px;
+    color: var(--text-color-inverse);
+    padding: 4px 8px;
     font-size: 0.85rem;
     white-space: nowrap;
     overflow: hidden;
@@ -952,25 +953,71 @@
   }
 
   .reactBigCalendar .rbc-toolbar {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    background-color: var(--background-light);
+    border-radius: 8px;
   }
 
   .reactBigCalendar .rbc-toolbar button {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--text-color-inverse);
     border: none;
-    padding: 8px 12px;
+    padding: 10px 16px;
     border-radius: 4px;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
 
   .reactBigCalendar .rbc-toolbar button:hover {
     background-color: var(--primary-color-dark);
+    transform: translateY(-2px);
   }
 
   .reactBigCalendar .rbc-toolbar button.rbc-active {
     background-color: var(--secondary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .reactBigCalendar .rbc-event {
+    background-color: var(--primary-color);
+    border: none;
+  }
+
+  .reactBigCalendar .rbc-event.rbc-selected {
+    background-color: var(--secondary-color);
+  }
+
+  .reactBigCalendar .rbc-date-cell {
+    padding: 8px;
+    font-weight: bold;
+    color: var(--text-color);
+  }
+
+  .reactBigCalendar .rbc-off-range {
+    color: var(--text-color-secondary);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .reactBigCalendar .rbc-header {
+      background-color: var(--primary-color-dark);
+    }
+
+    .reactBigCalendar .rbc-toolbar {
+      background-color: var(--background-dark);
+    }
+
+    .reactBigCalendar .rbc-day-bg {
+      background-color: var(--background-dark);
+    }
+
+    .reactBigCalendar .rbc-off-range-bg {
+      background-color: var(--background-darker);
+    }
+
+    .reactBigCalendar .rbc-today {
+      background-color: rgba(var(--primary-color-rgb), 0.25);
+    }
   }
 
   @media (max-width: 768px) {
@@ -984,6 +1031,17 @@
 
     .calendarEvent {
       font-size: 0.75rem;
+      padding: 2px 4px;
+    }
+
+    .reactBigCalendar .rbc-toolbar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+    }
+
+    .reactBigCalendar .rbc-toolbar button {
+      padding: 8px 12px;
     }
   }
 
