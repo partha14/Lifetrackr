@@ -8,6 +8,9 @@ import { supabase } from '../utils/supabaseClient'
 import { handleError } from '../utils/errorHandler'
 import { toast } from 'react-hot-toast'
 import Link from 'next/link'
+import { Calendar, momentLocalizer } from 'react-big-calendar'
+import moment from 'moment'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 interface Purchase {
   id: number;
