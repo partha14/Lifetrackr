@@ -276,15 +276,17 @@ export default function Chores() {
 
       console.log('Update response from Supabase:', data);
 
-      // Always update the state with the edited chore data
-      setChores(prevChores => prevChores.map(chore => chore.id === editedChore.id ? editedChore : chore));
+      // Update the state with the data returned from Supabase
+      if (data && data.length > 0) {
+        setChores(prevChores => prevChores.map(chore => chore.id === editedChore.id ? data[0] : chore));
+      } else {
+        // If no data returned, fall back to using the editedChore
+        setChores(prevChores => prevChores.map(chore => chore.id === editedChore.id ? editedChore : chore));
+      }
 
       setEditingChore(null);
       toast.success('Chore updated successfully!');
       
-      console.log('Fetching all chores to ensure latest data');
-      await fetchChores();
-
       console.log('Current chores after update:', chores);
     } catch (error) {
       console.error('Error in handleSaveEdit:', error);
