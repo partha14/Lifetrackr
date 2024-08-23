@@ -262,7 +262,7 @@ export default function Chores() {
         throw new Error('Chore ID is missing');
       }
 
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('chores')
         .update({
           name: editedChore.name,
@@ -272,26 +272,18 @@ export default function Chores() {
           notes: editedChore.notes,
         })
         .eq('id', choreId)
-        .select()
 
       if (error) {
         console.error('Supabase update error:', error);
         throw error;
       }
 
-      console.log('Update response from Supabase:', data);
-
-      if (data && data.length > 0) {
-        console.log('Updating local state with returned data');
-        setChores(prevChores => prevChores.map(chore => 
-          chore.id === choreId ? data[0] : chore
-        ));
-        setEditingChore(null);
-        toast.success('Chore updated successfully!');
-      } else {
-        console.error('No data returned from update operation');
-        throw new Error('No data returned from update operation');
-      }
+      console.log('Chore updated successfully');
+      setChores(prevChores => prevChores.map(chore => 
+        chore.id === choreId ? editedChore : chore
+      ));
+      setEditingChore(null);
+      toast.success('Chore updated successfully!');
 
     } catch (error) {
       console.error('Error in handleSaveEdit:', error);
