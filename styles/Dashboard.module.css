@@ -904,6 +904,10 @@
     font-size: 0.9rem;
   }
 
+  .calendarSection {
+    margin-top: 2rem;
+  }
+
   .cardGrid {
     gap: 1rem;
   }
