@@ -257,6 +257,10 @@ export default function Chores() {
         throw new Error('Invalid chore data');
       }
 
+      if (!editedChore.user_id) {
+        throw new Error('User ID is missing');
+      }
+
       const updatedChore = {
         name: editedChore.name,
         dueDate: new Date(editedChore.dueDate).toISOString(),
@@ -266,10 +270,13 @@ export default function Chores() {
         user_id: editedChore.user_id
       };
 
+      console.log('Sending update to Supabase:', updatedChore);
+
       const { data, error } = await supabase
         .from('chores')
         .update(updatedChore)
         .eq('id', editedChore.id)
+        .eq('user_id', editedChore.user_id)
         .select()
 
       if (error) {
@@ -280,22 +287,22 @@ export default function Chores() {
       console.log('Update response from Supabase:', data);
 
       if (data && data.length > 0) {
+        console.log('Updating local state with returned data');
         setChores(prevChores => prevChores.map(chore => 
           chore.id === editedChore.id ? data[0] : chore
         ));
-        setEditingChore(null);
-        toast.success('Chore updated successfully!');
       } else {
-        // If no data is returned, assume the update was successful
-        // and update the local state with the edited chore
+        console.log('No data returned, updating local state with edited chore');
         setChores(prevChores => prevChores.map(chore => 
           chore.id === editedChore.id ? editedChore : chore
         ));
-        setEditingChore(null);
-        toast.success('Chore updated successfully!');
       }
 
+      setEditingChore(null);
+      toast.success('Chore updated successfully!');
+
       // Fetch chores again to ensure state is in sync with the database
+      console.log('Fetching chores to sync state');
       await fetchChores();
 
     } catch (error) {
