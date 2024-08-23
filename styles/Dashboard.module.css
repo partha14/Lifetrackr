@@ -1044,11 +1044,17 @@
 
     .reactBigCalendar .rbc-toolbar button:hover {
       background-color: var(--primary-color-light);
+      color: white;
     }
 
     .reactBigCalendar .rbc-toolbar button.rbc-active {
       background-color: var(--secondary-color);
       color: var(--text-color-inverse);
+    }
+
+    .reactBigCalendar .rbc-toolbar button:not(.rbc-active) {
+      color: var(--text-color);
+      background-color: var(--background-dark);
     }
   }
 
