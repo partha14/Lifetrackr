@@ -257,11 +257,14 @@ export default function Chores() {
         throw new Error('Invalid chore data');
       }
 
+      // Ensure the dueDate is in ISO format
+      const formattedDueDate = new Date(editedChore.dueDate).toISOString();
+
       const { data, error } = await supabase
         .from('chores')
         .update({
           name: editedChore.name,
-          dueDate: editedChore.dueDate,
+          dueDate: formattedDueDate,
           isRecurring: editedChore.isRecurring,
           recurringPeriod: editedChore.recurringPeriod,
           notes: editedChore.notes
@@ -276,17 +279,24 @@ export default function Chores() {
 
       console.log('Update response from Supabase:', data);
 
-      // Update the state with the data returned from Supabase
       if (data && data.length > 0) {
-        setChores(prevChores => prevChores.map(chore => chore.id === editedChore.id ? data[0] : chore));
+        // Update the state with the data returned from Supabase
+        setChores(prevChores => prevChores.map(chore => 
+          chore.id === editedChore.id ? { ...data[0], dueDate: formattedDueDate } : chore
+        ));
       } else {
-        // If no data returned, fall back to using the editedChore
-        setChores(prevChores => prevChores.map(chore => chore.id === editedChore.id ? editedChore : chore));
+        // If no data returned, update the state with the edited chore
+        setChores(prevChores => prevChores.map(chore => 
+          chore.id === editedChore.id ? { ...editedChore, dueDate: formattedDueDate } : chore
+        ));
       }
 
       setEditingChore(null);
       toast.success('Chore updated successfully!');
       
+      // Fetch chores again to ensure state is in sync with the database
+      await fetchChores();
+
       console.log('Current chores after update:', chores);
     } catch (error) {
       console.error('Error in handleSaveEdit:', error);
