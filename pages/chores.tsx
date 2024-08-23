@@ -279,8 +279,9 @@ export default function Chores() {
       }
 
       console.log('Chore updated successfully');
+      // Ensure the updated chore is reflected in the state
       setChores(prevChores => prevChores.map(chore => 
-        chore.id === choreId ? editedChore : chore
+        chore.id === choreId ? { ...chore, ...editedChore } : chore // Merge changes
       ));
       setEditingChore(null);
       toast.success('Chore updated successfully!');
