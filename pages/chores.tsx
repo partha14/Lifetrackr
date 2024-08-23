@@ -579,34 +579,6 @@ export default function Chores() {
             </>
           )}
           
-          <div className={styles.calendarSection}>
-            <h2 className={styles.sectionTitle}>Chore Calendar</h2>
-            <Calendar
-              localizer={momentLocalizer(moment)}
-              events={chores.map(chore => ({
-                title: chore.name,
-                start: new Date(chore.dueDate),
-                end: new Date(chore.dueDate),
-                allDay: true,
-              }))}
-              startAccessor="start"
-              endAccessor="end"
-              style={{ height: 600 }}
-              views={['month', 'week', 'day']}
-              defaultView="month"
-              toolbar={true}
-              className={styles.reactBigCalendar}
-              eventPropGetter={(event) => ({
-                className: styles.calendarEvent,
-                style: {
-                  backgroundColor: event.title.toLowerCase().includes('clean') ? '#4CAF50' :
-                                   event.title.toLowerCase().includes('car') ? '#2196F3' :
-                                   event.title.toLowerCase().includes('garden') ? '#FF9800' :
-                                   event.title.toLowerCase().includes('home') ? '#9C27B0' : '#E91E63',
-                },
-              })}
-            />
-          </div>
         </div>
       </Layout>
     </ErrorBoundary>
