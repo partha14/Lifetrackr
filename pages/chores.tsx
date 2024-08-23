@@ -514,6 +514,7 @@ export default function Chores() {
                 <div className={styles.choreGrid}>
                   {chores.map((chore) => (
                     <div key={chore.id} className={styles.choreCard}>
+                      <input type="hidden" value={chore.id} />
                       {editingChore && editingChore.id === chore.id ? (
                         <EditChoreForm
                           chore={editingChore}
