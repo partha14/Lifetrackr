@@ -33,9 +33,9 @@ export default function Home() {
 
         <section className={styles.hero}>
           <h1>LifeTrackr: Your All-in-One Home and Life Assistant</h1>
-          <h2>Revolutionize Your Household Management</h2>
+          <h2>Household Management made seamless</h2>
           <p>Manage purchases, track warranties, and schedule chores effortlessly. Experience smarter home and life organization today!</p>
-          <Link href="/signup" className={styles.ctaButton}>Start Your Free Trial</Link>
+          <Link href="/signup" className={styles.ctaButton}>Sign up for free</Link>
         </section>
 
         <section className={styles.features}>
