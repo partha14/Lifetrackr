@@ -2,6 +2,9 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import LoadingSpinner from '../components/LoadingSpinner'
 import Layout from '../components/Layout'
+import { Calendar, momentLocalizer } from 'react-big-calendar'
+import moment from 'moment'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown, FaChevronUp, FaTimes, FaEdit, FaSave } from 'react-icons/fa'
 import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
@@ -574,6 +577,22 @@ export default function Chores() {
               )}
             </>
           )}
+          
+          <div className={styles.calendarSection}>
+            <h2 className={styles.sectionTitle}>Chore Calendar</h2>
+            <Calendar
+              localizer={momentLocalizer(moment)}
+              events={chores.map(chore => ({
+                title: chore.name,
+                start: new Date(chore.dueDate),
+                end: new Date(chore.dueDate),
+                allDay: true,
+              }))}
+              startAccessor="start"
+              endAccessor="end"
+              style={{ height: 500 }}
+            />
+          </div>
         </div>
       </Layout>
     </ErrorBoundary>
