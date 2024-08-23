@@ -905,16 +905,29 @@
   }
 
   .calendarSection {
-    margin-top: 2rem;
+    margin-top: 4rem;
     background-color: var(--card-background);
     border-radius: 20px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    animation: fadeInUp 0.5s ease-out;
   }
 
   .calendarSection:hover {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .reactBigCalendar {
@@ -963,11 +976,26 @@
     text-overflow: ellipsis;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: popIn 0.3s ease-out;
   }
 
   .calendarEvent:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  @keyframes popIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    70% {
+      transform: scale(1.05);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   .reactBigCalendar .rbc-toolbar {
