@@ -257,18 +257,18 @@ export default function Chores() {
         throw new Error('Invalid chore data');
       }
 
-      // Ensure the dueDate is in ISO format
-      const formattedDueDate = new Date(editedChore.dueDate).toISOString();
+      const updatedChore = {
+        name: editedChore.name,
+        dueDate: new Date(editedChore.dueDate).toISOString(),
+        isRecurring: editedChore.isRecurring,
+        recurringPeriod: editedChore.isRecurring ? editedChore.recurringPeriod : null,
+        notes: editedChore.notes,
+        user_id: editedChore.user_id
+      };
 
       const { data, error } = await supabase
         .from('chores')
-        .update({
-          name: editedChore.name,
-          dueDate: formattedDueDate,
-          isRecurring: editedChore.isRecurring,
-          recurringPeriod: editedChore.recurringPeriod,
-          notes: editedChore.notes
-        })
+        .update(updatedChore)
         .eq('id', editedChore.id)
         .select()
 
@@ -280,24 +280,18 @@ export default function Chores() {
       console.log('Update response from Supabase:', data);
 
       if (data && data.length > 0) {
-        // Update the state with the data returned from Supabase
         setChores(prevChores => prevChores.map(chore => 
-          chore.id === editedChore.id ? { ...data[0], dueDate: formattedDueDate } : chore
+          chore.id === editedChore.id ? data[0] : chore
         ));
+        setEditingChore(null);
+        toast.success('Chore updated successfully!');
       } else {
-        // If no data returned, update the state with the edited chore
-        setChores(prevChores => prevChores.map(chore => 
-          chore.id === editedChore.id ? { ...editedChore, dueDate: formattedDueDate } : chore
-        ));
+        throw new Error('No data returned from update operation');
       }
 
-      setEditingChore(null);
-      toast.success('Chore updated successfully!');
-      
       // Fetch chores again to ensure state is in sync with the database
       await fetchChores();
 
-      console.log('Current chores after update:', chores);
     } catch (error) {
       console.error('Error in handleSaveEdit:', error);
       handleError(error, 'Failed to update chore');
