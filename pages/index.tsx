@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { FaShoppingCart, FaClipboardList, FaBrain, FaRobot } from 'react-icons/fa';
 import TypingEffect from '../components/TypingEffect';
@@ -137,6 +138,24 @@ export default function Home() {
           <h2>Experience the Future of Home and Life Management</h2>
           <p>Join LifeTrackr Beta today and transform the way you organize your household and life!</p>
           <Link href="/signup" className={styles.ctaButton}>Start For Free</Link>
+        </section>
+
+        <section className={styles.screenshots}>
+          <h2>See LifeTrackr in Action</h2>
+          <div className={styles.screenshotGrid}>
+            <div className={styles.screenshotItem}>
+              <Image src="/UI-screenshot.png" alt="LifeTrackr UI" width={400} height={300} />
+              <p>Intuitive User Interface</p>
+            </div>
+            <div className={styles.screenshotItem}>
+              <Image src="/Calendarview.png" alt="Calendar View" width={400} height={300} />
+              <p>Organized Calendar View</p>
+            </div>
+            <div className={styles.screenshotItem}>
+              <Image src="/ListOfChores.png" alt="List of Chores" width={400} height={300} />
+              <p>Comprehensive Chore List</p>
+            </div>
+          </div>
         </section>
 
         <section className={styles.aiShowcase}>
