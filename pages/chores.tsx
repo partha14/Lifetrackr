@@ -7,12 +7,7 @@ import TypingEffect from '../components/TypingEffect'
 import { handleError } from '../utils/errorHandler'
 import toast, { Toaster } from 'react-hot-toast'
 import styles from '../styles/Dashboard.module.css'
-import styles from '../styles/Dashboard.module.css'
 import { useRouter } from 'next/router'
-import { FaPlus, FaSync, FaCheckCircle, FaTimesCircle, FaCalendarAlt, FaClipboardList, FaRecycle, FaStickyNote, FaTrash, FaSearch, FaChevronDown, FaChevronUp, FaTimes, FaEdit, FaSave } from 'react-icons/fa'
-import TypingEffect from '../components/TypingEffect'
-import { handleError } from '../utils/errorHandler'
-import toast, { Toaster } from 'react-hot-toast'
 import ErrorBoundary from '../components/ErrorBoundary'
 
 const choreCategories = [
