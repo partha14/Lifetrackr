@@ -253,12 +253,13 @@ export default function Chores() {
     try {
       console.log('Attempting to save edited chore:', editedChore);
 
-      if (!editedChore || !editedChore.id) {
+      if (!editedChore) {
         throw new Error('Invalid chore data');
       }
 
-      if (!editedChore.user_id) {
-        throw new Error('User ID is missing');
+      const choreId = editedChore.id;
+      if (!choreId) {
+        throw new Error('Chore ID is missing');
       }
 
       const { data, error } = await supabase
@@ -269,9 +270,8 @@ export default function Chores() {
           isRecurring: editedChore.isRecurring,
           recurringPeriod: editedChore.isRecurring ? editedChore.recurringPeriod : null,
           notes: editedChore.notes,
-          user_id: editedChore.user_id,
         })
-        .eq('id', editedChore.id)
+        .eq('id', choreId)
         .select()
 
       if (error) {
@@ -284,7 +284,7 @@ export default function Chores() {
       if (data && data.length > 0) {
         console.log('Updating local state with returned data');
         setChores(prevChores => prevChores.map(chore => 
-          chore.id === editedChore.id ? data[0] : chore
+          chore.id === choreId ? data[0] : chore
         ));
         setEditingChore(null);
         toast.success('Chore updated successfully!');
